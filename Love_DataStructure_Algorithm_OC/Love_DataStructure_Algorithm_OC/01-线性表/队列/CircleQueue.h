@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 循环队列 - 用优化后的动态数组实现
 @interface CircleQueue : NSObject
 
+#pragma mark - 方法
 /** 元素的数量 */
 - (int)size;
 

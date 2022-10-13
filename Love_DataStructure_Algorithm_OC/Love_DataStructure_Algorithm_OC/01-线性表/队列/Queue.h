@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 队列 -  - 用动态数组实现
 @interface Queue : NSObject
 
+#pragma mark - 方法
 /** 元素的数量 */
 - (int)size;
 

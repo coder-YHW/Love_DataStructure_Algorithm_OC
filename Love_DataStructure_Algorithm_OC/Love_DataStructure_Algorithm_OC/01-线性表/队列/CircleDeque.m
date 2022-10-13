@@ -10,10 +10,13 @@
 
 static int kDefaultCapacity = 10;   // 默认元素个数
 
+#pragma mark - 属性
 @implementation CircleDeque {
     ArrayListUpgrade *arrayList;
 }
 
+
+#pragma mark - 构造函数
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -22,6 +25,8 @@ static int kDefaultCapacity = 10;   // 默认元素个数
     return self;
 }
 
+
+#pragma mark - 方法
 /** 元素的数量 */
 - (int)size {
     return arrayList.size;

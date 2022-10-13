@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用2个栈实现队列操作 （inStack➕outStack）
 @interface StackQueue : NSObject
 
+#pragma mark - 方法
 /** 元素的数量 */
 - (int)size;
 

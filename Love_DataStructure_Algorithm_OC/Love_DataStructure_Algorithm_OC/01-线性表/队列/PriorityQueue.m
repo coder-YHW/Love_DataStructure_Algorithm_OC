@@ -8,42 +8,52 @@
 #import "PriorityQueue.h"
 #import "BinaryHeap.h"
 
+#pragma mark - 属性
 @implementation PriorityQueue {
-    BinaryHeap *_heap;
+    BinaryHeap *heap;
 }
 
+
+#pragma mark - 构造函数
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _heap = [BinaryHeap heapWithComparatorBlock:^int(id  _Nonnull e1, id  _Nonnull e2) {
+        heap = [BinaryHeap heapWithComparatorBlock:^int(id  _Nonnull e1, id  _Nonnull e2) {
             return (int)[e1 compare:e2]; // 比较优先级
         }];
     }
     return self;
 }
 
+
+#pragma mark - 方法
 - (int)size {
-    return _heap.size;
+    return heap.size;
 }
 
 - (BOOL)isEmpty {
-    return _heap.isEmpty;
+    return heap.isEmpty;
 }
 
 - (void)clear {
-    [_heap clear];
+    [heap clear];
 }
 
 - (void)enQueue:(id)element {
-    [_heap add:element];
+    [heap add:element];
 }
 
 - (id)deQueue {
-    return [_heap remove];
+    return [heap remove];
 }
 
 - (id)front {
-    return _heap.get;
+    return heap.get;
+}
+
+#pragma mark - 打印
+- (NSString *)description {
+    return heap.description;
 }
 
 @end

@@ -8,10 +8,13 @@
 #import "Queue.h"
 #import "ArrayList.h"
 
+#pragma mark - 属性
 @implementation Queue {
     ArrayList *arrayList;
 }
 
+
+#pragma mark - 构造函数
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -20,6 +23,8 @@
     return self;
 }
 
+
+#pragma mark - 方法
 /** 元素的数量 */
 - (int)size {
     return arrayList.size;

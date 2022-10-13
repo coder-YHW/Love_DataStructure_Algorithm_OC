@@ -92,4 +92,10 @@
     return element;
 }
 
+
+#pragma mark - 打印
+- (NSString *)description {
+    return dataQueue.description;
+}
+
 @end

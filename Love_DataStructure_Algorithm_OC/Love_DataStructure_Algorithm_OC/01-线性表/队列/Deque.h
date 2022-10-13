@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 双端队列  - 用双向链表实现
 @interface Deque : NSObject
 
+#pragma mark - 方法
 /** 元素的数量 */
 - (int)size;
 
