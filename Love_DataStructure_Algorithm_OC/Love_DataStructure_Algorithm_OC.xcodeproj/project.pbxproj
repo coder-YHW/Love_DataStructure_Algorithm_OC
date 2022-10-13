@@ -259,6 +259,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D66C5A828F8256200D280E2 /* 07-优先级队列 */ = {
+			isa = PBXGroup;
+			children = (
+				0D66C5A928F8259800D280E2 /* 图片 */,
+				0DC90C5228F0257800AA8754 /* PriorityQueue.h */,
+				0DC90C5128F0257800AA8754 /* PriorityQueue.m */,
+			);
+			path = "07-优先级队列";
+			sourceTree = "<group>";
+		};
+		0D66C5A928F8259800D280E2 /* 图片 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "图片";
+			sourceTree = "<group>";
+		};
 		0DC90ABE28EF4F4100AA8754 = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +303,8 @@
 				0DC90B7E28EF6C6C00AA8754 /* 04-映射 */,
 				0DC90C4528F023AE00AA8754 /* 05-哈希表 */,
 				0DC90C4628F0242600AA8754 /* 06-堆 */,
-				0DC90C5428F025F100AA8754 /* 07-Trie */,
+				0D66C5A828F8256200D280E2 /* 07-优先级队列 */,
+				0DC90C5428F025F100AA8754 /* 08-Trie */,
 			);
 			path = Love_DataStructure_Algorithm_OC;
 			sourceTree = "<group>";
@@ -510,8 +528,6 @@
 				0DC90B3B28EF4F8400AA8754 /* CircleQueue.m */,
 				0DC90B3328EF4F8400AA8754 /* CircleDeque.h */,
 				0DC90B3828EF4F8400AA8754 /* CircleDeque.m */,
-				0DC90C5228F0257800AA8754 /* PriorityQueue.h */,
-				0DC90C5128F0257800AA8754 /* PriorityQueue.m */,
 			);
 			path = "队列";
 			sourceTree = "<group>";
@@ -634,7 +650,7 @@
 			path = "06-堆";
 			sourceTree = "<group>";
 		};
-		0DC90C5428F025F100AA8754 /* 07-Trie */ = {
+		0DC90C5428F025F100AA8754 /* 08-Trie */ = {
 			isa = PBXGroup;
 			children = (
 				0DE82A8B28F4098B00711210 /* 图片 */,
@@ -643,7 +659,7 @@
 				0DC90C5828F025F100AA8754 /* Trie.h */,
 				0DC90C5628F025F100AA8754 /* Trie.m */,
 			);
-			path = "07-Trie";
+			path = "08-Trie";
 			sourceTree = "<group>";
 		};
 		0DE82A8628F4095500711210 /* 图片 */ = {
