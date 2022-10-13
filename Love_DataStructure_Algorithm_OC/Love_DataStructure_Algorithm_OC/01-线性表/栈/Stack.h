@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 是否为空 */
 - (bool)isEmpty;
 
+/**清空*/
+- (void)clear;
+
 /**入栈*/
 - (void)push:(id)element;
 

@@ -40,6 +40,9 @@ static int kDefaultCapacity = 10;   // 默认动态数组元素数量为10个 �
         elements[i] = [NSNull null];
     }
     self.size = 0;
+    
+    // 动态数组缩容
+    [self cutCapacity];
 }
 
 /** 获取index位置的元素 */
@@ -124,6 +127,9 @@ static int kDefaultCapacity = 10;   // 默认动态数组元素数量为10个 �
     // 索引--
     self.size--;
     
+    // 动态数组缩容
+    [self cutCapacity];
+    
     return old;
 }
 
@@ -153,7 +159,28 @@ static int kDefaultCapacity = 10;   // 默认动态数组元素数量为10个 �
 }
 
 /**动态数组缩容**/
-
+- (void)cutCapacity {
+    
+    int oldCapacity = (int)elements.count;
+    int newCapacity = oldCapacity >> 1;
+    if (newCapacity < kDefaultCapacity || newCapacity <= self.size) {
+        return;
+    }
+    
+    NSMutableArray *newElements = [NSMutableArray arrayWithCapacity:newCapacity];
+    for (int i = 0; i < newCapacity; i++) {
+        // 默认用NSNull占位
+        [newElements addObject:[NSNull null]];
+    }
+    
+    // 旧值设回
+    for (int i = 0; i < self.size; i++) {
+        newElements[i] = elements[i];
+    }
+    elements = newElements;
+    
+    NSLog(@"缩容为:%d",newCapacity);
+}
 
 #pragma mark - 打印
 - (NSString *)description {

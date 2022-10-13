@@ -30,6 +30,11 @@
     return [arrayList isEmpty];
 }
 
+/**清空*/
+- (void)clear {
+    [arrayList clear];
+}
+
 /**入栈*/
 - (void)push:(id)element {
     [arrayList add:element];
