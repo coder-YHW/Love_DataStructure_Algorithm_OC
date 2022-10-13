@@ -25,7 +25,7 @@
 		0DC90B5D28EF4F8400AA8754 /* DoubleCircleLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90B2F28EF4F8400AA8754 /* DoubleCircleLinkedList.m */; };
 		0DC90B5E28EF4F8400AA8754 /* LinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90B3128EF4F8400AA8754 /* LinkedList.m */; };
 		0DC90B5F28EF4F8400AA8754 /* Deque.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90B3428EF4F8400AA8754 /* Deque.m */; };
-		0DC90B6028EF4F8400AA8754 /* QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90B3528EF4F8400AA8754 /* QueueStack.m */; };
+		0DC90B6028EF4F8400AA8754 /* StackQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90B3528EF4F8400AA8754 /* StackQueue.m */; };
 		0DC90B6128EF4F8400AA8754 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90B3728EF4F8400AA8754 /* Queue.m */; };
 		0DC90B6228EF4F8400AA8754 /* CircleDeque.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90B3828EF4F8400AA8754 /* CircleDeque.m */; };
 		0DC90B6328EF4F8400AA8754 /* CircleQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90B3B28EF4F8400AA8754 /* CircleQueue.m */; };
@@ -154,11 +154,11 @@
 		0DC90B3128EF4F8400AA8754 /* LinkedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedList.m; sourceTree = "<group>"; };
 		0DC90B3328EF4F8400AA8754 /* CircleDeque.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDeque.h; sourceTree = "<group>"; };
 		0DC90B3428EF4F8400AA8754 /* Deque.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deque.m; sourceTree = "<group>"; };
-		0DC90B3528EF4F8400AA8754 /* QueueStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueStack.m; sourceTree = "<group>"; };
+		0DC90B3528EF4F8400AA8754 /* StackQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackQueue.m; sourceTree = "<group>"; };
 		0DC90B3628EF4F8400AA8754 /* CircleQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleQueue.h; sourceTree = "<group>"; };
 		0DC90B3728EF4F8400AA8754 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		0DC90B3828EF4F8400AA8754 /* CircleDeque.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDeque.m; sourceTree = "<group>"; };
-		0DC90B3928EF4F8400AA8754 /* QueueStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueStack.h; sourceTree = "<group>"; };
+		0DC90B3928EF4F8400AA8754 /* StackQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackQueue.h; sourceTree = "<group>"; };
 		0DC90B3A28EF4F8400AA8754 /* Deque.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deque.h; sourceTree = "<group>"; };
 		0DC90B3B28EF4F8400AA8754 /* CircleQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleQueue.m; sourceTree = "<group>"; };
 		0DC90B3C28EF4F8400AA8754 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -501,8 +501,8 @@
 				0DC90B3728EF4F8400AA8754 /* Queue.m */,
 				0DC90B3A28EF4F8400AA8754 /* Deque.h */,
 				0DC90B3428EF4F8400AA8754 /* Deque.m */,
-				0DC90B3928EF4F8400AA8754 /* QueueStack.h */,
-				0DC90B3528EF4F8400AA8754 /* QueueStack.m */,
+				0DC90B3928EF4F8400AA8754 /* StackQueue.h */,
+				0DC90B3528EF4F8400AA8754 /* StackQueue.m */,
 				0DC90B3628EF4F8400AA8754 /* CircleQueue.h */,
 				0DC90B3B28EF4F8400AA8754 /* CircleQueue.m */,
 				0DC90B3328EF4F8400AA8754 /* CircleDeque.h */,
@@ -759,7 +759,7 @@
 				0DC90B8828EF6C6D00AA8754 /* TreeMap.m in Sources */,
 				0DC90B5D28EF4F8400AA8754 /* DoubleCircleLinkedList.m in Sources */,
 				0DC90B6628EF4F8400AA8754 /* LinkNode.m in Sources */,
-				0DC90B6028EF4F8400AA8754 /* QueueStack.m in Sources */,
+				0DC90B6028EF4F8400AA8754 /* StackQueue.m in Sources */,
 				0DC90B5F28EF4F8400AA8754 /* Deque.m in Sources */,
 				0DC90B5728EF4F8400AA8754 /* RBNode.m in Sources */,
 				0DC90C5028F0252600AA8754 /* Heap.m in Sources */,

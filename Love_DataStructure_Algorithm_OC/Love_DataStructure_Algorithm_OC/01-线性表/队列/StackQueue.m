@@ -1,14 +1,14 @@
 //
-//  QueueStack.m
+//  StackQueue.m
 //  Love_DataStructure_Algorithm_OC
 //
 //  Created by 余衡武 on 2022/10/13.
 //  
 
-#import "QueueStack.h"
+#import "StackQueue.h"
 #import "Stack.h"
 
-@implementation QueueStack {
+@implementation StackQueue {
     Stack *inStack;
     Stack *outStack;
 }

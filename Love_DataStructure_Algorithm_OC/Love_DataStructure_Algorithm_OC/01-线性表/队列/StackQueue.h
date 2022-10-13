@@ -1,5 +1,5 @@
 //
-//  QueueStack.h
+//  StackQueue.h
 //  Love_DataStructure_Algorithm_OC
 //
 //  Created by 余衡武 on 2022/10/13.
@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// 用2个栈实现队列操作 （inStack➕outStack）
-@interface QueueStack : NSObject
+@interface StackQueue : NSObject
 
 /** 元素的数量 */
 - (int)size;
