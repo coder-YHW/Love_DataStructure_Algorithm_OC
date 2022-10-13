@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D66C5A628F8213000D280E2 /* QueueStack.m */; };
 		0DC90B4E28EF4F8400AA8754 /* AVLTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD528EF4F8300AA8754 /* AVLTree.m */; };
 		0DC90B4F28EF4F8400AA8754 /* AVLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD628EF4F8300AA8754 /* AVLNode.m */; };
 		0DC90B5028EF4F8400AA8754 /* BinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90ADC28EF4F8400AA8754 /* BinaryTree.m */; };
@@ -68,6 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D66C5A528F8213000D280E2 /* QueueStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueStack.h; sourceTree = "<group>"; };
+		0D66C5A628F8213000D280E2 /* QueueStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueStack.m; sourceTree = "<group>"; };
 		0DC90AC728EF4F4100AA8754 /* Love_DataStructure_Algorithm_OC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Love_DataStructure_Algorithm_OC; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC90AD228EF4F8300AA8754 /* 恋上数据结构与算法-第一季.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "恋上数据结构与算法-第一季.pdf"; sourceTree = "<group>"; };
 		0DC90AD528EF4F8300AA8754 /* AVLTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVLTree.m; sourceTree = "<group>"; };
@@ -539,6 +542,8 @@
 				0DC90B4828EF4F8400AA8754 /* 图片 */,
 				0DC90B4728EF4F8400AA8754 /* Stack.h */,
 				0DC90B4628EF4F8400AA8754 /* Stack.m */,
+				0D66C5A528F8213000D280E2 /* QueueStack.h */,
+				0D66C5A628F8213000D280E2 /* QueueStack.m */,
 			);
 			path = "栈";
 			sourceTree = "<group>";
@@ -796,6 +801,7 @@
 				0DC90B6A28EF661600AA8754 /* main.m in Sources */,
 				0DC90B8728EF6C6D00AA8754 /* Map.m in Sources */,
 				0DC90B5328EF4F8400AA8754 /* MJLevelOrderPrinter.m in Sources */,
+				0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
