@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 队列 -  - 用链表实现
+/// 队列 -  - 用动态数组实现
 @interface Queue : NSObject
 
 /** 元素的数量 */

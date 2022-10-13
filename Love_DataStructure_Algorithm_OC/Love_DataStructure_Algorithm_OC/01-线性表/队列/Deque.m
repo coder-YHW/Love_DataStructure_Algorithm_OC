@@ -6,16 +6,16 @@
 //  
 
 #import "Deque.h"
-#import "LinkedList.h"
+#import "DoubleLinkList.h"
 
 @implementation Deque {
-    LinkedList *linkList;
+    DoubleLinkList *linkList;
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        linkList = [[LinkedList alloc] init];
+        linkList = [[DoubleLinkList alloc] init];
     }
     return self;
 }

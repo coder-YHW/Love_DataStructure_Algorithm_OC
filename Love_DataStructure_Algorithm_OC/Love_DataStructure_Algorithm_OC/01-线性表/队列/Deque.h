@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 双端队列  - 用链表实现
+/// 双端队列  - 用双向链表实现
 @interface Deque : NSObject
 
 /** 元素的数量 */

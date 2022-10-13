@@ -6,53 +6,53 @@
 //  
 
 #import "Queue.h"
-#import "LinkedList.h"
+#import "ArrayList.h"
 
 @implementation Queue {
-    LinkedList *linkList;
+    ArrayList *arrayList;
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        linkList = [[LinkedList alloc] init];
+        arrayList = [[ArrayList alloc] init];
     }
     return self;
 }
 
 /** 元素的数量 */
 - (int)size {
-    return linkList.size;
+    return arrayList.size;
 }
 
 /** 是否为空 */
 - (BOOL)isEmpty {
-    return [linkList isEmpty];
+    return [arrayList isEmpty];
 }
 
 /** 清空 */
 - (void)clear {
-    [linkList clear];
+    [arrayList clear];
 }
 
 /** 入队 */
 - (void)enQueue:(id)element {
-    [linkList add:element];
+    [arrayList add:element];
 }
 
 /** 出队 */
 - (id)deQueue {
-    return [linkList remove:0];
+    return [arrayList remove:0];
 }
 
 /**获取队列的头元素 */
 - (id)front {
-    return [linkList get:0];
+    return [arrayList get:0];
 }
 
 #pragma mark - 打印
 - (NSString *)description {
-    return linkList.description;
+    return arrayList.description;
 }
 
 @end

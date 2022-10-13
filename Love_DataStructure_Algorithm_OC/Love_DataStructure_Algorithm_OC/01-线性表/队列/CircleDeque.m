@@ -49,14 +49,12 @@ static int kDefaultCapacity = 10;   // 默认元素个数
 
  /** 从前面出队 */
 - (id)deQueueFront {
-    id frontElement = [arrayList remove:0];
-    return frontElement;
+    return [arrayList remove:0];
 }
 
 /** 从后面出队 */
 - (id)deQueueRear {
-    id frontElement = [arrayList remove:(arrayList.size-1)];
-    return frontElement;
+    return [arrayList remove:(arrayList.size - 1)];
 }
 
 /**获取队列的头元素 */
