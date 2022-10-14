@@ -69,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D1BDBB728F9DA58004F1D93 /* 恋上数据结构与算法-第二季.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "恋上数据结构与算法-第二季.pdf"; sourceTree = "<group>"; };
 		0D66C5A528F8213000D280E2 /* QueueStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueStack.h; sourceTree = "<group>"; };
 		0D66C5A628F8213000D280E2 /* QueueStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueStack.m; sourceTree = "<group>"; };
 		0DC90AC728EF4F4100AA8754 /* Love_DataStructure_Algorithm_OC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Love_DataStructure_Algorithm_OC; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +298,7 @@
 			children = (
 				0DC90B6928EF661600AA8754 /* main.m */,
 				0DC90AD228EF4F8300AA8754 /* 恋上数据结构与算法-第一季.pdf */,
+				0D1BDBB728F9DA58004F1D93 /* 恋上数据结构与算法-第二季.pdf */,
 				0DC90B2728EF4F8400AA8754 /* 01-线性表 */,
 				0DC90AD328EF4F8300AA8754 /* 02-二叉树 */,
 				0DC90B6B28EF667C00AA8754 /* 03-集合 */,
