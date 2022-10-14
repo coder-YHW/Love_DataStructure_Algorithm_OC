@@ -24,7 +24,7 @@
     TreeNode *parent = node.parent;
     
     // 1、添加的是根节点,或者上溢到达了根节点
-    // 1.1、将自己染黑
+    // 1.1、将自己染黑就行了
     if (parent == nil) {
         [self black:node];
         return;
@@ -105,7 +105,7 @@
     
     // 5、删除的是黑色叶子节点[下溢]
     // 判断被删除的node是左还是右
-    BOOL left = parent.left == nil || node.isLeftChild;
+    BOOL left = parent.left == nil || node.isLeftChild; // 注意这2种情况
     TreeNode *sibling = left ? parent.right : parent.left;
     
     if (left) { // 5.1、被删除的节点在左边,兄弟节点在右边

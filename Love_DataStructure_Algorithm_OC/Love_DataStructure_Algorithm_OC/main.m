@@ -322,8 +322,9 @@ void testRBT(void) {
     RBTree *rbt = [RBTree tree];
     
     // 2.2、添加节点数据
-//    int data[] = {55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50};
-    int data[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    int data[] = {55, 87, 56, 74, 96, 22, 62, 20, 70, 68, 90, 50};
+//    int data[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+//    int data[] = {0, 1, 2};
 
     int len = sizeof(data) / sizeof(int);
     for (int i = 0; i < len; i++) {
@@ -468,10 +469,10 @@ int main(int argc, const char * argv[]) {
 //        testBST2();
         
         // AVL树验证 - AVL树
-        testAVL();
+//        testAVL();
         
         // RBT树验证 - 红黑树
-//        testRBT();
+        testRBT();
         
         // TreeMap验证 - 映射
 //        testTreeMap();
