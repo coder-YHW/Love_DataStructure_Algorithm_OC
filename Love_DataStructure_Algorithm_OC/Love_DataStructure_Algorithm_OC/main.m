@@ -246,6 +246,7 @@ void testBST1(void) {
     
     // 2、添加节点数据
     NSArray *array = @[@7, @4, @9, @2, @5, @8, @11];
+//    NSArray *array = @[@7, @4, @9];
     for (id elemennt in array) {
         [bst add:elemennt];
     }
@@ -457,7 +458,7 @@ int main(int argc, const char * argv[]) {
 //        testArrayList();
         
         // 链表验证
-        testLinkList();
+//        testLinkList();
         
         // 队列验证
 //        testQueue();
@@ -467,7 +468,7 @@ int main(int argc, const char * argv[]) {
 //        testBST2();
         
         // AVL树验证 - AVL树
-//        testAVL();
+        testAVL();
         
         // RBT树验证 - 红黑树
 //        testRBT();

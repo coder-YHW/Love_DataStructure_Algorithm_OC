@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 平衡二叉搜索树
+/// 平衡二叉搜索树  - 旋转操作
 @interface BBSTree : BSTree
 
 #pragma mark - 平衡二叉搜索树-方法一

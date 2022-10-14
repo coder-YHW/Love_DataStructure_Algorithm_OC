@@ -197,14 +197,14 @@ static int DEFAULT_CAPACITY = 10;
         // 2、选出左右子节点最大的那个
         if (rightIndex < self.size) { // 算出来的索引要小于数组长度 否则会越界
             
-            if ([self compare:elements[rightIndex] element2:child] > 0) { // 右子节点大 就替换child
+            if ([self compareElement1:elements[rightIndex] element2:child] > 0) { // 右子节点大 就替换child
                 childIndex = rightIndex;
                 child = elements[rightIndex];
             }
         }
         
         // 3、与其最大的那个子节点比较大小 ： node >= child 就停止while循环
-        if ([self compare:element element2:child] >= 0) {
+        if ([self compareElement1:element element2:child] >= 0) {
             break;
         }
         
@@ -235,7 +235,7 @@ static int DEFAULT_CAPACITY = 10;
         id parent = elements[parentIndex];
         
         // 2、与父节点比较大小
-        if ([self compare:element element2:parent] <= 0) {
+        if ([self compareElement1:element element2:parent] <= 0) {
             break;
         }
         
@@ -253,10 +253,10 @@ static int DEFAULT_CAPACITY = 10;
 
 #pragma mark - 比较器
 /** 比较两元素的大小 */
-- (int)compare:(id)element1 element2:(id)element2 {
+- (int)compareElement1:(id)element1 element2:(id)element2 {
     
     int result = _comparatorBlock ? _comparatorBlock(element1, element2) :
-    (_comparator ? (int)[_comparator compare:element1 another:element2] : (int)[element1 compare:element2]);
+    (_comparator ? (int)[_comparator compareElement1:element1 another:element2] : (int)[element1 compare:element2]);
     
     if (self.heapType == HeapTypeSmall) {
         result = -result;

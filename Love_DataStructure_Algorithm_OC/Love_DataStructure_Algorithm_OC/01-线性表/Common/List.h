@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 线性表-通用接口设计
 @interface List : NSObject
 
+
+#pragma mark - 接口方法
 /**
  * 元素的数量
  */

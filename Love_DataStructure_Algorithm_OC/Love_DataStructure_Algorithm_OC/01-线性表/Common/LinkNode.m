@@ -9,6 +9,7 @@
 
 @implementation LinkNode
 
+#pragma mark - 构造函数
 /**单向节点-构造方法**/
 - (instancetype)initWithElement:(id)element next:(nullable LinkNode *)next {
     self = [super init];

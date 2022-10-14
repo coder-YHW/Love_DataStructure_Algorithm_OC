@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 1、协议 - 协议
 @protocol MJBSTComparator
 @required
-- (int)compare:(id)e1 another:(id)e2;
+- (int)compareElement1:(id)e1 another:(id)e2;
 @end
 
 // 2、Block - 比较器

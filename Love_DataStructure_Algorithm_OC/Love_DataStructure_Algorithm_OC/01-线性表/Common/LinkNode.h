@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 链表节点
 @interface LinkNode : NSObject
 
+#pragma mark - 属性
 /** element */
 @property (nonatomic,assign,nullable) id element;
 /** next */
@@ -20,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong,nullable) LinkNode *prev;
 
 
+#pragma mark - 构造函数
 /**单向节点-构造方法**/
 - (instancetype)initWithElement:(id)element next:(nullable LinkNode *)next;
 

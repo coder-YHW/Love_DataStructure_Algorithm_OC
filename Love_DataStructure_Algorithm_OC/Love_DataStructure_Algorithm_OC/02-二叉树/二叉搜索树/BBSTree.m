@@ -14,33 +14,34 @@
 /** 左旋转 grand - 爷爷节点 */
 - (void)rotateLeft:(TreeNode *)grand {
     
+    // 1、// 1、找到parent和child
     TreeNode *parent = grand.right;
-    TreeNode *node = parent.left;
+    TreeNode *child = parent.left;
     
-    // 1、移动parent.left节点
+    // 2、旋转grand、parent和child - 改动2根线
     grand.right = parent.left;
     parent.left = grand;
     
-    // 2、依次更新parent、node、grand的grand
-    [self afterRotate:grand parent:parent child:node];
+    // 3、依次更新parent、child、grand的parent
+    [self afterRotate:grand parent:parent child:child];
 }
 
 /** 右旋转 */
 - (void)rotateRight:(TreeNode *)grand {
     
     TreeNode *parent = grand.left;
-    TreeNode *node = parent.right;
+    TreeNode *child = parent.right;
     
     // 1、移动parent.right节点
     grand.left = parent.right;
     parent.right = grand;
     
-    // 2、依次更新parent、node、grand的grand
-    [self afterRotate:grand parent:parent child:node];
+    // 2、依次更新parent、child、grand的grand
+    [self afterRotate:grand parent:parent child:child];
 }
 
 /** 按照顺序更新节点的parent： 1、parent.parent  2、child.parent  3、grand.parent*/
-- (void)afterRotate:(TreeNode *)grand parent:(TreeNode *)parent child:(TreeNode *)node {
+- (void)afterRotate:(TreeNode *)grand parent:(TreeNode *)parent child:(TreeNode *)child {
     // 1.1、让parent成为子树的根节点
     parent.parent = grand.parent;
     
@@ -53,9 +54,9 @@
         self.root = parent;
     }
     
-    // 2、更新node的grand
-    if (node != nil) {
-        node.parent = grand;
+    // 2、更新child的grand - child有可能不存在
+    if (child != nil) {
+        child.parent = grand;
     }
     
     // 3、更新grand的parent

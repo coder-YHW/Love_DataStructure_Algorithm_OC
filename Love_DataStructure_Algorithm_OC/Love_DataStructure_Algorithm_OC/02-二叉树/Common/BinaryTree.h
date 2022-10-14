@@ -43,16 +43,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 #pragma mark - 二叉树遍历
-
-
 /** 前序遍历 */
-- (void)preordr;
+- (void)preOrder;
 
 /** 中序遍历 */
-- (void)inorder;
+- (void)inOrder;
 
 /** 后序遍历 */
-- (void)postorder;
+- (void)postOrder;
 
 /** 层序遍历 */
 - (void)levelOrder;
@@ -79,10 +77,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 前驱节点 和 后继节点
 /** 找前驱节点 */
-- (TreeNode *)predecessor:(TreeNode *)node;
+- (TreeNode *)prevNode:(TreeNode *)node;
 
 /** 找后继节点 */
-- (TreeNode *)successor:(TreeNode *)node;
+- (TreeNode *)nextNode:(TreeNode *)node;
 
 @end
 

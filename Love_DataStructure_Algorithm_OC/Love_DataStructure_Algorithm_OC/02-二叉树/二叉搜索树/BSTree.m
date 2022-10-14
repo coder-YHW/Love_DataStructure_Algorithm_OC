@@ -65,8 +65,8 @@
     int cmp = 0;
     
     while (node) {
-        cmp = [self compare:element element2:node.element];
-        parent = node;
+        cmp = [self compareElement1:element element2:node.element];
+        parent = node; // 更新父节点
         
         if (cmp > 0) { // 右节点
             node = node.right;
@@ -86,6 +86,7 @@
     } else {
         parent.left = newNode;
     }
+    // 索引++
     self.size++;
     
     // 添加节点后平衡二叉搜索树 - 子类实现
@@ -96,7 +97,7 @@
  * 删除元素为element的节点
  */
 - (void)removeElement:(id)element {
-    [self removeNode:[self node:element]];
+    [self removeNode:[self getNodeFromElement:element]];
 }
 
 /**
@@ -107,20 +108,17 @@
         return;
     }
     
-    // 0、size --
-    self.size--;
-    
     // 1、node的度为2 - 它的前驱节点或后继节点 只能是度为0或1的节点
     if (node.hasTwoChildren) {
         // 1.1、找到后继节点
-        TreeNode *s = [self successor:node];
+        TreeNode *s = [self nextNode:node];
         // 1.2、用后继节点的值覆盖度为2的节点
         node.element = s.element;
         // 1.3、删除后继节点 - 用后继节点覆盖node 后续再删除node
         node = s;
     }
     
-    // 删除node节点（node的度必然是0或1）
+    // 删除node节点（后面node的度必然是0或1）
     TreeNode *replcaeNode = node.left != nil ? node.left : node.right;
     
     if(replcaeNode != nil) { // 2、node的度为1 (更改子节点的parent➕更改父节点的左子树或右子树为replcaeNode)
@@ -136,6 +134,9 @@
             node.parent.right = replcaeNode;
         }
         
+        // size --
+        self.size--;
+        
         // 删除节点后平衡二叉搜索树 - 子类实现
         [self afterRemove:replcaeNode];
         
@@ -150,6 +151,9 @@
             node.parent.right = nil;
         }
         
+        // size --
+        self.size--;
+        
         // 删除节点后平衡二叉搜索树 - 子类实现
         [self afterRemove:node];
     }
@@ -159,12 +163,12 @@
 /**
  * 返回元素为element的节点
  */
-- (TreeNode *)node:(id)element {
+- (TreeNode *)getNodeFromElement:(id)element {
     TreeNode *node = self.root;
     int cmp = 0;
     
     while (node != nil) {
-        cmp = [self compare:element element2:node.element];
+        cmp = [self compareElement1:element element2:node.element];
         if (cmp == 0) { // 当前节点
             return node;
         } else if (cmp > 0) {   // 右子树
@@ -180,14 +184,15 @@
  * 是否包含某个元素
  */
 - (bool)contains:(id)element {
-    return [self node:element];
+    return [self getNodeFromElement:element];
 }
 
-#pragma mark - private methods
+
+#pragma mark - 比较器
 /** 比较两元素的大小 */
-- (int)compare:(id)element1 element2:(id)element2 {
+- (int)compareElement1:(id)element1 element2:(id)element2 {
     return _comparatorBlock ? _comparatorBlock(element1, element2) :
-    (_comparator ? (int)[_comparator compare:element1 another:element2] : (int)[element1 compare:element2]);
+    (_comparator ? (int)[_comparator compareElement1:element1 another:element2] : (int)[element1 compare:element2]);
 }
 
 

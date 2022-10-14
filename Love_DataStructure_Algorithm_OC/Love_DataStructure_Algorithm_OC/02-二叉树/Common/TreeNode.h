@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 二叉树节点
 @interface TreeNode : NSObject
+
+#pragma mark - 属性
 /** id*/
 @property (nonatomic,strong) id element;
 /** left*/
@@ -21,10 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong,nullable) TreeNode *parent;
 
 
+#pragma mark - 构造函数
 /** 初始化 - 根结点parent为nil   */
 - (instancetype)initWithElement:(id)element parent:(nullable TreeNode *)parent;
 
 
+#pragma mark - 方法
 /** 是否是叶子节点 */
 - (BOOL)isLeaf;
 

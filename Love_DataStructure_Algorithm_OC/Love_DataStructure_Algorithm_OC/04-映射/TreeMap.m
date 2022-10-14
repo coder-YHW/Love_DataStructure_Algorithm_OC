@@ -66,7 +66,7 @@
     MapNode *node = _root;
     int cmp = 0;
     while (node != nil) {
-        cmp = [self compare:key element2:node.key];
+        cmp = [self compareElement1:key element2:node.key];
         if (cmp == 0) { // 当前节点
             return node;
         } else if (cmp > 0) {   // 右子树
@@ -173,7 +173,7 @@
     
     // 3、找到要添加位置的父节点
     while (node != nil) {
-        cmp = [self compare:key element2:node.key];
+        cmp = [self compareElement1:key element2:node.key];
         parent = node; // 找到父节点
         
         if (cmp > 0) {  // 右节点
@@ -265,7 +265,7 @@
     
     if (node.hasTwoChildren) {  // 度为2的节点
         // 找到后继节点
-        MapNode *s = [self successor:node];
+        MapNode *s = [self nextNode:node];
         // 用后继节点的值覆盖度为2的节点的值
         node.key = s.key;
         // 删除后继节点
@@ -473,7 +473,7 @@
 
 #pragma mark - 前驱节点 和 后继节点
 /** 找前驱节点 */
-- (MapNode *)predecessor:(MapNode *)node {
+- (MapNode *)prevNode:(MapNode *)node {
     if (node == nil) {
         return nil;
     }
@@ -501,8 +501,8 @@
     return node.parent;
 }
 
-/* 找后继节点 */
-- (MapNode *)successor:(MapNode *)node {
+/** 找后继节点 */
+- (MapNode *)nextNode:(MapNode *)node {
     if (node == nil) {
         return nil;
     }
@@ -535,9 +535,9 @@
 }
 
 /** 比较两元素的大小 */
-- (int)compare:(id)element1 element2:(id)element2 {
+- (int)compareElement1:(id)element1 element2:(id)element2 {
     return _comparatorBlock ? _comparatorBlock(element1, element2) :
-    (_comparator ? (int)[_comparator compare:element1 another:element2] : (int)[element1 compare:element2]);
+    (_comparator ? (int)[_comparator compareElement1:element1 another:element2] : (int)[element1 compare:element2]);
 }
 
 

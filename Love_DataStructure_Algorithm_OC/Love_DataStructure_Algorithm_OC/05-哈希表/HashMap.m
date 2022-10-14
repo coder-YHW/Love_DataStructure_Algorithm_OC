@@ -190,7 +190,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     
     // 3、找到要添加位置的父节点
     while (node != nil) { // 这里不可能是Null 只有根节点才有可能是Null
-        cmp = [self compare:key element2:node.key hashCode1:[self getHashCodeFromKey:key] hashCode2:node.hashCode];
+        cmp = [self compareElement1:key element2:node.key hashCode1:[self getHashCodeFromKey:key] hashCode2:node.hashCode];
         parent = node; // 找到父节点
         
         if (cmp > 0) {  // 右节点
@@ -283,7 +283,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     
     if (node.hasTwoChildren) {  // 度为2的节点
         // 找到后继节点
-        HashNode *s = [self successor:node];
+        HashNode *s = [self nextNode:node];
         // 用后继节点的值覆盖度为2的节点的值
         node.key = s.key;
         node.value = s.value;
@@ -505,7 +505,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
 
 #pragma mark - 前驱节点 和 后继节点
 /** 找前驱节点 */
-- (HashNode *)predecessor:(HashNode *)node {
+- (HashNode *)prevNode:(HashNode *)node {
     if (node == nil) {
         return nil;
     }
@@ -533,8 +533,8 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     return node.parent;
 }
 
-/* 找后继节点 */
-- (HashNode *)successor:(HashNode *)node {
+/** 找后继节点 */
+- (HashNode *)nextNode:(HashNode *)node {
     if (node == nil) {
         return nil;
     }
@@ -633,7 +633,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     int cmp = 0;
     
     while (node != nil) {
-        cmp = [self compare:key element2:node.key hashCode1:[self getHashCodeFromKey:key] hashCode2:node.hashCode];
+        cmp = [self compareElement1:key element2:node.key hashCode1:[self getHashCodeFromKey:key] hashCode2:node.hashCode];
         if (cmp == 0) { // 当前节点
             return node;
         } else if (cmp > 0) {   // 右子树
@@ -647,7 +647,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
 
 #pragma mark - 比较两个key的大小
 /** 比较两个key的大小 - 存在问题 */
-- (int)compare:(id)element1 element2:(id)element2 hashCode1:(int)hashCode1 hashCode2:(int)hashCode2 {
+- (int)compareElement1:(id)element1 element2:(id)element2 hashCode1:(int)hashCode1 hashCode2:(int)hashCode2 {
     
     // 1、hashCode相同的2个key
 //    int cmp = hashCode1 - hashCode2; // 存在问题：1、hashCode有可能是负数 2、两个hashCode想加有可能内存溢出变负值
@@ -756,7 +756,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     
     // 3、找到要添加位置的父节点
     while (![self isNullObject:node]) {
-        cmp = [self compare:newNode.key element2:node.key hashCode1:newNode.hashCode hashCode2:node.hashCode];
+        cmp = [self compareElement1:newNode.key element2:node.key hashCode1:newNode.hashCode hashCode2:node.hashCode];
         parent = node; // 找到父节点
         
         if (cmp > 0) {  // 右节点

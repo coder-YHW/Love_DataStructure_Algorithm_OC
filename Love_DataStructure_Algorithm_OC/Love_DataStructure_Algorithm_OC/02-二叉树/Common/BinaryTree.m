@@ -36,48 +36,48 @@
 
 #pragma mark - 二叉树遍历
 /// 前序遍历
-- (void)preordr {
-    [self preorder:self.root];
+- (void)preOrder {
+    [self preOrder:self.root];
 }
 
 /// 前序遍历
-- (void)preorder:(TreeNode *)node {
+- (void)preOrder:(TreeNode *)node {
     if (node == nil) {
         return;
     }
     
     NSLog(@"%@",node.description);
-    [self preorder:node.left];
-    [self preorder:node.right];
+    [self preOrder:node.left];
+    [self preOrder:node.right];
 }
 
 /// 中序遍历
-- (void)inorder {
-    [self inorder:self.root];
+- (void)inOrder {
+    [self inOrder:self.root];
 }
 
 /// 中序遍历
-- (void)inorder:(TreeNode *)node {
+- (void)inOrder:(TreeNode *)node {
     if (node == nil) {
         return;
     }
-    [self inorder:node.left];
+    [self inOrder:node.left];
     NSLog(@"%@",node.description);
-    [self inorder:node.right];
+    [self inOrder:node.right];
 }
 
 /// 后序遍历
-- (void)postorder {
-    [self postorder:self.root];
+- (void)postOrder {
+    [self postOrder:self.root];
 }
 
 /// 后序遍历
-- (void)postorder:(TreeNode *)node {
+- (void)postOrder:(TreeNode *)node {
     if (node == nil) {
         return;
     }
-    [self postorder:node.left];
-    [self postorder:node.right];
+    [self postOrder:node.left];
+    [self postOrder:node.right];
     NSLog(@"%@",node.description);
 }
 
@@ -168,7 +168,7 @@
     while (!queue.isEmpty) {
         
         TreeNode *node = [queue deQueue];
-        //5、叶子结点
+        //5、叶子结点 之后的节点都要是叶子结点
         if(leaf && !node.isLeaf) return false;
         
         // 1.1、node.left != nil && node.right != nil
@@ -182,7 +182,7 @@
         // 1.2、node.left != nil && node.right != nil
         if (node.right != nil) {    // 右子节点入队
             [queue enQueue:node.right];
-        }else {
+        }else { // 叶子结点 之后的节点都要是叶子结点
             // 3、node.left == nil && node.right == nil
             // 4、node.left != nil && node.right == nil
             leaf = true;
@@ -268,7 +268,7 @@
 
 #pragma mark - 中序遍历时前驱节点 和 后继节点
 /// 找前驱节点
-- (TreeNode *)predecessor:(TreeNode *)node {
+- (TreeNode *)prevNode:(TreeNode *)node {
     if (node == nil) {
         return nil;
     }
@@ -297,7 +297,7 @@
 }
 
 /// 找后继节点
-- (TreeNode *)successor:(TreeNode *)node {
+- (TreeNode *)nextNode:(TreeNode *)node {
     if (node == nil) {
         return nil;
     }

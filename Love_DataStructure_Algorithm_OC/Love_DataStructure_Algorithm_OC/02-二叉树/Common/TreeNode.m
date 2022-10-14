@@ -9,6 +9,7 @@
 
 @implementation TreeNode
 
+#pragma mark - 构造函数
 /** 初始化 */
 - (instancetype)initWithElement:(id)element parent:(nullable TreeNode *)parent {
     self = [super init];
@@ -19,6 +20,8 @@
     return self;
 }
 
+
+#pragma mark - 方法
 /** 是否是叶子节点 */
 - (BOOL)isLeaf {
     return self.left == nil && self.right == nil;
@@ -63,6 +66,8 @@
     return nil;
 }
 
+
+#pragma mark - 打印
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@",self.element];
 }

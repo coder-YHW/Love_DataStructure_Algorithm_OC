@@ -53,13 +53,13 @@
     // 右子树高度
     int rightHeight = self.right == nil ? 0 : ((AVLNode *)(self.right)).height;
     
-    if (leftHeight > rightHeight) {
+    if (leftHeight > rightHeight) { // 1、左子树高
         return self.left;
-    } else if (leftHeight < rightHeight) {
+    } else if (leftHeight < rightHeight) { // 2、右子树高
         return self.right;
     }
     
-    return [self isLeftChild] ? self.left : self.right;
+    return [self isLeftChild] ? self.left : self.right; // 3、左子树 == 右子树
 }
 
 
