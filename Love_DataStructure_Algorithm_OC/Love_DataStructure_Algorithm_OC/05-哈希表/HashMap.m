@@ -121,7 +121,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
 }
 
 /**层序遍历*/
-- (void)traversalWithBlock:(MJTraversalBlock)block {
+- (void)traversalWithBlock:(MJMapTraversalBlock)block {
     
     if (self.size == 0) {
         return;
@@ -140,7 +140,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         while (!queue.isEmpty) {
             
             HashNode *node = [queue deQueue];
-            // MJTraversalBlock
+            // MJMapTraversalBlock
             if (block) {
                 block(node.key, node.value);
             }

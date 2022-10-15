@@ -11,7 +11,7 @@
 @interface ListSet()
 
 /** list*/
-@property(nonatomic,strong)LinkedList *list;
+@property(nonatomic,strong)LinkedList *linkList;
 
 @end
 
@@ -20,7 +20,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.list = [[LinkedList alloc] init];
+        self.linkList = [[LinkedList alloc] init];
     }
     return self;
 }
@@ -28,50 +28,54 @@
 #pragma mark - override
 /**元素个数**/
 - (int)size {
-    return (int)self.list.size;
+    return (int)self.linkList.size;
 }
 
 /**是否为空**/
 - (BOOL)isEmpty {
-    return self.list.isEmpty;
+    return self.linkList.isEmpty;
 }
 
 /**清除所有元素**/
 - (void)clear {
-    [self.list clear];
+    [self.linkList clear];
 }
 
 /**是否包含某元素**/
 - (BOOL)contains:(id)element {
-    return [self.list contains:element];
+    return [self.linkList contains:element];
 }
 
 /**添加元素**/
 - (void)add:(id)element {
     
-    NSUInteger index = [self.list indexOfElement:element];
+    int index = [self.linkList indexOfElement:element];
     
-    if (index == NSNotFound) {  // 不存在就添加
-        [self.list add:element];
-    } else {
-        [self.list set:index element:element];
+    if (index == Default_NotFound) {  // 不存在才添加
+        [self.linkList add:element];
     }
 }
 
 /**删除元素**/
 - (void)remove:(id)element {
     
-    NSInteger index = [self.list indexOfElement:element];
+    int index = [self.linkList indexOfElement:element];
     
-    if (index != NSNotFound) {  // 存在
-        [self.list remove:index];
+    if (index != Default_NotFound) {  // 存在才删除
+        [self.linkList remove:index];
     }
 }
 
 /**遍历所有元素**/
-- (void)traversal {
-    for (int i = 0; i < self.list.size; i++) {
-        NSLog(@"%@",[self.list get:i]);
+- (void)traversalWithBlock:(MJSetTraversalBlock)block {
+    
+    for (int i = 0; i < self.linkList.size; i++) {
+    
+        id obj = [self.linkList get:i];
+        if (block) {
+            block(obj);
+        }
+        NSLog(@"%@",obj);
     }
 }
 

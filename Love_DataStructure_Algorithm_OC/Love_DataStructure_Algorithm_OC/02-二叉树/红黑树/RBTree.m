@@ -90,7 +90,7 @@
     // 1、如果删除的节点是红色 直接删除-不做任何调整
     // 2、如果删除的黑色节点有2个Red子节点，会用前驱或者后继节点去替代删除（不用考虑这种情况）
     
-    // 当删除的节点度为1时，afterRemove传进来的不是node，而是replcaeNode（红黑树要求 不影响AVL树）
+    // 注意：当删除的节点度为1时，afterRemove传进来的不是node，而是replcaeNode（红黑树要求 不影响AVL树）
     // 3、如果删除的黑色节点只有1个Red子节点，用以取代删除节点的子节点replcaeNode是红色               只需要把replcaeNode染黑就可以保持红黑树性质
     if ([self isRed:node]) { // 如果删除的节点是红色 || 用以取代删除节点的子节点replcaeNode是红色
         [self black:node];
@@ -105,12 +105,12 @@
     
     // 5、删除的是黑色叶子节点[下溢]
     // 判断被删除的node是左还是右
-    BOOL left = parent.left == nil || node.isLeftChild; // 注意这2种情况
-    TreeNode *sibling = left ? parent.right : parent.left;
+    BOOL isLeft = parent.left == nil || node.isLeftChild; // 注意这2种情况
+    TreeNode *sibling = isLeft ? parent.right : parent.left;
     
-    if (left) { // 5.1、被删除的节点在左边,兄弟节点在右边
+    if (isLeft) { // 5.1、被删除的节点在左边,兄弟节点在右边
         
-        if ([self isRed:sibling]) { // 5.1.1、兄弟节点是红色 -（转成兄弟节点是黑色情况再处理）
+        if ([self isRed:sibling]) { // 5.1.1、红兄弟节点 -（把红兄弟的黑色子节点 通过旋转转成兄弟节点是黑色的情况来处理）
             [self black:sibling];
             [self red:parent];
             [self rotateLeft:parent];
@@ -121,7 +121,7 @@
         
         // 5.1.2、兄弟节点必然是黑色
         if ([self isBlack:sibling.left] && [self isBlack:sibling.right]) {
-            // 5.1.2.1、兄弟节点没有一个红色子节点,父节点要向下跟兄弟节点合并（下溢）
+            // 5.1.2.1、黑兄弟节点没有一个红色子节点,父节点要向下跟兄弟节点合并（下溢）
             BOOL parentBlack = [self isBlack:parent];
             [self black:parent];
             [self red:sibling];
@@ -130,8 +130,8 @@
                 [self afterRemove:parent];
             }
             
-        } else {    // 5.1.2.3、兄弟节点至少有一个红色子节点,向兄弟节点借元素
-            // 兄弟节点的左边是黑色,兄弟要先旋转
+        } else {    // 5.1.2.3、黑兄弟节点至少有一个红色子节点,向兄弟节点借红色子节点
+            // 黑兄弟节点的左边是黑色,兄弟要先旋转
             if ([self isBlack:sibling.right]) { // sibling-RL
                 [self rotateRight:sibling];
                 sibling = parent.right;
@@ -145,7 +145,7 @@
         }
     } else {    // 5.2、被删除的节点在右边,兄弟节点在左边
         
-        if ([self isRed:sibling]) { // 5.2.1、兄弟节点是红色 -（转成兄弟节点是黑色情况再处理）
+        if ([self isRed:sibling]) { // 5.2.1、红兄弟节点 -（把红兄弟的黑色子节点 通过旋转转成兄弟节点是黑色的情况来处理）
             [self black:sibling];
             [self red:parent];
             [self rotateRight:parent];
@@ -154,9 +154,9 @@
             sibling = parent.left;
         }
         
-        // 5.2.2、兄弟节点必然是黑色
+        // 5.2.2、黑兄弟节点必然是黑色
         if ([self isBlack:sibling.left] && [self isBlack:sibling.right]) {
-            // 3.2.2.1、兄弟节点没有一个红色子节点,父节点要向下跟兄弟节点合并（下溢）
+            // 3.2.2.1、黑兄弟节点没有一个红色子节点,父节点要向下跟兄弟节点合并（下溢）
             BOOL parentBlack = [self isBlack:parent];
             [self black:parent];
             [self red:sibling];
@@ -165,8 +165,8 @@
                 [self afterRemove:parent];
             }
             
-        } else {    // 5.2.2.3、兄弟节点至少有一个红色子节点,向兄弟节点借元素
-            // 兄弟节点的左边是黑色,兄弟要先旋转
+        } else {    // 5.2.2.3、黑兄弟节点至少有一个红色子节点,向兄弟节点借红色子节点
+            // 黑兄弟节点的左边是黑色,兄弟要先旋转
             if ([self isBlack:sibling.left]) {  // sibling-LR
                 [self rotateLeft:sibling];
                 sibling = parent.left;

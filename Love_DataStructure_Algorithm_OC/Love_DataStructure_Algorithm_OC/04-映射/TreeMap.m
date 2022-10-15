@@ -118,7 +118,7 @@
 }
 
 /**层序遍历*/
-- (void)traversalWithBlock:(MJTraversalBlock)block {
+- (void)traversalWithBlock:(MJMapTraversalBlock)block {
     
     if (_root == nil) {
         return;
@@ -130,7 +130,7 @@
     while (!queue.isEmpty) {
         MapNode *node = [queue deQueue];
 //        NSLog(@"%@_%@",node.key, node.value);
-        // MJTraversalBlock
+        // MJMapTraversalBlock
         if (block) {
             block(node.key, node.value);
         }

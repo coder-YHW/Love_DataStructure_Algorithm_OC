@@ -53,7 +53,7 @@
 
 /**按照链表顺序遍历 */
 // HashMap所有遍历都可以改为linkList的遍历
-- (void)traversalWithBlock:(MJTraversalBlock)block {
+- (void)traversalWithBlock:(MJMapTraversalBlock)block {
     
     // 双向链表
     LinkHashNode *node = self.first;
@@ -64,7 +64,7 @@
     
     while (node != nil) {
         
-        // MJTraversalBlock
+        // MJMapTraversalBlock
         if (block) {
             block(node.key, node.value);
         }

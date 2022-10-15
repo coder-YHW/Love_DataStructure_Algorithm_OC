@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 // traversal - 遍历器
-typedef void (^MJTraversalBlock) (id key, id value);
+typedef void (^MJMapTraversalBlock) (id key, id value);
 
 @interface Map : NSObject
 
@@ -38,8 +38,8 @@ typedef void (^MJTraversalBlock) (id key, id value);
 /**是否包含Value*/
 - (BOOL)containsValue:(id)value;
 
-/**遍历MJTraversalBlock*/
-- (void)traversalWithBlock:(_Nullable MJTraversalBlock)block;
+/**遍历MJMapTraversalBlock*/
+- (void)traversalWithBlock:(_Nullable MJMapTraversalBlock)block;
 
 @end
 

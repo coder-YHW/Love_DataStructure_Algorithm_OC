@@ -36,53 +36,69 @@
 
 #pragma mark - 二叉树遍历
 /// 前序遍历
-- (void)preOrder {
-    [self preOrder:self.root];
+- (void)preOrderWithBlock:(MJTreeTraversalBlock)block {
+    [self preOrder:self.root block:block];
 }
 
 /// 前序遍历
-- (void)preOrder:(TreeNode *)node {
+- (void)preOrder:(TreeNode *)node block:(MJTreeTraversalBlock)block {
     if (node == nil) {
         return;
     }
     
-    NSLog(@"%@",node.description);
-    [self preOrder:node.left];
-    [self preOrder:node.right];
+//    NSLog(@"%@",node.description);
+    if (block) {
+        block(node.description);
+    }
+    
+    [self preOrder:node.left block:block];
+    [self preOrder:node.right block:block];
 }
 
 /// 中序遍历
-- (void)inOrder {
-    [self inOrder:self.root];
+- (void)inOrderWithBlock:(MJTreeTraversalBlock)block {
+    [self inOrder:self.root block:block];
 }
 
 /// 中序遍历
-- (void)inOrder:(TreeNode *)node {
+- (void)inOrder:(TreeNode *)node block:(MJTreeTraversalBlock)block {
     if (node == nil) {
         return;
     }
-    [self inOrder:node.left];
-    NSLog(@"%@",node.description);
-    [self inOrder:node.right];
+    
+    [self inOrder:node.left block:block];
+    
+    //    NSLog(@"%@",node.description);
+        if (block) {
+            block(node.description);
+        }
+    
+    [self inOrder:node.right block:block];
 }
 
 /// 后序遍历
-- (void)postOrder {
-    [self postOrder:self.root];
+- (void)postOrderWithBlock:(MJTreeTraversalBlock)block {
+    [self postOrder:self.root block:block];
 }
 
 /// 后序遍历
-- (void)postOrder:(TreeNode *)node {
+- (void)postOrder:(TreeNode *)node block:(MJTreeTraversalBlock)block {
+    
     if (node == nil) {
         return;
     }
-    [self postOrder:node.left];
-    [self postOrder:node.right];
-    NSLog(@"%@",node.description);
+    
+    [self postOrder:node.left block:block];
+    [self postOrder:node.right block:block];
+    
+//    NSLog(@"%@",node.description);
+    if (block) {
+        block(node.description);
+    }
 }
 
 /// 层序遍历
-- (void)levelOrder {
+- (void)levelOrderWithBlock:(MJTreeTraversalBlock)block {
     if (self.root == nil) {
         return;
     }
@@ -92,7 +108,10 @@
     
     while (!queue.isEmpty) {
         TreeNode *node = [queue deQueue];
-        NSLog(@"%@",node.description);
+    //    NSLog(@"%@",node.description);
+        if (block) {
+            block(node.description);
+        }
         
         if (node.left != nil) { // 左子节点入队
             [queue enQueue:node.left];

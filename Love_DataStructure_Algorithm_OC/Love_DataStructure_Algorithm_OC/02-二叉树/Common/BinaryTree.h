@@ -14,6 +14,9 @@
 */
 #import "MJBinaryTreeInfo.h"
 
+// 遍历器
+typedef void (^MJTreeTraversalBlock)(id _Nullable element);
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// 二叉树
@@ -44,16 +47,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 二叉树遍历
 /** 前序遍历 */
-- (void)preOrder;
+- (void)preOrderWithBlock:(MJTreeTraversalBlock)block;
 
 /** 中序遍历 */
-- (void)inOrder;
+- (void)inOrderWithBlock:(MJTreeTraversalBlock)block;
 
 /** 后序遍历 */
-- (void)postOrder;
+- (void)postOrderWithBlock:(MJTreeTraversalBlock)block;
 
 /** 层序遍历 */
-- (void)levelOrder;
+- (void)levelOrderWithBlock:(MJTreeTraversalBlock)block;
 
 #pragma mark - 二叉树遍历应用
 /// 计算二叉树的高度 - 递归实现

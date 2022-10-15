@@ -58,8 +58,12 @@
 }
 
 /**遍历所有元素**/
-- (void)traversal {
-    [self.tree levelOrder];
+- (void)traversalWithBlock:(MJSetTraversalBlock)block {
+    [self.tree levelOrderWithBlock:^(id  _Nullable element) {
+        if (block) {
+            block(element);
+        }
+    }];
 }
 
 @end

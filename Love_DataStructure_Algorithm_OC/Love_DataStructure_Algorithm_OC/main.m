@@ -261,6 +261,15 @@ void testBST1(void) {
     // 3.2、删除节点数据
     [bst removeElement:@5];
     binaryTreePrint(bst);
+    
+    // 二叉树遍历
+//    [bst levelOrderWithBlock:^(id  _Nullable element) {
+//        NSLog(@"%@", element);
+//    }];
+    
+    [bst inOrderWithBlock:^(id  _Nullable element) {
+        NSLog(@"%@", element);
+    }];
 }
 
 void testBST2(void) {
@@ -356,7 +365,7 @@ void testTreeMap(void) {
     // 打印treeMap
     binaryTreePrint(treeMap);
     
-    // 遍历MJTraversalBlock
+    // 遍历MJMapTraversalBlock
     [treeMap traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
         NSLog(@"%@:%@", key, value);
     }];
@@ -395,9 +404,9 @@ void testHashMap(void) {
     [hashMap remove:@"33"];
     NSLog(@"删除@3");
     
-    // 遍历MJTraversalBlock
+    // 遍历MJMapTraversalBlock
     [hashMap traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
-        NSLog(@"MJTraversalBlock - %@:%@", key, value);
+        NSLog(@"MJMapTraversalBlock - %@:%@", key, value);
     }];
     
     // 打印hashMap
@@ -465,14 +474,14 @@ int main(int argc, const char * argv[]) {
 //        testQueue();
         
         // BST树验证 - 二叉搜索树
-//        testBST1();
+        testBST1();
 //        testBST2();
         
         // AVL树验证 - AVL树
 //        testAVL();
         
         // RBT树验证 - 红黑树
-        testRBT();
+//        testRBT();
         
         // TreeMap验证 - 映射
 //        testTreeMap();

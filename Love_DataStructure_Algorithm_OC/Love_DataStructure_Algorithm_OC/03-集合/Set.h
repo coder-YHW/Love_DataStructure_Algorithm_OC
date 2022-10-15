@@ -9,10 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// traversal - 遍历器
+typedef void (^MJSetTraversalBlock) (id element);
+
 /// 集合特性 - 去除重复元素
 /// 集合 - 接口设计
 @interface Set : NSObject
 
+#pragma mark - 接口设计
 /**元素个数**/
 - (int)size;
 
@@ -32,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)remove:(id)element;
 
 /**遍历所有元素**/
-- (void)traversal;
+- (void)traversalWithBlock:(_Nullable MJSetTraversalBlock)block;
 
 @end
 

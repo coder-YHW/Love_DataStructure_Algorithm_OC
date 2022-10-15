@@ -49,9 +49,12 @@
 }
 
 /**遍历所有元素**/
-- (void)traversal {
+- (void)traversalWithBlock:(MJSetTraversalBlock)block {
     [self.hashMap traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
         NSLog(@"%@:%@", key, value);
+        if (block) {
+            block(key);
+        }
     }];
 }
 
