@@ -11,7 +11,7 @@ static int Default_NotFound = -1;
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 线性表-通用接口设计
+/// 线性表-接口设计
 @interface List : NSObject
 
 

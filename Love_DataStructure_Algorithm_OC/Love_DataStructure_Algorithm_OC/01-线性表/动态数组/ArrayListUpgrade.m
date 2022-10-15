@@ -181,9 +181,9 @@ static int kDefaultCapacity = 10;   // 默认动态数组元素数量为10个 �
     }else { // 3、在数组中间删除元素
         
         // index位置后面的值依次往前移动一位 - 注意移动顺序
-        for (int i = index; i < self.size; i++) {
-            int curr = [self getIndex:(i)];
-            int next = [self getIndex:(i+1)]; // 不能curr+1 可能会超过size
+        for (int i = index + 1; i < self.size; i++) { // 范围：(index+1)..<count 赋值：elements[i-1] = elements[i];
+            int curr = [self getIndex:(i-1)];
+            int next = [self getIndex:(i)]; // 不能curr+1 可能会超过size
             elements[curr] = elements[next];
         }
         // 删除之后置为NSNull占位

@@ -163,6 +163,7 @@
         
         // 5、新添加节点之后的处理
         [self afterPut:_root];
+        
         return;
     }
     
@@ -202,46 +203,61 @@
 
 /**添加之后平衡**/
 - (void)afterPut:(MapNode *)node {
+//    NSLog(@"afterAdd : 平衡二叉搜索树 - 子类实现");
+    
     MapNode *parent = node.parent;
     
-    // 添加的是根节点,或者上溢到达了根节点
+    // 1、添加的是根节点,或者上溢到达了根节点
+    // 1.1、将自己染黑就行了
     if (parent == nil) {
         [self black:node];
         return;
     }
     
-    // 如果父节点是黑色,直接返回
-    if ([self isBlack:parent]) {
+    // 红黑红、黑红、红黑、黑 - 总共12种情况
+    // 2、如果父节点是黑色,直接返回 - 新添加的节点默认是红色的
+    if ([self isBlack:parent]) { //（红黑红、黑红、红黑、黑 - 往黑节点上添加）4种情况
         return;
     }
     
     // 叔父节点
     MapNode *uncle = parent.sibling;
     // 祖父节点
-    MapNode *grand = [self red:parent.parent];
-    if ([self isRed:uncle]) {   // 叔父节点是红色[B树节点上溢]
+    MapNode *grand = parent.parent;
+    
+    // 3、父节点是红色&&叔父节点是红色[B树节点上溢] - （红黑红-往红节点上添加）4种情况
+    if ([self isRed:uncle]) {
+        // 3.1、将grand染红，父节点、叔父节点都染黑
         [self black:parent];
         [self black:uncle];
-        
-        // 将祖父节点当做是新添加的节点
+        // 3.2、等价于 - 将祖父节点当做是新添加的节点
+        [self red:grand];
         [self afterPut:grand];
         return;
     }
     
-    // 叔父节点不是红色
+    // 4、父节点是红色&&叔父节点不是红色 - （黑红或红黑-往红节点上添加）4种情况
     if (parent.isLeftChild) {   // L
         if (node.isLeftChild) { // LL
+            // 4.1、将grand染红，父节点染黑，再旋转
+            [self red:grand];
             [self black:parent];
         } else {    // LR
+            // 4.2、将grand染红，自己染黑，再旋转
+            [self red:grand];
             [self black:node];
             [self rotateLeft:parent];
         }
         [self rotateRight:grand];
     } else {    // R
         if (node.isLeftChild) { // RL
+            // 4.3、将grand染红，自己染黑，再旋转
+            [self red:grand];
             [self black:node];
             [self rotateRight:parent];
         } else {    // RR
+            // 4.4、将grand染红，父节点染黑，再旋转
+            [self red:grand];
             [self black:parent];
         }
         [self rotateLeft:grand];
@@ -265,11 +281,13 @@
     
     if (node.hasTwoChildren) {  // 度为2的节点
         // 找到后继节点
-        MapNode *s = [self nextNode:node];
+        MapNode *nextNode = [self nextNode:node];
         // 用后继节点的值覆盖度为2的节点的值
-        node.key = s.key;
+        node.key = nextNode.key;
+        node.value = nextNode.value;
+        
         // 删除后继节点
-        node = s;
+        node = nextNode;
     }
     
     // 删除node节点(node的度必然是1或者0)
@@ -300,28 +318,48 @@
     [self afterRemove:node];
 }
 
+#pragma mark - 比较器
+- (BOOL)keyNotNullCheck:(id)key {
+    return key == nil;
+}
+
+/** 比较两元素的大小 */
+- (int)compareElement1:(id)element1 element2:(id)element2 {
+    return _comparatorBlock ? _comparatorBlock(element1, element2) :
+    (_comparator ? (int)[_comparator compareElement1:element1 another:element2] : (int)[element1 compare:element2]);
+}
+
 /**删除之后再平衡**/
 - (void)afterRemove:(MapNode *)node {
-    // 如果删除的节点是红色
-    // 或者用以取代删除节点的子节点是红色
-    if ([self isRed:node]) {
+//    NSLog(@"afterRemove : 平衡二叉搜索树 - 子类实现");
+    
+//    // 1、如果删除的节点是红色 直接删除-不做任何调整 （合并到下面去判断）
+//    if ([self isRed:node]) return; // 直接删除-不做任何调整
+    
+    // 1、如果删除的节点是红色 直接删除-不做任何调整
+    // 2、如果删除的黑色节点有2个Red子节点，会用前驱或者后继节点去替代删除（不用考虑这种情况）
+    
+    // 注意：当删除的节点度为1时，afterRemove传进来的不是node，而是replcaeNode（红黑树要求 不影响AVL树）
+    // 3、如果删除的黑色节点只有1个Red子节点，用以取代删除节点的子节点replcaeNode是红色               只需要把replcaeNode染黑就可以保持红黑树性质
+    if ([self isRed:node]) { // 如果删除的节点是红色 || 用以取代删除节点的子节点replcaeNode是红色
         [self black:node];
         return;
     }
     
     MapNode *parent = node.parent;
-    // 删除的是根节点
+    // 4、删除的是根节点
     if (parent == nil) {
         return;
     }
     
-    // 删除的是黑色叶子节点[下溢]
+    // 5、删除的是黑色叶子节点[下溢]
     // 判断被删除的node是左还是右
-    BOOL left = parent.left == nil || node.isLeftChild;
-    MapNode *sibling = left ? parent.right : parent.left;
+    BOOL isLeft = parent.left == nil || node.isLeftChild; // 注意这2种情况
+    MapNode *sibling = isLeft ? parent.right : parent.left;
     
-    if (left) { // 被删除的节点在左边,兄弟节点在右边
-        if ([self isRed:sibling]) { // 兄弟节点是红色
+    if (isLeft) { // 5.1、被删除的节点在左边,兄弟节点在右边
+        
+        if ([self isRed:sibling]) { // 5.1.1、红兄弟节点 -（把红兄弟的黑色子节点 通过旋转转成兄弟节点是黑色的情况来处理）
             [self black:sibling];
             [self red:parent];
             [self rotateLeft:parent];
@@ -330,30 +368,33 @@
             sibling = parent.right;
         }
         
-        // 兄弟节点必然是黑色
+        // 5.1.2、兄弟节点必然是黑色
         if ([self isBlack:sibling.left] && [self isBlack:sibling.right]) {
-            // 兄弟节点没有一个红色节点,父节点要向下跟兄弟节点合并
+            // 5.1.2.1、黑兄弟节点没有一个红色子节点,父节点要向下跟兄弟节点合并（下溢）
             BOOL parentBlack = [self isBlack:parent];
             [self black:parent];
             [self red:sibling];
             
-            if (parentBlack) {
+            if (parentBlack) { // 5.1.2.2、如果parent为Black，会导致parent下溢
                 [self afterRemove:parent];
             }
-        } else {    // 兄弟节点至少有一个红色节点,向兄弟节点借元素
-            // 兄弟节点的左边时黑色,兄弟要先旋转
-            if ([self isBlack:sibling.right]) {
+            
+        } else {    // 5.1.2.3、黑兄弟节点至少有一个红色子节点,向兄弟节点借红色子节点
+            // 黑兄弟节点的左边是黑色,兄弟要先旋转
+            if ([self isBlack:sibling.right]) { // sibling-RL
                 [self rotateRight:sibling];
                 sibling = parent.right;
             }
             
-            [self color:sibling color:[self colorOf:parent]];
-            [self black:sibling.right];
-            [self black:parent];
+            // sibling-RR
+            [self color:sibling color:[self colorOf:parent]]; // 旋转之后的中心节点继承parent的颜色
+            [self black:sibling.right]; // 旋转之后的左右节点染为黑色
+            [self black:parent]; // 旋转之后的左右节点染为黑色
             [self rotateLeft:parent];
         }
-    } else {    // 被删除的节点在右边,兄弟节点在左边
-        if ([self isRed:sibling]) { // 兄弟节点是红色
+    } else {    // 5.2、被删除的节点在右边,兄弟节点在左边
+        
+        if ([self isRed:sibling]) { // 5.2.1、红兄弟节点 -（把红兄弟的黑色子节点 通过旋转转成兄弟节点是黑色的情况来处理）
             [self black:sibling];
             [self red:parent];
             [self rotateRight:parent];
@@ -362,33 +403,35 @@
             sibling = parent.left;
         }
         
-        // 兄弟节点必然是黑色
+        // 5.2.2、黑兄弟节点必然是黑色
         if ([self isBlack:sibling.left] && [self isBlack:sibling.right]) {
-            // 兄弟节点没有一个红色节点,父节点要向下跟兄弟节点合并
+            // 3.2.2.1、黑兄弟节点没有一个红色子节点,父节点要向下跟兄弟节点合并（下溢）
             BOOL parentBlack = [self isBlack:parent];
             [self black:parent];
             [self red:sibling];
             
-            if (parentBlack) {
+            if (parentBlack) { // 5.2.2.2、如果parent为Black，会导致parent下溢
                 [self afterRemove:parent];
             }
-        } else {    // 兄弟节点至少有一个红色子节点,向兄弟节点借元素
-            // 兄弟节点的左边时黑色,兄弟要先旋转
-            if ([self isBlack:sibling.left]) {
+            
+        } else {    // 5.2.2.3、黑兄弟节点至少有一个红色子节点,向兄弟节点借红色子节点
+            // 黑兄弟节点的左边是黑色,兄弟要先旋转
+            if ([self isBlack:sibling.left]) {  // sibling-LR
                 [self rotateLeft:sibling];
                 sibling = parent.left;
             }
             
-            [self color:sibling color:[self colorOf:parent]];
-            [self black:sibling.left];
-            [self black:parent];
+            // sibling-LL
+            [self color:sibling color:[self colorOf:parent]]; // 旋转之后的中心节点继承parent的颜色
+            [self black:sibling.left]; // 旋转之后的左右节点染为黑色
+            [self black:parent]; // 旋转之后的左右节点染为黑色
             [self rotateRight:parent];
         }
     }
+    
 }
 
 #pragma mark - 平衡红黑树-旋转
-
 /** 左旋转 grand - 爷爷节点 */
 - (void)rotateLeft:(MapNode *)grand {
     
@@ -529,18 +572,6 @@
 }
 
 
-#pragma mark - private
-- (BOOL)keyNotNullCheck:(id)key {
-    return key == nil;
-}
-
-/** 比较两元素的大小 */
-- (int)compareElement1:(id)element1 element2:(id)element2 {
-    return _comparatorBlock ? _comparatorBlock(element1, element2) :
-    (_comparator ? (int)[_comparator compareElement1:element1 another:element2] : (int)[element1 compare:element2]);
-}
-
-
 #pragma mark - 实现MJBinaryTreeInfo协议方法-打印TreeMap
 - (id)root {
     return _root;
@@ -555,14 +586,14 @@
 }
 
 - (id)string:(MapNode *)node {
-    return [NSString stringWithFormat:@"%@:%@",node.key, node.value];
     
-//    if([self isRed:node]) {
-//        return [NSString stringWithFormat:@"R_%@",node.key];
-//    }else {
-////        return [NSString stringWithFormat:@"B_%@",node.element];
-//        return node.key;
-//    }
+//    return [NSString stringWithFormat:@"%@:%@",node.key, node.value];
+    
+    if([self isRed:node]) {
+        return [NSString stringWithFormat:@"R_%@:%@",node.key, node.value];
+    }else {
+        return [NSString stringWithFormat:@"%@:%@",node.key, node.value];
+    }
 }
 
 @end

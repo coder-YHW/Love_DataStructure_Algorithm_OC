@@ -9,7 +9,7 @@
 
 @implementation AbstractList
 
-#pragma mark - 实现部分通用接口 其他由子类实现
+#pragma mark - 实现部分接口 其他由子类实现
 /// 数量
 - (int)size {
     return _size; // 这里的_不能省略（- (int)size 方法没实现 点语法无法访问）

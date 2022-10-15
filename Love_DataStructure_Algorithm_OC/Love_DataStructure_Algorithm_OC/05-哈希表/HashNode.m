@@ -9,7 +9,7 @@
 
 @implementation HashNode
 
-#pragma mark - 构造方法
+#pragma mark - 构造函数
 - (instancetype)initWithKey:(id)key value:(id)value parent:(nullable HashNode *)parent {
     self = [super init];
     if (self) {
@@ -23,7 +23,7 @@
 }
 
 
-#pragma mark - 通用接口
+#pragma mark - 接口
 /** 是否是叶子节点 */
 - (BOOL)isLeaf {
     return self.left == nil && self.right == nil;

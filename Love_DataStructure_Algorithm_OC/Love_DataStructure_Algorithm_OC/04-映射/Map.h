@@ -14,6 +14,7 @@ typedef void (^MJMapTraversalBlock) (id key, id value);
 
 @interface Map : NSObject
 
+#pragma mark - 接口方法
 /**元素个数*/
 - (int)size;
 
@@ -40,6 +41,12 @@ typedef void (^MJMapTraversalBlock) (id key, id value);
 
 /**遍历MJMapTraversalBlock*/
 - (void)traversalWithBlock:(_Nullable MJMapTraversalBlock)block;
+
+/// 所有key
+- (NSArray *)allkeys;
+
+///  所有values
+- (NSArray *)allValues;
 
 @end
 

@@ -111,11 +111,11 @@
     // 1、node的度为2 - 它的前驱节点或后继节点 只能是度为0或1的节点
     if (node.hasTwoChildren) {
         // 1.1、找到后继节点
-        TreeNode *s = [self nextNode:node];
+        TreeNode *nextNode = [self nextNode:node];
         // 1.2、用后继节点的值覆盖度为2的节点
-        node.element = s.element;
+        node.element = nextNode.element;
         // 1.3、删除后继节点 - 用后继节点覆盖node 后续再删除node
-        node = s;
+        node = nextNode;
     }
     
     // 删除node节点（后面node的度必然是0或1）

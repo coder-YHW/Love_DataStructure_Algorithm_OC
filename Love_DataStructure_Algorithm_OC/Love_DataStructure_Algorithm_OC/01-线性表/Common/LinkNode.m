@@ -10,7 +10,7 @@
 @implementation LinkNode
 
 #pragma mark - 构造函数
-/**单向节点-构造方法**/
+/**单向节点-构造函数**/
 - (instancetype)initWithElement:(id)element next:(nullable LinkNode *)next {
     self = [super init];
     if (self) {
@@ -20,7 +20,7 @@
     return self;
 }
 
-/**双向节点-构造方法**/
+/**双向节点-构造函数**/
 - (instancetype)initWithPrev:(nullable LinkNode *)prev element:(id)element next:(nullable LinkNode *)next {
     self = [super init];
     if (self) {

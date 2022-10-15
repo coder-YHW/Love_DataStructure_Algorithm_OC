@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, MapNodeType) {
 
 @interface MapNode : NSObject
 
-#pragma mark - 通用属性
+#pragma mark - 属性
 /** key */
 @property (nonatomic,strong) id key;
 /** value */
@@ -31,11 +31,11 @@ typedef NS_ENUM(NSInteger, MapNodeType) {
 /** parent*/
 @property (nonatomic,strong,nullable) MapNode *parent;
 
-#pragma mark - 构造方法
+#pragma mark - 构造函数
 - (instancetype)initWithKey:(id)key value:(id)value parent:(nullable MapNode *)parent;
 
 
-#pragma mark - 通用接口
+#pragma mark - 辅助函数
 /** 是否是叶子节点 */
 - (BOOL)isLeaf;
 

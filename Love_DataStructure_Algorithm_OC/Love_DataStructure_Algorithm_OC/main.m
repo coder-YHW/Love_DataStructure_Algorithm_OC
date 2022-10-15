@@ -376,8 +376,8 @@ void testTreeMap(void) {
 void testHashMap(void) {
     
     // 1、创建TreeMap - 比较器Block
-//    HashMap *hashMap = [[HashMap alloc] init];
-    LinkHashMap *hashMap = [[LinkHashMap alloc] init];
+    HashMap *hashMap = [[HashMap alloc] init];
+//    LinkHashMap *hashMap = [[LinkHashMap alloc] init];
       
 //    NSArray *keys = @[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11];
 //    NSArray *values = @[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11];
@@ -395,14 +395,13 @@ void testHashMap(void) {
         [hashMap put:keys[i] value:values[i]];
     }
 
-    BOOL isContainsKey = [hashMap containsKey:@"11"];
-    BOOL isContainsValue = [hashMap containsValue:@"33"];
+    assert([hashMap containsKey:@"11"]);
+    assert([hashMap containsValue:@"33"]);
     id value = [hashMap get:@"22"];
-    NSLog(@"isContainsKey-1:%d \n isContainsValue-3:%d \n value-2:%@", isContainsKey, isContainsValue, value);
+    NSLog(@"value-22:%@", value);
 
-    
-    [hashMap remove:@"33"];
-    NSLog(@"删除@3");
+//    [hashMap remove:@"33"];
+    NSLog(@"删除@33");
     
     // 遍历MJMapTraversalBlock
     [hashMap traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
@@ -411,6 +410,11 @@ void testHashMap(void) {
     
     // 打印hashMap
     [hashMap printHashMap];
+    
+    // allKeys和allValues
+    NSArray *allKeys = [hashMap allkeys];
+    NSArray *allValues = [hashMap allValues];
+    
 }
 
 #pragma mark - 堆测试用例
@@ -474,7 +478,7 @@ int main(int argc, const char * argv[]) {
 //        testQueue();
         
         // BST树验证 - 二叉搜索树
-        testBST1();
+//        testBST1();
 //        testBST2();
         
         // AVL树验证 - AVL树
@@ -487,7 +491,7 @@ int main(int argc, const char * argv[]) {
 //        testTreeMap();
         
         // HashMap验证 - 哈希表
-//        testHashMap();
+        testHashMap();
         
         // BinaryHeap验证 - 二叉堆
 //        testBinaryHeap();

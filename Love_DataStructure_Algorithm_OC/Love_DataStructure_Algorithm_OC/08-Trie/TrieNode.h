@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong,nullable) id value;
 
 
-/**构造方法 - 需要parent**/
+/**构造函数 - 需要parent**/
 - (instancetype)initWithParent:(nullable TrieNode *)parent;
 
 @end

@@ -9,4 +9,35 @@
 
 @implementation Map
 
+/// 所有key
+- (NSArray *)allkeys {
+ 
+    NSMutableArray *keys = [NSMutableArray array];
+    
+    [self traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
+        
+        if (key != nil) {
+            [keys addObject:key];
+        }
+    }];
+    
+    return [NSArray arrayWithArray:keys];
+}
+
+
+///  所有values
+- (NSArray *)allValues {
+    
+    NSMutableArray *values = [NSMutableArray array];
+    
+    [self traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
+        
+        if (key != nil) {
+            [values addObject:value];
+        }
+    }];
+    
+    return [NSArray arrayWithArray:values];
+}
+
 @end

@@ -118,7 +118,7 @@ static int kDefaultCapacity = 10;   // 默认动态数组元素数量为10个 �
     
     // index位置后面的值依次往前移动一位 - 注意移动顺序
     id old = elements[index];
-    for (int i = index + 1; i < self.size; i++) {
+    for (int i = index + 1; i < self.size; i++) {  // 范围：(index+1)..<count 赋值：elements[i-1] = elements[i];
         elements[i - 1] = elements[i];
     }
 

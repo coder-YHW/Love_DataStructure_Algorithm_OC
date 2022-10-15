@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, HashNodeType) {
 
 @interface HashNode : NSObject
 
-#pragma mark - 通用接口
+#pragma mark - 接口
 /** key */
 @property (nonatomic,strong) id key;
 /** value */
@@ -33,11 +33,11 @@ typedef NS_ENUM(NSInteger, HashNodeType) {
 /** parent*/
 @property (nonatomic,strong,nullable) HashNode *parent;
 
-#pragma mark - 构造方法
+#pragma mark - 构造函数
 - (instancetype)initWithKey:(id)key value:(id)value parent:(nullable HashNode *)parent;
 
 
-#pragma mark - 通用接口
+#pragma mark - 接口
 /** 是否是叶子节点 */
 - (BOOL)isLeaf;
 

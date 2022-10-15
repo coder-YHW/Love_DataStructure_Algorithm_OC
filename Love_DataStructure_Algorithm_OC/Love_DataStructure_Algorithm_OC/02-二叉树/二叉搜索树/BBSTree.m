@@ -10,7 +10,7 @@
 
 @implementation BBSTree
 
-#pragma mark - 平衡二叉搜索树-方法一
+#pragma mark - 平衡二叉搜索树-方法一 - 依次更grand、parent的高度
 /** 左旋转 grand - 爷爷节点 */
 - (void)rotateLeft:(TreeNode *)grand {
     
@@ -64,7 +64,7 @@
 }
 
 
-#pragma mark - 平衡二叉搜索树-方法二
+#pragma mark - 平衡二叉搜索树-方法二 - 依次更新b、f、d的高度
 /** 统一所有旋转操作*/
 - (void)rotate:(TreeNode *)r    // 旋转前子树的根节点
              a:(TreeNode *)a b:(TreeNode *)b c:(TreeNode *)c

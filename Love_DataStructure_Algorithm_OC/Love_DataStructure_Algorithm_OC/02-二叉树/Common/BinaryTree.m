@@ -10,7 +10,7 @@
 
 @implementation BinaryTree
 
-#pragma mark - 二叉树通用接口
+#pragma mark - 二叉树接口
 /**
  * 元素的数量
  */

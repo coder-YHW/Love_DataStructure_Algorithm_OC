@@ -85,14 +85,15 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
 }
 
 
-- (BOOL)containsValue:(id)value { //
+- (BOOL)containsValue:(id)value {
     if (self.size == 0) {
         return false;
     }
     
+    
     for (id obj in self.table) { // 遍历每一张红黑树
 
-        if ([self isNullObject:obj]) { // [NSNull null] 空树
+        if ([self isNullObject:obj]) { // 0、[NSNull null] 空树 下一个
             continue;
         }
 
@@ -100,10 +101,10 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         Queue *queue = [[Queue alloc] init];
         [queue enQueue:root];
 
-        while (!queue.isEmpty) {
+        while (!queue.isEmpty) { // 1、根节点入队 再层序遍历整棵树
 
             HashNode *node = [queue deQueue];
-            if ([self valEquals:value v2:node.value]) {
+            if ([self valEquals:value v2:node.value]) { // 2、value相等则包含
                 return YES;
             }
 
@@ -117,7 +118,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         }
     }
 
-    return false;
+    return false; // 3、遍历完都没找到 则不包含
 }
 
 /**层序遍历*/
@@ -156,10 +157,6 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     }
 }
 
-- (BOOL)valEquals:(id)v1 v2:(id)v2 {
-    return v1 == nil ? v2 == nil : v1 == v2;
-}
-
 
 #pragma mark - 添加元素
 /**添加元素*/
@@ -174,7 +171,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     // 1、添加第一个节点
     if ([self isNullObject:root]) {
         root = [self createNodeWithKey:key value:value parent:nil];
-        self.table[index] = root; // 将根节点放入到桶数组里
+        self.table[index] = root; // 将根节点放入到桶数组里 注意：一定不要忘了这一句
         _size++;
         
         // 5、新添加节点之后的处理
@@ -220,46 +217,61 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
 
 /**添加之后平衡**/
 - (void)afterPut:(HashNode *)node {
+//    NSLog(@"afterAdd : 平衡二叉搜索树 - 子类实现");
+    
     HashNode *parent = node.parent;
     
-    // 添加的是根节点,或者上溢到达了根节点
+    // 1、添加的是根节点,或者上溢到达了根节点
+    // 1.1、将自己染黑就行了
     if (parent == nil) {
         [self black:node];
         return;
     }
     
-    // 如果父节点是黑色,直接返回
-    if ([self isBlack:parent]) {
+    // 红黑红、黑红、红黑、黑 - 总共12种情况
+    // 2、如果父节点是黑色,直接返回 - 新添加的节点默认是红色的
+    if ([self isBlack:parent]) { //（红黑红、黑红、红黑、黑 - 往黑节点上添加）4种情况
         return;
     }
     
     // 叔父节点
     HashNode *uncle = parent.sibling;
     // 祖父节点
-    HashNode *grand = [self red:parent.parent];
-    if ([self isRed:uncle]) {   // 叔父节点是红色[B树节点上溢]
+    HashNode *grand = parent.parent;
+    
+    // 3、父节点是红色&&叔父节点是红色[B树节点上溢] - （红黑红-往红节点上添加）4种情况
+    if ([self isRed:uncle]) {
+        // 3.1、将grand染红，父节点、叔父节点都染黑
         [self black:parent];
         [self black:uncle];
-        
-        // 将祖父节点当做是新添加的节点
+        // 3.2、等价于 - 将祖父节点当做是新添加的节点
+        [self red:grand];
         [self afterPut:grand];
         return;
     }
     
-    // 叔父节点不是红色
+    // 4、父节点是红色&&叔父节点不是红色 - （黑红或红黑-往红节点上添加）4种情况
     if (parent.isLeftChild) {   // L
         if (node.isLeftChild) { // LL
+            // 4.1、将grand染红，父节点染黑，再旋转
+            [self red:grand];
             [self black:parent];
         } else {    // LR
+            // 4.2、将grand染红，自己染黑，再旋转
+            [self red:grand];
             [self black:node];
             [self rotateLeft:parent];
         }
         [self rotateRight:grand];
     } else {    // R
         if (node.isLeftChild) { // RL
+            // 4.3、将grand染红，自己染黑，再旋转
+            [self red:grand];
             [self black:node];
             [self rotateRight:parent];
         } else {    // RR
+            // 4.4、将grand染红，父节点染黑，再旋转
+            [self red:grand];
             [self black:parent];
         }
         [self rotateLeft:grand];
@@ -283,17 +295,17 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     
     if (node.hasTwoChildren) {  // 度为2的节点
         // 找到后继节点
-        HashNode *s = [self nextNode:node];
+        HashNode *nextNode = [self nextNode:node];
         // 用后继节点的值覆盖度为2的节点的值
-        node.key = s.key;
-        node.value = s.value;
-        node.hashCode = s.hashCode;
+        node.key = nextNode.key;
+        node.value = nextNode.value;
+        node.hashCode = nextNode.hashCode;
         // color和parent在下面调整
         // 删除后继节点
-        node = s;
+        node = nextNode;
         
         // 1、修复LinkHashMap性质
-        [self fixRemoveNode1:node replace:s];
+        [self fixRemoveNode1:node replace:nextNode];
     }
     
     // 删除node节点(node的度必然是1或者0)
@@ -673,6 +685,11 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     // 3、hashCode相同的2个key
     cmp =  (int)[element1 compare:element2];
     return cmp;
+}
+
+/// 比较两个value是否相等
+- (BOOL)valEquals:(id)v1 v2:(id)v2 {
+    return v1 == nil ? v2 == nil : v1 == v2;
 }
 
 #pragma mark - table数组的扩容与缩容

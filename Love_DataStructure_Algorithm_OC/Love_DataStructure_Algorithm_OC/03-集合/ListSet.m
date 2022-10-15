@@ -10,6 +10,7 @@
 
 @interface ListSet()
 
+#pragma mark - 属性
 /** list*/
 @property(nonatomic,strong)LinkedList *linkList;
 

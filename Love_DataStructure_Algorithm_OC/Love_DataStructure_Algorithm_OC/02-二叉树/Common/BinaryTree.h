@@ -22,13 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 二叉树
 @interface BinaryTree : NSObject <MJBinaryTreeInfo>
  
-#pragma mark - 二叉树通用属性
+#pragma mark - 二叉树属性
 /** root*/
 @property (nonatomic,strong,nullable) TreeNode *root;
 /** size*/
 @property (nonatomic,assign) NSUInteger size;
 
-#pragma mark - 二叉树通用接口
+#pragma mark - 二叉树接口
 /**
  * 元素的数量
  */

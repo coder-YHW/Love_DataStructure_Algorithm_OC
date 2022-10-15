@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 2、Block - 比较器
 typedef int (^MJMapComparatorBlock)(id e1, id e2);
 
+/// 映射 - 用红黑树实现
 @interface TreeMap : Map <MJBinaryTreeInfo>
 
 /** 构造函数 */
