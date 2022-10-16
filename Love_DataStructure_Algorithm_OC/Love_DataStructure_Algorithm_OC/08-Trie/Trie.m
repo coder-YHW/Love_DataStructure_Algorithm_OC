@@ -78,9 +78,9 @@
     // 2、遍历字符
     for (int i = 0; i < len; i++) {
         NSString *c = [key substringWithRange:NSMakeRange(i, 1)];
-        // 3、根据字符获取子节点
+        // 2.1、根据字符获取子节点
         TrieNode *childNode = node.children == nil ? nil : [node.children get:c];
-        // 3.1、子节点为空
+        // 2.2、子节点为空
         if (childNode == nil) {
             node.children = node.children == nil ? [[HashMap alloc] init] : node.children; //  node.children为空
             childNode = [[TrieNode alloc] initWithParent:node]; // [node.children get:c] 为空
@@ -88,18 +88,18 @@
             [node.children put:c value:childNode];
         }
         
-        // 3.2、子节点不为空 - 根据字符继续往下查找
+        // 2.3、子节点不为空 - 根据字符继续往下查找
         node = childNode;
     }
     
-    // 如果已经存在这个单词 - 覆盖
+    // 3、如果已经存在这个单词 - 覆盖
     if (node.word) {
         id oldValue = node.value;
         node.value = value;
         return oldValue;
     }
     
-    // 新建一个单词
+    // 4、新建一个单词
     node.word = true;
     node.value = value;
     size++;
