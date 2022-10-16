@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)add:(id)element;
 
 /** 获得堆顶元素 */
-- (id)get;
+- (id)getTop;
 
 /** 删除堆顶元素 */
 - (id)remove;

@@ -48,7 +48,7 @@
 }
 
 - (id)front {
-    return heap.get;
+    return [heap getTop];
 }
 
 #pragma mark - 打印

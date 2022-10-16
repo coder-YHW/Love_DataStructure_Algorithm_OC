@@ -64,6 +64,16 @@ static int DEFAULT_CAPACITY = 10;
     self.size = 0;
 }
 
+/** 获得堆顶元素 */
+- (id)getTop {
+    if (self.isEmpty) {
+        return nil;
+    }
+    return elements[0];
+}
+
+
+#pragma mark - 添加删除替换
 /** 添加元素 */
 - (void)add:(id)element {
     if (element == nil) {
@@ -77,39 +87,28 @@ static int DEFAULT_CAPACITY = 10;
     int index = self.size;
     elements[index] = element;
     
-    // 上滤 - 性质修正
-    [self siftUp:index];
-    
     // size++
     self.size++;
-}
-
-/** 获得堆顶元素 */
-- (id)get {
-    if (self.isEmpty) {
-        return nil;
-    }
-    return elements[0];
+    
+    // 上滤 - 性质修正
+    [self siftUp:(index - 1)];
 }
 
 /** 删除堆顶元素 */
 - (id)remove {
+    
+    // 0、空堆
     if (self.isEmpty) {
         return nil;
     }
-    
     // 1、获得堆顶元素
-    id root = [self get];
+    id root = [self getTop];
     
-    // 2、获得数组最后一个元素
-    int lastIndex = self.size - 1;
-    
-    // 3、数组最后一个元素替换堆顶元素root
-    elements[0] = elements[lastIndex];
-    
-    // 4、将数组最后一个元素删除
-    elements[lastIndex] = [NSNull null];
-    
+
+    // 2、数组最后一个元素替换堆顶元素root
+    elements[0] = elements[(self.size - 1)];
+    // 3、将数组最后一个元素删除
+    elements[(self.size - 1)] = [NSNull null];
     // 5、siz--
     self.size--;
     
@@ -125,14 +124,18 @@ static int DEFAULT_CAPACITY = 10;
         return nil;
     }
     
+    // 0、默认top为空
     id root = NULL;
     
-    if (self.size == 0) { // 2、特殊情况 堆为空
+    if (self.size == 0) { // 1、特殊情况 堆为空  添加进去即可
         elements[0] = element;
         self.size++;
-    } else { // 1、将新元素替换堆顶元素，再下滤
+    } else {
+        // 2、将新元素替换堆顶元素，再下滤
         root = elements[0];
         elements[0] = element;
+        
+        // 3、从0开始下滤 - 性质修正
         [self siftDown:0];
     }
     
@@ -154,6 +157,39 @@ static int DEFAULT_CAPACITY = 10;
         [self siftDown:i];
     }
 }
+
+
+/** 让index位置的元素上滤  - 时间复杂度 O(longN) */
+- (void)siftUp:(int)index {
+    
+    // 1、index > 0时 沿着父节点往上找，比父节点大，就交换位置，比父节点小就退出循环
+    // 2、index == 0时 说明找到父节点位置 不需要再交换位置 终止循环
+    
+    // 0、保存element的值
+    id element = elements[index];
+    
+    // 1、是否还有父节点
+    while (index > 0) { // index == 0时 说明找到根节点位置 终止循环
+        
+        // 1.1、找到他的父节点 - floor((index - 1) / 2)
+        int parentIndex = (index - 1) >> 1;
+        id parent = elements[parentIndex];
+        
+        // 1.2、与父节点比较大小
+        if ([self compareElement1:element element2:parent] <= 0) {
+            break;
+        }
+        
+        // 1.3、交换位置 - 将父元素交换到index位置
+        elements[index] = parent;
+        // 1.4、重新赋值index - node的索引位置index来到父元素位置
+        index = parentIndex;
+    }
+    
+    // 2、将node的值赋值到其索引位置
+    elements[index] = element;
+}
+
 
 /**
  *完全二叉树性质
@@ -203,53 +239,21 @@ static int DEFAULT_CAPACITY = 10;
             }
         }
         
-        // 3、与其最大的那个子节点比较大小 ： node >= child 就停止while循环
+        // 3、与其最大的那个子节点比较大小 element >= child 就停止while循环
         if ([self compareElement1:element element2:child] >= 0) {
             break;
         }
         
-        // 4、将子节点存放到index位置
+        // 4、element < child 继续下滤
+        // 4.1、将子节点存放到index位置
         elements[index] = child;
-        
-        // 5、重新设置index
+        // 4.2、更新index
         index = childIndex;
-    }
-    
-    // 6、将node的值赋值到其索引位置
-    elements[index] = element;
-}
-
-/** 让index位置的元素上滤  - 时间复杂度 O(longN) */
-- (void)siftUp:(int)index {
-    
-    // 1、index > 0时 沿着父节点往上找，比父节点大，就交换位置，比父节点小就退出循环
-    // 2、index == 0时 说明找到父节点位置 不需要再交换位置 终止循环
-    
-    // 0、保存element的值
-    id element = elements[index];
-    
-    while (index > 0) { // index == 0时 说明找到父节点位置
-        
-        // 1、找到他的父节点 - floor((index - 1) / 2)
-        int parentIndex = (index - 1) >> 1;
-        id parent = elements[parentIndex];
-        
-        // 2、与父节点比较大小
-        if ([self compareElement1:element element2:parent] <= 0) {
-            break;
-        }
-        
-        // 3、交换位置 - 将父元素交换到index位置
-        elements[index] = parent;
-        
-        // 4、重新赋值index - node的索引位置index来到父元素位置
-        index = parentIndex;
     }
     
     // 5、将node的值赋值到其索引位置
     elements[index] = element;
 }
-
 
 #pragma mark - 比较器
 /** 比较两元素的大小 */

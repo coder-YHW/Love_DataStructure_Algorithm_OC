@@ -420,44 +420,45 @@ void testHashMap(void) {
 #pragma mark - 堆测试用例
 void testBinaryHeap(void) {
     
+    BinaryHeap *heap = [BinaryHeap heap];
+    heap.heapType = HeapTypeSmall; // 堆类型
+
+    NSArray *keys = @[@68, @72, @43, @50, @38, @10, @90, @65];
+    for (int i = 0; i < keys.count; i++) {
+        [heap add:keys[i]];
+    }
+
+    // 打印heap
+    NSLog(@"%@", heap.description);
+    [MJBinaryTrees println:heap];
+
+    [heap remove];
+    NSLog(@"%@", heap.description);
+    [MJBinaryTrees println:heap];
+
+    [heap replace:@30];
+    NSLog(@"%@", heap.description);
+    [MJBinaryTrees println:heap];
+    
+    
+//    // 一、Top K问题：找出数组里最大的前K个数 - 时间复杂度O(nlongk)
 //    BinaryHeap *heap = [BinaryHeap heap];
 //    heap.heapType = HeapTypeSmall; // 堆类型
 //
-//    NSArray *keys = @[@68, @72, @43, @50, @38, @10, @90, @65];
-//    for (int i = 0; i < keys.count; i++) {
-//        [heap add:keys[i]];
+//    NSArray *keys = @[@"55", @"87", @"56", @"74", @"96", @"22", @"62", @"20", @"70", @"68", @"90", @"50"];
+//    int k = 3;
+//
+//    for (int i = 0 ; i < keys.count ; i++) { // 1、创建一个小顶堆 讲前k个数加入堆中
+//        id obj = keys[i];
+//        if (i < k) {
+//            [heap add:obj];
+//        }else if ([heap.getTop compare:obj] < 0) { // 2、第k+1个数开始 如果大于堆顶元素就替换
+//            [heap replace:obj];
+//        }
 //    }
 //
-//    // 打印heap
 //    NSLog(@"%@", heap.description);
 //    [MJBinaryTrees println:heap];
-//
-//    [heap remove];
-//    NSLog(@"%@", heap.description);
-//    [MJBinaryTrees println:heap];
-//
-//    [heap replace:@30];
-//    NSLog(@"%@", heap.description);
-//    [MJBinaryTrees println:heap];
-    
-    // 一、Top K问题：找出数组里最大的前K个数 - 时间复杂度O(nlongk)
-    BinaryHeap *heap = [BinaryHeap heap];
-    heap.heapType = HeapTypeSmall; // 堆类型
-    
-    NSArray *keys = @[@"55", @"87", @"56", @"74", @"96", @"22", @"62", @"20", @"70", @"68", @"90", @"50"];
-    int k = 3;
-    
-    for (int i = 0 ; i < keys.count ; i++) { // 1、创建一个小顶堆 讲前k个数加入堆中
-        id obj = keys[i];
-        if (i < k) {
-            [heap add:obj];
-        }else if ([heap.get compare:obj] < 0) { // 2、第k+1个数开始 如果大于堆顶元素就替换
-            [heap replace:obj];
-        }
-    }
-    
-    NSLog(@"%@", heap.description);
-    [MJBinaryTrees println:heap];
     
     // 二、堆排序问题
     
@@ -491,10 +492,10 @@ int main(int argc, const char * argv[]) {
 //        testTreeMap();
         
         // HashMap验证 - 哈希表
-        testHashMap();
+//        testHashMap();
         
         // BinaryHeap验证 - 二叉堆
-//        testBinaryHeap();
+        testBinaryHeap();
     }
     return 0;
 }
