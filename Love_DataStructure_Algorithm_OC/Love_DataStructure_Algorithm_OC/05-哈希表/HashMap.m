@@ -90,7 +90,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         return false;
     }
     
-    
+    Queue *queue = [[Queue alloc] init];
     for (id obj in self.table) { // 遍历每一张红黑树
 
         if ([self isNullObject:obj]) { // 0、[NSNull null] 空树 下一个
@@ -98,7 +98,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         }
 
         HashNode *root = (HashNode *)obj;
-        Queue *queue = [[Queue alloc] init];
+//        Queue *queue = [[Queue alloc] init];
         [queue enQueue:root];
 
         while (!queue.isEmpty) { // 1、根节点入队 再层序遍历整棵树
@@ -128,6 +128,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         return;
     }
 
+    Queue *queue = [[Queue alloc] init];
     for (id obj in self.table) { // 遍历每一张红黑树
         
         if ([obj isEqual:[NSNull null]]) { // [NSNull null] 空树
@@ -135,7 +136,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         }
         
         HashNode *root = (HashNode *)obj;
-        Queue *queue = [[Queue alloc] init];
+//        Queue *queue = [[Queue alloc] init];
         [queue enQueue:root];
 
         while (!queue.isEmpty) {
@@ -164,6 +165,9 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     if ([self keyNotNullCheck:key]) {
         return;
     }
+    
+    // 扩容检测
+    [self ensureCapacity];
     
     int index = [self getHashIndexFromKey:key];
     HashNode *root = self.table[index];
@@ -291,8 +295,6 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         return;
     }
     
-    self.size--;
-    
     if (node.hasTwoChildren) {  // 度为2的节点
         // 找到后继节点
         HashNode *nextNode = [self nextNode:node];
@@ -304,8 +306,8 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         // 删除后继节点
         node = nextNode;
         
-        // 1、修复LinkHashMap性质
-        [self fixRemoveNode1:node replace:nextNode];
+        // 修复LinkHashMap性质
+        [self fixLinkHashMapAfterRemove2:node replace:nextNode];
     }
     
     // 删除node节点(node的度必然是1或者0)
@@ -323,22 +325,34 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         } else {    // node == node.parent.right
             node.parent.right = replacement;
         }
-    } else if (node.parent == nil) {    // 2.node是叶子节点并且是根节点
-        int index = [self getHashIndexFromHashCode:node.hashCode];
-        self.table[index] = [NSNull null];
+        // 索引-=1
+        self.size--;
+        
+        // 删除节点后平衡红黑树
+        [self afterRemove:replacement];
+        
+        // 修复LinkHashMap性质
+        [self fixLinkHashMapAfterRemove1:replacement];
+        
     } else {    // 3.node是叶子节点,但不是根节点
-        if (node == node.parent.left) {
+        
+        if (node.parent == nil) {    // 2.node是叶子节点并且是根节点
+            int index = [self getHashIndexFromHashCode:node.hashCode];
+            self.table[index] = [NSNull null];
+        }else if (node == node.parent.left) {
             node.parent.left = nil;
         } else {    // node == node.parent.right
             node.parent.right = nil;
         }
+        // 索引-=1
+        self.size--;
+        
+        // 删除节点后平衡红黑树
+        [self afterRemove:node];
+        
+        // 修复LinkHashMap性质
+        [self fixLinkHashMapAfterRemove1:node];
     }
-    
-    /// 删除节点之后的处理
-    [self afterRemove:node];
-    
-    // 2、修复LinkHashMap性质
-    [self fixRemoveNode2:node];
 }
 
 /**删除之后再平衡**/
@@ -700,7 +714,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         return;
     }
     
-    // 新容量为旧容量的1.5倍
+    // 2、装填因子>0.75 扩容为原来的2倍
     NSMutableArray *oldTable = self.table; // 保存旧table
     int newCapacity = oldCapacity << 1; // 装填因子>0.75 扩容为原来的2倍
     self.table = [NSMutableArray arrayWithCapacity:newCapacity]; // 新table替换旧table
@@ -709,24 +723,25 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         [self.table addObject:[NSNull null]];
     }
     
-    // 旧值设回
-    for (int i = 0; i < oldCapacity; i++) {
+    // 3、旧值设回
+    Queue *queue = [[Queue alloc] init];
+    for (int i = 0; i < oldCapacity; i++) { // 3.1、遍历每一颗红黑树的根节点
 //        newElements[i] = self.table[i]; 扩容之后 hashIndex变了 不能这么做
         
         id obj = oldTable[i]; // 从旧table取数据
-        
         if ([obj isEqual:[NSNull null]]) { // [NSNull null] 空树
             continue;
         }
         
+        // 3.2、根据root 遍历每一颗红黑树的所有节点
         HashNode *root = (HashNode *)obj;
-        Queue *queue = [[Queue alloc] init];
+//        Queue *queue = [[Queue alloc] init];
         [queue enQueue:root];
 
         while (!queue.isEmpty) {
             
             HashNode *node = [queue deQueue];
-            // 把node从旧数组移动到新数组
+            // 3.3、把node从旧数组移动到新数组
 //            [self moveNode:node]; //  调到下面 避免node重置后无法入队
 
             if (node.left != nil) {
@@ -744,18 +759,21 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     NSLog(@"扩容为:%d",newCapacity);
 }
 
+/// 把node从旧数组移动到新数组 -
+/// (跟添加很像 只是不需要创建新节点 将已存在的旧节点移到新数组即可)
 - (void)moveNode:(HashNode *)newNode {
     
-    // 0、重置
+    // 0、重置node所有线
     newNode.parent = nil;
     newNode.left = nil;
     newNode.right = nil;
     newNode.color = HashNodeTypeRed;
     
-    int index = [self getHashIndexFromHashCode:newNode.hashCode]; // 重新计算索引
+    // 1、根据旧hashCode 重新计算索引 取出对应位置的root
+    int index = [self getHashIndexFromHashCode:newNode.hashCode];
     HashNode *root = self.table[index];
     
-    // 1、添加第一个节点
+    // 2、root为空 添加根节点root到桶数组 修复红黑树性质
     if ([self isNullObject:root]) {
         root = newNode;
         self.table[index] = root; // 将根节点放入到桶数组里
@@ -765,13 +783,13 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         return;
     }
     
-    // 2、添加的不是第一个节点
+    // 3、root不为空 添加新的节点到对应红黑树 修复红黑树性质
     // 此时哈希冲突（不同的key得哈希化后得到了相同的hashCode）
     HashNode *parent = root;
     HashNode *node = root;
     int cmp = 0;
     
-    // 3、找到要添加位置的父节点
+    // 找到要添加位置的父节点
     while (![self isNullObject:node]) {
         cmp = [self compareElement1:newNode.key element2:node.key hashCode1:newNode.hashCode hashCode2:node.hashCode];
         parent = node; // 找到父节点
@@ -780,7 +798,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
             node = node.right;
         } else if (cmp < 0) {   // 左节点
             node = node.left;
-        } else {    // key相等 - 旧表里不肯能存在相等的元素 
+        } else {    // key相等 - 旧表里不可能存在相等的元素
 //            node.key = key;
 //            node.value = value;
 //            node.hashCode = [self getHashCodeFromKey:key]; // 此处hashCode替不替换都可以 hashCode是相等的
@@ -794,8 +812,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     } else {
         parent.left = newNode;
     }
-
-    newNode.parent = parent;
+    newNode.parent = parent; // 注意：记得加上这一句
     
     /// 5、添加节点之后的处理
     [self afterPut:newNode];
@@ -805,16 +822,15 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
 
 
 #pragma mark - 子类重写 - 修复链表性质
-/** 删除度为2的节点 node */
-- (void)fixRemoveNode1:(HashNode *)node replace:(HashNode *)replaceNode {
-    NSLog(@"子类重写 - 修复链表性质");
+/** 修复LinkHashMap性质 - 删除度为1或0的节点 node */
+- (void)fixLinkHashMapAfterRemove1:(HashNode *)node {
+//    NSLog(@"子类重写 - 修复LinkHashMap性质");
 }
 
-/** 删除度为1或0的节点 node */
-- (void)fixRemoveNode2:(HashNode *)node {
-    NSLog(@"子类重写 - 修复链表性质");
+/** 修复LinkHashMap性质 - 删除度为2的节点 node */
+- (void)fixLinkHashMapAfterRemove2:(HashNode *)node replace:(HashNode *)replaceNode {
+//    NSLog(@"子类重写 - 修复LinkHashMap性质");
 }
-
 
 #pragma mark - 实现MJBinaryTreeInfo协议方法-打印TreeMap
 - (id)root {

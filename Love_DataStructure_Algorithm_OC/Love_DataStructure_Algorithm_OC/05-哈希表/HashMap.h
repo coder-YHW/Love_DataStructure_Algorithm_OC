@@ -26,11 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 #pragma mark - 子类重写 - 修复链表性质
-/** 删除度为2的节点 node */
-- (void)fixRemoveNode1:(HashNode *)node replace:(HashNode *)replaceNode;
 /** 删除度为1或0的节点 node */
-- (void)fixRemoveNode2:(HashNode *)node;
-
+- (void)fixLinkHashMapAfterRemove1:(HashNode *)node;
+/** 删除度为2的节点 node */
+- (void)fixLinkHashMapAfterRemove2:(HashNode *)node replace:(HashNode *)replaceNode;
 
 #pragma mark - 打印HashMap
 - (void)printHashMap;

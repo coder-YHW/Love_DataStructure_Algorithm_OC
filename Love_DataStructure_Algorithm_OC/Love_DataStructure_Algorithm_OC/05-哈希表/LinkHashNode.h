@@ -9,6 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// HashNode的基础上维护元素添加顺序 使得遍历结果是遵从添加顺序的
 @interface LinkHashNode : HashNode
 
 /** next */
