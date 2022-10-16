@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 时间复杂度低   空间复杂度高 （有待优化）
 @interface Trie : NSObject
 
+#pragma mark - 方法
 /**元素数量**/
 - (int)size;
 

@@ -1,0 +1,48 @@
+//
+//  PrefixHeader.pch
+//  VclustersGemini
+//
+//  Created by APPLE on 2019/6/10.
+//  Copyright © 2019 APPLE. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+#define HLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+
+#import "ArrayList.h"
+#import "ArrayListUpgrade.h"
+#import "LinkedList.h"
+#import "DoubleLinkList.h"
+#import "SingleCircleLinkedList.h"
+#import "DoubleCircleLinkedList.h"
+
+#import "Queue.h"
+#import "Deque.h"
+#import "CircleQueue.h"
+#import "CircleDeque.h"
+
+#import "MJBinaryTrees.h"
+#import "BSTree.h"
+#import "AVLTree.h"
+#import "RBTree.h"
+
+#import "TreeMap.h"
+#import "HashMap.h"
+#import "LinkHashMap.h"
+
+#import "BinaryHeap.h"
+#import "PriorityQueue.h"
+#import "Trie.h"
+
+#import "Sort.h"
+#import "BubbleSort.h"
+#import "SelectionSort.h"
+#import "HeapSort.h"
+
+
+
+#endif

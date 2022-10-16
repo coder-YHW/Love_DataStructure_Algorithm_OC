@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TrieNode : NSObject
 
+#pragma mark - 属性
 /** parent */
 @property (nonatomic,strong) TrieNode *parent;
 /** children */
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong,nullable) id value;
 
 
+#pragma mark - 构造函数
 /**构造函数 - 需要parent**/
 - (instancetype)initWithParent:(nullable TrieNode *)parent;
 

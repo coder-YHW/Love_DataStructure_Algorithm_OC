@@ -7,28 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ArrayList.h"
-#import "ArrayListUpgrade.h"
-#import "LinkedList.h"
-#import "DoubleLinkList.h"
-#import "SingleCircleLinkedList.h"
-#import "DoubleCircleLinkedList.h"
-
-#import "Queue.h"
-#import "Deque.h"
-#import "CircleQueue.h"
-#import "CircleDeque.h"
-
-#import "MJBinaryTrees.h"
-#import "BSTree.h"
-#import "AVLTree.h"
-#import "RBTree.h"
-#import "TreeMap.h"
-
-#import "HashMap.h"
-#import "LinkHashMap.h"
-#import "BinaryHeap.h"
-
 
 #pragma mark - 动态数组测试用例
 void testArrayList(void) {
@@ -465,6 +443,26 @@ void testBinaryHeap(void) {
 }
 
 
+#pragma mark - 排序算法测试试用例
+void testSort(void) {
+    
+    NSArray *data = @[@68, @72, @43, @50, @38, @10, @90, @65, @51, @30, @39, @92, @74, @25];
+    
+    
+//    BubbleSort1 *sort = [[BubbleSort1 alloc] init];
+//    BubbleSort1 *sort = [[BubbleSort2 alloc] init];
+//    BubbleSort1 *sort = [[BubbleSort3 alloc] init];
+//    SelectionSort *sort = [[SelectionSort alloc] init];
+    HeapSort *sort = [[HeapSort alloc] init];
+    
+    
+    
+    
+    
+    NSMutableArray *array =  [sort sortedWithArray:[NSMutableArray arrayWithArray:data]];
+    NSLog(@"%@", array);
+}
+
 #pragma mark - main函数
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -495,7 +493,10 @@ int main(int argc, const char * argv[]) {
 //        testHashMap();
         
         // BinaryHeap验证 - 二叉堆
-        testBinaryHeap();
+//        testBinaryHeap();
+        
+        // 排序算法验证
+        testSort();
     }
     return 0;
 }

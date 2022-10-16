@@ -10,6 +10,8 @@
 #import "HashMap.h"
 
 @implementation Trie {
+    
+#pragma mark - 属性
     int size;
     TrieNode *root;
 }
@@ -64,6 +66,8 @@
     return (node != nil && node.word) ? node.value : nil;
 }
 
+
+#pragma mark - 添加删除
 /**添加一个字符串**/
 - (id)add:(NSString *)key value:(id)value {
     [self keyCheck:key];

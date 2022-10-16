@@ -91,7 +91,7 @@ static int DEFAULT_CAPACITY = 10;
     self.size++;
     
     // 上滤 - 性质修正
-    [self siftUp:(index - 1)];
+    [self siftUp:(self.size - 1)];
 }
 
 /** 删除堆顶元素 */

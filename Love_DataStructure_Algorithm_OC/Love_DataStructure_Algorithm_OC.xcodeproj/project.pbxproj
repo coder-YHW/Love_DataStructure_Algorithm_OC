@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D1BDBC328FC5B0C004F1D93 /* Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDBC228FC5B0C004F1D93 /* Sort.m */; };
+		0D1BDBC728FC61A8004F1D93 /* BubbleSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDBC628FC61A8004F1D93 /* BubbleSort.m */; };
+		0D1BDBCA28FC61B7004F1D93 /* SelectionSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDBC928FC61B7004F1D93 /* SelectionSort.m */; };
+		0D1BDBCD28FC61C4004F1D93 /* HeapSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDBCC28FC61C4004F1D93 /* HeapSort.m */; };
 		0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D66C5A628F8213000D280E2 /* QueueStack.m */; };
 		0DC90B4E28EF4F8400AA8754 /* AVLTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD528EF4F8300AA8754 /* AVLTree.m */; };
 		0DC90B4F28EF4F8400AA8754 /* AVLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD628EF4F8300AA8754 /* AVLNode.m */; };
@@ -70,6 +74,15 @@
 
 /* Begin PBXFileReference section */
 		0D1BDBB728F9DA58004F1D93 /* 恋上数据结构与算法-第二季.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "恋上数据结构与算法-第二季.pdf"; sourceTree = "<group>"; };
+		0D1BDBC128FC5B0C004F1D93 /* Sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sort.h; sourceTree = "<group>"; };
+		0D1BDBC228FC5B0C004F1D93 /* Sort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sort.m; sourceTree = "<group>"; };
+		0D1BDBC428FC5F3B004F1D93 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		0D1BDBC528FC61A8004F1D93 /* BubbleSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BubbleSort.h; sourceTree = "<group>"; };
+		0D1BDBC628FC61A8004F1D93 /* BubbleSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubbleSort.m; sourceTree = "<group>"; };
+		0D1BDBC828FC61B7004F1D93 /* SelectionSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectionSort.h; sourceTree = "<group>"; };
+		0D1BDBC928FC61B7004F1D93 /* SelectionSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectionSort.m; sourceTree = "<group>"; };
+		0D1BDBCB28FC61C4004F1D93 /* HeapSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeapSort.h; sourceTree = "<group>"; };
+		0D1BDBCC28FC61C4004F1D93 /* HeapSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeapSort.m; sourceTree = "<group>"; };
 		0D66C5A528F8213000D280E2 /* QueueStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueStack.h; sourceTree = "<group>"; };
 		0D66C5A628F8213000D280E2 /* QueueStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueStack.m; sourceTree = "<group>"; };
 		0DC90AC728EF4F4100AA8754 /* Love_DataStructure_Algorithm_OC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Love_DataStructure_Algorithm_OC; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,6 +273,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D1BDBC028FC5A4D004F1D93 /* 09-排序 */ = {
+			isa = PBXGroup;
+			children = (
+				0D1BDBC128FC5B0C004F1D93 /* Sort.h */,
+				0D1BDBC228FC5B0C004F1D93 /* Sort.m */,
+				0D1BDBC528FC61A8004F1D93 /* BubbleSort.h */,
+				0D1BDBC628FC61A8004F1D93 /* BubbleSort.m */,
+				0D1BDBC828FC61B7004F1D93 /* SelectionSort.h */,
+				0D1BDBC928FC61B7004F1D93 /* SelectionSort.m */,
+				0D1BDBCB28FC61C4004F1D93 /* HeapSort.h */,
+				0D1BDBCC28FC61C4004F1D93 /* HeapSort.m */,
+			);
+			path = "09-排序";
+			sourceTree = "<group>";
+		};
 		0D66C5A828F8256200D280E2 /* 07-优先级队列 */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				0DC90B6928EF661600AA8754 /* main.m */,
+				0D1BDBC428FC5F3B004F1D93 /* PrefixHeader.pch */,
 				0DC90AD228EF4F8300AA8754 /* 恋上数据结构与算法-第一季.pdf */,
 				0D1BDBB728F9DA58004F1D93 /* 恋上数据结构与算法-第二季.pdf */,
 				0DC90B2728EF4F8400AA8754 /* 01-线性表 */,
@@ -307,6 +336,7 @@
 				0DC90C4628F0242600AA8754 /* 06-堆 */,
 				0D66C5A828F8256200D280E2 /* 07-优先级队列 */,
 				0DC90C5428F025F100AA8754 /* 08-Trie */,
+				0D1BDBC028FC5A4D004F1D93 /* 09-排序 */,
 			);
 			path = Love_DataStructure_Algorithm_OC;
 			sourceTree = "<group>";
@@ -781,6 +811,7 @@
 				0DC90C4E28F0252600AA8754 /* AbstractHeap.m in Sources */,
 				0DC90B8828EF6C6D00AA8754 /* TreeMap.m in Sources */,
 				0DC90B5D28EF4F8400AA8754 /* DoubleCircleLinkedList.m in Sources */,
+				0D1BDBC728FC61A8004F1D93 /* BubbleSort.m in Sources */,
 				0DC90B6628EF4F8400AA8754 /* LinkNode.m in Sources */,
 				0DC90B6028EF4F8400AA8754 /* StackQueue.m in Sources */,
 				0DC90B5F28EF4F8400AA8754 /* Deque.m in Sources */,
@@ -809,7 +840,9 @@
 				0DC90B7D28EF667C00AA8754 /* Set.m in Sources */,
 				0DC90B5628EF4F8400AA8754 /* NSString+Trees.m in Sources */,
 				0DC90B7C28EF667C00AA8754 /* ListSet.m in Sources */,
+				0D1BDBC328FC5B0C004F1D93 /* Sort.m in Sources */,
 				0DC90C5A28F025F100AA8754 /* Trie.m in Sources */,
+				0D1BDBCD28FC61C4004F1D93 /* HeapSort.m in Sources */,
 				0DE82A8528F3E02000711210 /* LinkHashNode.m in Sources */,
 				0DC90B5128EF4F8400AA8754 /* TreeNode.m in Sources */,
 				0DC90B6528EF4F8400AA8754 /* AbstractList.m in Sources */,
@@ -817,6 +850,7 @@
 				0DE82A8228F357A800711210 /* LinkHashMap.m in Sources */,
 				0DC90B6228EF4F8400AA8754 /* CircleDeque.m in Sources */,
 				0DC90B6A28EF661600AA8754 /* main.m in Sources */,
+				0D1BDBCA28FC61B7004F1D93 /* SelectionSort.m in Sources */,
 				0DC90B8728EF6C6D00AA8754 /* Map.m in Sources */,
 				0DC90B5328EF4F8400AA8754 /* MJLevelOrderPrinter.m in Sources */,
 				0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */,
@@ -939,6 +973,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Love_DataStructure_Algorithm_OC/PrefixHeader.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -947,6 +982,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Love_DataStructure_Algorithm_OC/PrefixHeader.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
