@@ -9,6 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 冒泡排序
+/// 平均、最坏复杂度O(n^2)  最好时间复杂度O(n) 空间复杂度O(1)
+/// 稳定排序
 @interface BubbleSort : Sort
 
 @end

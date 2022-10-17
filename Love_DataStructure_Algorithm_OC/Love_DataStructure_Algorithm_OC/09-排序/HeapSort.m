@@ -9,6 +9,9 @@
 
 @interface HeapSort ()
 
+
+/// 堆排序 - 选择排序进阶版
+/// 堆排序 - 平均、最坏、最好复杂度O(nlogn)    空间复杂度O(1)
 @property (nonatomic, assign) int heapCount;
 
 @end
@@ -65,7 +68,7 @@
         }
         
         // 3、与其最大的那个子节点比较大小 value >= child 就停止while循环
-        if ([self cmpElement1:value element2:childVal] >= 0) { // 注意：此处的index已经不是最初value对应的index了
+        if ([self cmpElement1:value element2:childVal] >= 0) { // 注意：··     此处的index已经不是最初value对应的index了
             break;
         }
         

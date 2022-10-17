@@ -10,6 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// 选择排序
+/// 选择排序 - 平均、最坏、最好复杂度O(n^2)    空间复杂度O(1)
+/// 非稳定排序
 @interface SelectionSort : Sort
 
 @end

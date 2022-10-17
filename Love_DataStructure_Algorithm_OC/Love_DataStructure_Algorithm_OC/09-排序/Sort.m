@@ -35,6 +35,8 @@
     
     self.time = end - begin;
     
+    HLog(@"比较次数：%d 交换次数：%d 耗时：%.6f", self.cmpCount, self.swapCount, self.time);
+    
     return self.dataArray;
 }
 
