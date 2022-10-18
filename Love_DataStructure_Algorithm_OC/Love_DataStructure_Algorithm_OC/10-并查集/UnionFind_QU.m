@@ -12,7 +12,7 @@
 
 #pragma mark - 方法
 /// 查找V所属的集合(根节点)
-- (int)find:(int)v { // 通过parent链条不断地向上找，直到找到根节点 - 时间复杂度O(nlogn)
+- (int)find:(int)v { // 通过parent链条不断地向上找，直到找到根节点 - 时间复杂度O(logn)
     [self rangeCheck:v];
     
     int val = [self.parents[v] intValue];

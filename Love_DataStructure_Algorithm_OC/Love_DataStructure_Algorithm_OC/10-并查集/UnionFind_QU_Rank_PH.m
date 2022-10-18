@@ -23,7 +23,7 @@
     if ([self.parents[val] intValue] != val) {
         
         int parent = [self.parents[val] intValue];
-        int grand = [self.parents[parent] intValue];
+        int grand  = [self.parents[parent] intValue];
         self.parents[val] = [NSNumber numberWithInt:grand];
         
         val = grand; // 使路径上每隔一个节点就指向其祖父节点

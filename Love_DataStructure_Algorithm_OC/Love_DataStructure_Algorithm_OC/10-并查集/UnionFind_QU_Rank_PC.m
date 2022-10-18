@@ -21,7 +21,7 @@
     
     if ([self.parents[v] intValue] != v) {
         int parent = [self.parents[v] intValue];
-        int root = [self find:parent]; // 递归调用 - 沿着父节点继续往上找 使路径上的所有节点都指向根节点, 从而降低树的高度
+        int root   = [self find:parent]; // 递归调用 - 沿着父节点继续往上找 使路径上的所有节点都指向根节点, 从而降低树的高度
         self.parents[v] = [NSNumber numberWithInt:root];
     }
     

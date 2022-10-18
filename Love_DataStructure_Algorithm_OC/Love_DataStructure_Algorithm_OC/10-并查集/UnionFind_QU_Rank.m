@@ -54,7 +54,7 @@
         self.parents[parent1] = [NSNumber numberWithInt:parent2]; // 2种都可以
         
         rank2 = rank2 + 1;
-        self.rankArr[parent2] = [NSNumber numberWithInt:rank2]; // 更新rank
+        self.rankArr[parent2] = [NSNumber numberWithInt:rank2];  // 更新rank
     }
     
 }

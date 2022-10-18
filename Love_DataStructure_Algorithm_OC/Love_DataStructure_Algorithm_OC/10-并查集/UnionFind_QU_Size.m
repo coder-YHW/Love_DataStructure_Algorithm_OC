@@ -7,6 +7,10 @@
 
 #import "UnionFind_QU_Size.h"
 
+/*
+ * Quick Union - 基于size的优化
+ * 元素少的树嫁接到元素多的树
+ */
 @interface UnionFind_QU_Size ()
 
 #pragma mark - 属性
@@ -44,8 +48,9 @@
     // 节点少的合并到节点多的
     if (size1 < size2) {
         self.parents[parent1] = [NSNumber numberWithInt:parent2];
+        
         parent2 = parent1 + parent2;
-        self.sizeArr[parent2] = [NSNumber numberWithInt:parent2];
+        self.sizeArr[parent2] = [NSNumber numberWithInt:parent2];  // 更新size
     }else {
         self.parents[parent2] = [NSNumber numberWithInt:parent1];
         

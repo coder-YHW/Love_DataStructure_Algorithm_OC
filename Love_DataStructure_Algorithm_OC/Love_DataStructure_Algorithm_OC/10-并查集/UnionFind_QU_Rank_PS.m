@@ -23,7 +23,7 @@
     if ([self.parents[val] intValue] != val) {
         
         int parent = [self.parents[val] intValue];
-        int grand = [self.parents[parent] intValue];
+        int grand  = [self.parents[parent] intValue];
         self.parents[val] = [NSNumber numberWithInt:grand];
         
         val = parent; // 沿着父节点继续往上找 - 使路径上的每个节点都指向其祖父节点
