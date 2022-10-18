@@ -68,6 +68,7 @@
 /// 目前最好的步长序列 - sedgewick 套用数学公式
 - (NSMutableArray *)sedgewickStepSequence {
     
+    NSLog(@"做了解即可");
     return [NSMutableArray array];
 }
 

@@ -446,7 +446,7 @@ void testBinaryHeap(void) {
 #pragma mark - 排序算法测试试用例
 void testSort(void) {
     
-    NSArray *data = @[@51, @30, @39, @92, @74, @25, @16, @93, @91, @19, @54, @47, @73, @62, @76, @63, @35, @18, @90, @6, @65, @49, @3, @26, @61, @21, @48];
+    NSArray *data = @[@51, @30, @39 ,@30, @39, @92, @74, @25, @16, @93, @91, @19, @54, @47, @73, @62, @76, @63, @35, @18, @90, @6, @65, @49, @3, @26, @61, @21, @48];
     
     
 //    BubbleSort1 *sort = [[BubbleSort1 alloc] init];
@@ -461,7 +461,10 @@ void testSort(void) {
 //    BinarySearch *sort = [[BinarySearch alloc] init];
     
 //    MergeSort *sort = [[MergeSort alloc] init];
-    QuickSort *sort = [[QuickSort alloc] init];
+//    QuickSort *sort = [[QuickSort alloc] init];
+//    CountingSort *sort = [[CountingSort alloc] init];
+    RadixSort *sort = [[RadixSort alloc] init];
+//    BucketSort *sort = [[BucketSort alloc] init];
     
     
     
