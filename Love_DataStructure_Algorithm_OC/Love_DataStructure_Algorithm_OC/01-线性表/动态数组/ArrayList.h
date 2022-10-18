@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 动态数组
 @interface ArrayList : AbstractList
 
-/** 初始化 */
+/** 构造函数 */
 - (instancetype)initWithCapaticy:(int)capaticy;
 
 @end
