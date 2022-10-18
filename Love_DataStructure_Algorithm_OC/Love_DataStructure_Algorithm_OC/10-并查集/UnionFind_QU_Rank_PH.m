@@ -26,7 +26,7 @@
         int grand  = [self.parents[parent] intValue];
         self.parents[val] = [NSNumber numberWithInt:grand];
         
-        val = grand; // 使路径上每隔一个节点就指向其祖父节点
+        val = grand; // // 沿着祖父节点 使路径上每隔一个节点就指向其祖父节点
     }
     
     return val;
