@@ -479,6 +479,7 @@ void testGraph(void) {
     ListGraph *graph = [[ListGraph alloc] init];
     
     [graph addEdgeFrom:@"V1" to:@"V0" weight:9];
+//    [graph addEdgeFrom:@"V1" to:@"V0" weight:8];
     [graph addEdgeFrom:@"V1" to:@"V2" weight:3];
     [graph addEdgeFrom:@"V2" to:@"V0" weight:2];
     [graph addEdgeFrom:@"V2" to:@"V3" weight:5];
@@ -487,10 +488,13 @@ void testGraph(void) {
     
     [graph printListGraph];
     
-    [graph removeVertexVal:@"V0"];
 //    [graph removeEdgeFrom:@"V1" to:@"V0"];
+//    [graph printListGraph];
     
+    [graph removeVertexVal:@"V0"];
     [graph printListGraph];
+    
+
 }
 
 
