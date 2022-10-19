@@ -43,10 +43,10 @@ typedef void (^MJMapTraversalBlock) (id key, id value);
 - (void)traversalWithBlock:(_Nullable MJMapTraversalBlock)block;
 
 /// 所有key
-- (NSArray *)allkeys;
+- (NSMutableArray *)allkeys;
 
 ///  所有values
-- (NSArray *)allValues;
+- (NSMutableArray *)allValues;
 
 @end
 

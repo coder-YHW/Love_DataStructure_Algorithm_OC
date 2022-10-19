@@ -44,7 +44,6 @@
 #import "HeapSort.h"
 #import "InsertionSort.h"
 #import "BinarySearch.h"
-
 #import "MergeSort.h"
 #import "QuickSort.h"
 #import "ShellSort.h"
@@ -52,5 +51,7 @@
 #import "RadixSort.h"
 #import "BucketSort.h"
 
+
+#import "ListGraph.h"
 
 #endif

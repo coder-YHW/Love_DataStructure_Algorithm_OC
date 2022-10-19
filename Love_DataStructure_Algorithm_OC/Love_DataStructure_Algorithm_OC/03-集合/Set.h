@@ -38,6 +38,10 @@ typedef void (^MJSetTraversalBlock) (id element);
 /**遍历所有元素**/
 - (void)traversalWithBlock:(_Nullable MJSetTraversalBlock)block;
 
+/// 所有元素
+- (NSMutableArray *)allElement;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

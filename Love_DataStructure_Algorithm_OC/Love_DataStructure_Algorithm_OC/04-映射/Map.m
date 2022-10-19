@@ -10,7 +10,7 @@
 @implementation Map
 
 /// 所有key
-- (NSArray *)allkeys {
+- (NSMutableArray *)allkeys {
  
     NSMutableArray *keys = [NSMutableArray array];
     
@@ -21,12 +21,12 @@
         }
     }];
     
-    return [NSArray arrayWithArray:keys];
+    return keys;
 }
 
 
 ///  所有values
-- (NSArray *)allValues {
+- (NSMutableArray *)allValues {
     
     NSMutableArray *values = [NSMutableArray array];
     
@@ -37,7 +37,7 @@
         }
     }];
     
-    return [NSArray arrayWithArray:values];
+    return values;
 }
 
 @end

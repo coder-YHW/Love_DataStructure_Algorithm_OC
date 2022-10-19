@@ -17,6 +17,16 @@
 
 @implementation HashSet
 
+
+#pragma mark - 构造函数
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        self.hashMap = [[HashMap alloc] init];
+    }
+    return self;
+}
+
 #pragma mark - override
 /**元素个数**/
 - (int)size {
@@ -51,7 +61,7 @@
 /**遍历所有元素**/
 - (void)traversalWithBlock:(MJSetTraversalBlock)block {
     [self.hashMap traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
-        NSLog(@"%@:%@", key, value);
+//        NSLog(@"%@:%@", key, value);
         if (block) {
             block(key);
         }

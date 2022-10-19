@@ -472,6 +472,28 @@ void testSort(void) {
     NSLog(@"%@", array);
 }
 
+
+#pragma mark - 图测试试用例
+void testGraph(void) {
+    
+    ListGraph *graph = [[ListGraph alloc] init];
+    
+    [graph addEdgeFrom:@"V1" to:@"V0" weight:9];
+    [graph addEdgeFrom:@"V1" to:@"V2" weight:3];
+    [graph addEdgeFrom:@"V2" to:@"V0" weight:2];
+    [graph addEdgeFrom:@"V2" to:@"V3" weight:5];
+    [graph addEdgeFrom:@"V0" to:@"V4" weight:6];
+    [graph addEdgeFrom:@"V3" to:@"V4" weight:1];
+    
+    [graph printListGraph];
+    
+    [graph removeVertexVal:@"V0"];
+//    [graph removeEdgeFrom:@"V1" to:@"V0"];
+    
+    [graph printListGraph];
+}
+
+
 #pragma mark - main函数
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -505,7 +527,10 @@ int main(int argc, const char * argv[]) {
 //        testBinaryHeap();
         
         // 排序算法验证
-        testSort();
+//        testSort();
+        
+        // 图
+        testGraph();
     }
     return 0;
 }

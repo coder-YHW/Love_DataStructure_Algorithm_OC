@@ -681,7 +681,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
 //        return cmp;
 //    }
     
-    // 1、hashCode相同的2个key
+    // 1、协议：重写对象的：+ (NSUInteger)hash; 方法
     int cmp = 0;
     if (hashCode1 > hashCode2) {
         cmp = 1;
@@ -691,12 +691,12 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
         return cmp;
     }
     
-    // 2、相同的1个key
+    // 2、协议：重写对象的：- (BOOL)isEqual:(id)object 方法
     if ([element1 isEqual:element2]) {
         return 0;
     }
     
-    // 3、hashCode相同的2个key
+    // 3、协议：重写对象的：- (NSComparisonResult)compare:(NSNumber *)otherNumber 方法（类型随对象变化）
     cmp =  (int)[element1 compare:element2];
     return cmp;
 }
