@@ -10,7 +10,8 @@
 #import "HashSet.h"
 #import "Vertex.h"
 #import "Edge.h"
-    
+#import "Queue.h"
+#import "Stack.h"
 
 @interface ListGraph ()
 
@@ -148,6 +149,109 @@
     }
 }
 
+
+#pragma mark - 图的遍历 - BFS - 层序遍历-队列实现
+- (void)breadthFirstSearch:(id)begin block:(MJGraphTraversalBlock)block {
+    // 0、非空检测
+    Vertex *vertex = [self.vertexs get:begin];
+    if (vertex == nil) { return; }
+    
+    // 1.1、创建一个hashSet 保存已经遍历过的顶点
+    HashSet *set = [[HashSet alloc] init];
+    // 1.2、创建一个Queue beginVertex入队
+    Queue *queue = [[Queue alloc] init];
+    [queue enQueue:vertex];
+    [set add:vertex]; // 注意：这句代码位置
+    
+    while (!queue.isEmpty) {
+        
+        // 2、出队
+        Vertex *vertex = [queue deQueue];
+//        NSLog(@"%@", vertex);
+        // 遍历器
+        if (block) {
+            block(vertex.value);
+        }
+        
+        // 3、遍历inEdges 将边.to中 所有非重复顶点入队
+        [vertex.outEdges traversalWithBlock:^(id  _Nonnull element) {
+            Edge *edge =  (Edge *)element;
+            Vertex *vertex = edge.to;
+            
+            if (![set contains:vertex]) { // 非重复顶点入队
+                [queue enQueue:vertex];
+                [set add:vertex]; // 注意：这句代码位置
+            }
+        }];
+    }
+}
+
+#pragma mark   图的遍历 - DFS 前序遍历-栈实现
+- (void)depthFirstSearch:(id)begin block:(MJGraphTraversalBlock)block {
+    // 0、非空检测
+    Vertex *vertex = [self.vertexs get:begin];
+    if (vertex == nil) { return; }
+    
+    // 1.1、创建一个hashSet 保存已经遍历过的顶点
+    HashSet *set = [[HashSet alloc] init];
+    Stack *stack = [[Stack alloc] init];
+    [stack push:vertex];
+    [set add:vertex]; // 注意：这句代码位置
+    
+    while (!stack.isEmpty) {
+        
+        // 2、出队
+        Vertex *vertex = [stack pop];
+//        NSLog(@"%@", vertex);
+        // 遍历器
+        if (block) {
+            block(vertex.value);
+        }
+        
+        // 3、遍历inEdges 将边.to中 所有非重复顶点入队
+        [vertex.outEdges traversalWithBlock:^(id  _Nonnull element) {
+            Edge *edge =  (Edge *)element;
+            Vertex *vertex = edge.to;
+            
+            if (![set contains:vertex]) { // 非重复顶点入队
+                [stack push:vertex];
+                [set add:vertex]; // 注意：这句代码位置
+            }
+        }];
+    }
+}
+
+#pragma mark   图的遍历 - DFS 前序遍历-递归实现
+- (void)depthFirstSearchCircle:(id)begin block:(MJGraphTraversalBlock)block {
+    // 0、非空检测
+    Vertex *vertex = [self.vertexs get:begin];
+    if (vertex == nil) { return; }
+    
+    // 1、创建一个hashSet 保存已经遍历过的顶点
+    HashSet *set = [[HashSet alloc] init];
+    
+    // 3.1、递归调用
+    [self depthSearch:vertex set:set block:block];
+}
+
+- (void)depthSearch:(Vertex *)vertex set:(HashSet *)set block:(MJGraphTraversalBlock)block {
+//        NSLog(@"%@", vertex);
+    // 遍历器
+    if (block) {
+        block(vertex.value);
+    }
+    [set add:vertex]; // 注意：这句代码位置
+    
+    // 3.2、遍历inEdges 将边.to 递归调用
+    [vertex.outEdges traversalWithBlock:^(id  _Nonnull element) {
+        Edge *edge =  (Edge *)element;
+        Vertex *vertex = edge.to;
+        
+        if (![set contains:vertex]) { // 非重复顶点 - 递归调用
+            [self depthSearch:vertex set:set block:block];
+        }
+    }];
+}
 
 #pragma mark - 打印
 - (void)printListGraph {

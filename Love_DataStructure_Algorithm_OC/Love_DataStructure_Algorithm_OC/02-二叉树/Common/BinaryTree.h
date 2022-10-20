@@ -46,17 +46,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 #pragma mark - 二叉树遍历
-/** 前序遍历 */
+#pragma mark 前序遍历（递归
+/** 前序遍历（递归） */
+- (void)preOrderCircleWithBlock:(MJTreeTraversalBlock)block;
+#pragma mark 中序遍历（递归
+/** 中序遍历（递归） */
+- (void)inOrderCircleWithBlock:(MJTreeTraversalBlock)block;
+#pragma mark 后序遍历（递归
+/** 后序遍历（递归） */
+- (void)postOrderCircleWithBlock:(MJTreeTraversalBlock)block;
+#pragma mark 层序遍历（迭代）
+/** 层序遍历（迭代） */
+- (void)levelOrderWithBlock:(MJTreeTraversalBlock)block;
+#pragma mark 前序遍历（迭代）
+/** 前序遍历（迭代） */
 - (void)preOrderWithBlock:(MJTreeTraversalBlock)block;
-
-/** 中序遍历 */
+#pragma mark 中序遍历（迭代）
+/** 中序遍历（迭代） */
 - (void)inOrderWithBlock:(MJTreeTraversalBlock)block;
-
-/** 后序遍历 */
+#pragma mark 后序遍历（迭代）
+/** 后序遍历（迭代） */
 - (void)postOrderWithBlock:(MJTreeTraversalBlock)block;
 
-/** 层序遍历 */
-- (void)levelOrderWithBlock:(MJTreeTraversalBlock)block;
 
 #pragma mark - 二叉树遍历应用
 /// 计算二叉树的高度 - 递归实现

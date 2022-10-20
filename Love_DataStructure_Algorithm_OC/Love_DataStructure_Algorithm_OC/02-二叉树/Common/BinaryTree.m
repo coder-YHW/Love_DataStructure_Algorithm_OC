@@ -7,6 +7,7 @@
 
 #import "BinaryTree.h"
 #import "Queue.h"
+#import "Stack.h"
 
 @implementation BinaryTree
 
@@ -35,13 +36,13 @@
 
 
 #pragma mark - 二叉树遍历
-/// 前序遍历
-- (void)preOrderWithBlock:(MJTreeTraversalBlock)block {
-    [self preOrder:self.root block:block];
+#pragma mark 前序遍历(递归)
+/// 前序遍历(递归)
+- (void)preOrderCircleWithBlock:(MJTreeTraversalBlock)block {
+    [self preOrderCircle:self.root block:block];
 }
 
-/// 前序遍历
-- (void)preOrder:(TreeNode *)node block:(MJTreeTraversalBlock)block {
+- (void)preOrderCircle:(TreeNode *)node block:(MJTreeTraversalBlock)block {
     if (node == nil) {
         return;
     }
@@ -51,45 +52,45 @@
         block(node.description);
     }
     
-    [self preOrder:node.left block:block];
-    [self preOrder:node.right block:block];
+    [self preOrderCircle:node.left block:block];
+    [self preOrderCircle:node.right block:block];
 }
 
-/// 中序遍历
-- (void)inOrderWithBlock:(MJTreeTraversalBlock)block {
-    [self inOrder:self.root block:block];
+#pragma mark 中序遍历(递归)
+/// 中序遍历(递归)
+- (void)inOrderCircleWithBlock:(MJTreeTraversalBlock)block {
+    [self inOrderCircle:self.root block:block];
 }
 
-/// 中序遍历
-- (void)inOrder:(TreeNode *)node block:(MJTreeTraversalBlock)block {
+- (void)inOrderCircle:(TreeNode *)node block:(MJTreeTraversalBlock)block {
     if (node == nil) {
         return;
     }
     
-    [self inOrder:node.left block:block];
+    [self inOrderCircle:node.left block:block];
     
     //    NSLog(@"%@",node.description);
         if (block) {
             block(node.description);
         }
     
-    [self inOrder:node.right block:block];
+    [self inOrderCircle:node.right block:block];
 }
 
-/// 后序遍历
-- (void)postOrderWithBlock:(MJTreeTraversalBlock)block {
-    [self postOrder:self.root block:block];
+#pragma mark 后序遍历(递归)
+/// 后序遍历(递归)
+- (void)postOrderCircleWithBlock:(MJTreeTraversalBlock)block {
+    [self postOrderCircle:self.root block:block];
 }
 
-/// 后序遍历
-- (void)postOrder:(TreeNode *)node block:(MJTreeTraversalBlock)block {
+- (void)postOrderCircle:(TreeNode *)node block:(MJTreeTraversalBlock)block {
     
     if (node == nil) {
         return;
     }
     
-    [self postOrder:node.left block:block];
-    [self postOrder:node.right block:block];
+    [self postOrderCircle:node.left block:block];
+    [self postOrderCircle:node.right block:block];
     
 //    NSLog(@"%@",node.description);
     if (block) {
@@ -97,6 +98,7 @@
     }
 }
 
+#pragma mark 层序遍历(迭代)
 /// 层序遍历
 - (void)levelOrderWithBlock:(MJTreeTraversalBlock)block {
     if (self.root == nil) {
@@ -123,6 +125,99 @@
     }
 }
 
+#pragma mark 前序遍历(迭代) - 层序遍历queue换成stack 右子树先入栈
+/// 前序遍历(迭代)
+- (void)preOrderWithBlock:(MJTreeTraversalBlock)block {
+    if (self.root == nil) {
+        return;
+    }
+    
+    Stack *stack = [[Stack alloc] init];
+    [stack push:self.root];
+    
+    while (!stack.isEmpty) {
+        TreeNode *node = [stack pop];
+    //    NSLog(@"%@",node.description);
+        if (block) {
+            block(node.description);
+        }
+        
+        if (node.right != nil) {    // 右子树先入栈
+            [stack push:node.right];
+        }
+        
+        if (node.left != nil) {     // 左子节再入栈
+            [stack push:node.left];
+        }
+    }
+}
+
+#pragma mark 中序遍历(迭代)
+/// 中序遍历(迭代)
+- (void)inOrderWithBlock:(MJTreeTraversalBlock)block {
+    if (self.root == nil) {
+        return;
+    }
+    
+    // 1、创建栈
+    TreeNode *node = self.root;
+    Stack *stack = [[Stack alloc] init];
+    
+    while (!stack.isEmpty || node != nil) { // 注意：或
+        // 1、一路往左走 直到最左位置 路上遇到的节点都入栈（包括根节点）
+        while (node != nil) {
+            [stack push:node];
+            node = node.left;
+        }
+        
+        // 2、不能再往左走了 弹出栈顶元素 赋值给node访问
+        TreeNode *currNode = [stack pop];
+//        NSLog(@"%@",currNode.description);
+        if (block) {
+            block(currNode.description);
+        }
+     
+        // 3、查看一下currNode的右子树 如果右子树为nil 结束本次循环
+        node = currNode.right;
+    }
+}
+
+#pragma mark 后序遍历(迭代)
+/// 后序遍历(迭代)
+- (void)postOrderWithBlock:(MJTreeTraversalBlock)block {
+    if (self.root == nil) {
+        return;
+    }
+    
+    // 1、将根节点入栈
+    Stack *stack = [[Stack alloc] init];
+    [stack push:self.root];
+    TreeNode *currNode; // 用来记录上一次弹出栈的节点 （子节点已出栈 轮到父节点）
+    
+    while (!stack.isEmpty) {
+        // 2、查看栈顶是否是叶子结点
+        TreeNode *topNode = [stack top];
+        if ([topNode isLeaf] || // 2.1、栈顶节点是否是椰子节点 或 上一次访问节点是否是栈顶节点的子节点 出栈 （子节点已出栈 轮到父节点）
+            (currNode != nil && currNode.parent == topNode)) {
+            // 3、出栈
+            currNode = [stack pop];
+//            NSLog(@"%@",currNode.description);
+            if (block) {
+                block(currNode.description);
+            }
+            
+        }else { // 2.2、栈顶不是叶子结点 右子树先入栈 左子节再入栈
+         
+            if (topNode.right != nil) {    // 右子树先入栈
+                [stack push:topNode.right];
+            }
+            
+            if (topNode.left != nil) {     // 左子节再入栈
+                [stack push:topNode.left];
+            }
+        }
+    }
+}
 
 #pragma mark - 二叉树遍历应用
 /// 1、计算二叉树的高度 - 递归实现

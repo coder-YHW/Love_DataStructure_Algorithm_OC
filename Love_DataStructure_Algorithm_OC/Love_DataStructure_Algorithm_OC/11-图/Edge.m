@@ -65,7 +65,7 @@
     
     [strM appendString:[NSString stringWithFormat:@"fromVertex:%@, ", self.from.value]];
     [strM appendString:[NSString stringWithFormat:@"toVertex:%@, ", self.to.value]];
-    [strM appendString:[NSString stringWithFormat:@"weight:%.0f ", self.weight]];
+    [strM appendString:[NSString stringWithFormat:@"weight:%.2f ", self.weight]];
     
     [strM appendString:@"]"];
     return strM.copy;

@@ -7,11 +7,14 @@
 
 #import <Foundation/Foundation.h>
 
+// traversal - 遍历器
+typedef void (^MJGraphTraversalBlock) (id _Nullable value);
 
 NS_ASSUME_NONNULL_BEGIN
-/// /// 图 - 接口设计
+/// 图 - 接口设计
 @interface Graph : NSObject
 
+#pragma mark - 图 - 接口设计
 /// 顶点个数
 - (int)vertexsSize;
 
@@ -32,6 +35,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 删除边
 - (void)removeEdgeFrom:(id)from to:(id)to;
+
+#pragma mark - 图的遍历 - BFS
+- (void)breadthFirstSearch:(id)begin block:(MJGraphTraversalBlock)block;
+
+#pragma mark   图的遍历 - DFS 栈实现
+- (void)depthFirstSearch:(id)begin block:(MJGraphTraversalBlock)block;
+
+#pragma mark   图的遍历 - DFS 递归
+- (void)depthFirstSearchCircle:(id)begin block:(MJGraphTraversalBlock)block;
 
 @end
 

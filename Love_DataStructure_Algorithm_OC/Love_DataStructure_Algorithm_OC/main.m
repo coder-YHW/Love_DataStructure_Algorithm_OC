@@ -229,23 +229,46 @@ void testBST1(void) {
         [bst add:elemennt];
     }
     
-    // 打印二叉树
-    binaryTreePrint(bst);
-    
-    // 3.1、删除节点数据
-    [bst removeElement:@8];
-    binaryTreePrint(bst);
-    
-    // 3.2、删除节点数据
-    [bst removeElement:@5];
-    binaryTreePrint(bst);
+//    // 打印二叉树
+//    binaryTreePrint(bst);
+//
+//    // 3.1、删除节点数据
+//    [bst removeElement:@8];
+//    binaryTreePrint(bst);
+//
+//    // 3.2、删除节点数据
+//    [bst removeElement:@5];
+//    binaryTreePrint(bst);
     
     // 二叉树遍历
 //    [bst levelOrderWithBlock:^(id  _Nullable element) {
 //        NSLog(@"%@", element);
 //    }];
     
-    [bst inOrderWithBlock:^(id  _Nullable element) {
+//    // 前序遍历
+//    [bst preOrderCircleWithBlock:^(id  _Nullable element) {
+//        NSLog(@"%@", element);
+//    }];
+//    NSLog(@"------");
+//    [bst preOrderWithBlock:^(id  _Nullable element) {
+//        NSLog(@"%@", element);
+//    }];
+    
+//    // 中序遍历
+//    [bst inOrderCircleWithBlock:^(id  _Nullable element) {
+//        NSLog(@"%@", element);
+//    }];
+//    NSLog(@"------");
+//    [bst inOrderWithBlock:^(id  _Nullable element) {
+//        NSLog(@"%@", element);
+//    }];
+    
+    // 后序遍历
+    [bst postOrderCircleWithBlock:^(id  _Nullable element) {
+        NSLog(@"%@", element);
+    }];
+    NSLog(@"------");
+    [bst postOrderWithBlock:^(id  _Nullable element) {
         NSLog(@"%@", element);
     }];
 }
@@ -491,10 +514,20 @@ void testGraph(void) {
 //    [graph removeEdgeFrom:@"V1" to:@"V0"];
 //    [graph printListGraph];
     
-    [graph removeVertexVal:@"V0"];
-    [graph printListGraph];
+//    [graph removeVertexVal:@"V0"];
+//    [graph printListGraph];
     
-
+//    [graph breadthFirstSearch:@"V1" block:^(id  _Nullable val) {
+//        NSLog(@"%@", val);
+//    }];
+    
+    [graph depthFirstSearch:@"V1" block:^(id  _Nullable val) {
+        NSLog(@"%@", val);
+    }];
+    
+//    [graph depthFirstSearchCircle:@"V1" block:^(id  _Nullable val) {
+//        NSLog(@"%@", val);
+//    }];
 }
 
 
