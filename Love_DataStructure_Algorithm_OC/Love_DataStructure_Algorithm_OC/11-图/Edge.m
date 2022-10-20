@@ -19,7 +19,7 @@
     return self;
 }
 
-#pragma mark - isEqual ➕ hash
+#pragma mark - isEqual➕compare ➕ hash
 - (BOOL)isEqual:(id)object {
  
     // 如果指向同一个对象或者均为nil则认为相等
@@ -35,6 +35,17 @@
     }
     
     return  NO;
+}
+
+- (NSComparisonResult)compare:(Edge *)edge {
+    
+    if ([self.from.value hash] > [self.to.value hash]) {
+        return NSOrderedAscending;
+    }else if ([self.from.value hash] < [self.to.value hash]) {
+        return NSOrderedDescending;
+    }else {
+        return NSOrderedSame;
+    }
 }
 
 - (NSUInteger)hash {
