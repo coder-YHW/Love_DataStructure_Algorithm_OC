@@ -301,7 +301,7 @@
 
 #pragma mark   AOE网问题
 
-#pragma mark - 最小生成树问题（光缆铺设）- Prim算法（切分定理）
+#pragma mark - 最小生成树问题（光缆铺设）- Prim算法（普里姆算法-切分定理）
 /// Prim算法 （切分定理）
 - (HashSet *)mstPrim {
     
@@ -353,7 +353,7 @@
     return edgeInfos;
 }
 
-#pragma mark   最小生成树问题（光缆铺设）- Kruskal算法 (顶点:n -> 边：n-1)
+#pragma mark   最小生成树问题（光缆铺设）- Kruskal算法 (克鲁斯卡尔算法)
 /// Kruskal算法 (顶点:n -> 边：n-1)
 - (HashSet *)mstKruskal {
     // 1、 (顶点:n -> 边：n-1)
@@ -397,10 +397,124 @@
     return edgeInfos;
 }
 
-#pragma mark - 有向图
+
+#pragma mark - 最短路径问题 - 简单版 (拽石头-松弛操作）
+/*
+ * 有向图
+ * 从某一点出发的最短路径(权值最小)
+ * 返回权值
+ */
+- (HashMap *)shortestPath:(id)begin {
+    // 0、取出开始值对应的顶点 空值校验
+    Vertex *vertex = [self.vertexs get:begin];
+    if (vertex == nil) { return nil; }
+    
+    // 1、等待被选择的路径s (key:toVertex value:weight) 从起点到其他点的路径信息
+    HashMap *waitPaths   = [[HashMap alloc] init];
+    for (Edge *edge in vertex.outEdges.allElement) {
+        Vertex *toVertex = edge.to;
+        [waitPaths put:toVertex value:@(edge.weight)];
+    }
+    
+    // 2、已经确定的最小路径s 返回给外界  (key:vertex.value  value:weight)
+    HashMap *finishPaths = [[HashMap alloc] init];
+    // 5.1、原点首先加入 表示已处理
+    [finishPaths put:vertex.value value:@0];
+    
+    // 3、筛选出最短路径 - 循环操作
+    while (!waitPaths.isEmpty) {
+        
+        Vertex *minVertex = [self minWeightPath:waitPaths];
+
+        // 3.1、将最短路径存入finishPaths
+        id minWeight = [waitPaths get:minVertex];
+        [finishPaths put:minVertex.value value:minWeight];
+        
+        // 3.2、将最短路径从waitPaths删除
+        [waitPaths remove:minVertex];
+        
+        // 4、对minVertex.outEdges进行松弛操作 更新waitPaths路径
+        for (Edge *edge in minVertex.outEdges.allElement) {
+            // 4.1、松弛新节点
+            Vertex *toVertex = edge.to;
+            
+            // 4.2、去除重复操作 - 无向路径可能会往回重复寻找
+            if ([finishPaths containsKey:toVertex.value]) {
+                continue;
+            }
+            
+            // 4.3、原点到toVertex的新权重:edge.weight + minWeight
+            double newWeight = edge.weight + [minWeight doubleValue];
+            id oldWeight = [waitPaths get:toVertex];
+            // 4.4、以前没有到原点的旧路径 oldWeight为nil
+            // 4.5、以前有到原点的旧路径旧路径 且 newWeight < oldWeight
+            if (oldWeight == nil || newWeight < [oldWeight doubleValue]) {
+                // 4.6、更新松弛之后的waitPaths
+                [waitPaths put:toVertex value:@(newWeight)];
+            }
+        }
+    }
+
+    // 5.2、原点最后要删除
+    [finishPaths remove:vertex.value];
+    return finishPaths;
+}
+
+/// 根据权值, 筛选权值最小的路径
+- (Vertex *)minWeightPath:(HashMap *)waitPaths {
+    Vertex *minVertex = nil;
+    double minWeight = 0.0;
+    
+    for (Vertex *vertex in waitPaths.allkeys) {
+        double weight = [[waitPaths get:vertex] doubleValue];
+        NSLog(@"%.2f", weight);
+        if (minWeight == 0.0 || weight < minWeight) {
+            minWeight = weight;
+            minVertex = vertex;
+        }
+    }
+
+    return minVertex;
+}
+
+/// 根据边信息, 筛选权值最小的路径
+- (void)minPathInfo {
+    
+}
 
 
+#pragma mark  单源最短路径算法1 - Dijkstra(迪杰斯特拉)
+/*
+ * Dijkstra: 单源最短路径算法,用于计算一个顶点到其他所有顶点的最短路径
+ * 不支持有负权边
+ */
+- (HashMap *)dijkstraShortPath:(id)begin {
+    
+    
+    
+    
+    
+    return nil;
+}
 
+#pragma mark   单源最短路径算法2 - BellmanFord(贝尔曼-福特)
+/*
+ * BellmanFord: 单源最短路径算法,用于计算一个顶点到其他所有顶点的最短路径
+ * 支持有负权边
+ * 支持检测是否有负权环
+ */
+- (HashMap *)bellmanFordShortPath {
+    return nil;
+}
+
+#pragma mark   多源最短路径算法 floydShortPath（弗洛伊德）
+/*
+ * Floyd: 多源最短路径算法,用于计算任意两个顶点的最短路径
+ * 支持有负权边
+ */
+- (HashMap *)floydShortPath {
+    return nil;
+}
 
 #pragma mark - 打印
 - (void)printListGraph {

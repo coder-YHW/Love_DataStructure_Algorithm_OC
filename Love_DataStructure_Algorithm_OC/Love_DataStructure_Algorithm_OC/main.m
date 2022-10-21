@@ -553,29 +553,47 @@ void testGraph(void) {
     
     
     /// 测试Prim算法、测试Kruskal算法
-    NSArray *MST_01 = @[
-                @[@0, @2, @2], @[@0, @4, @7],
-                @[@1, @2, @3], @[@1, @5, @1], @[@1, @6, @7],
-                @[@2, @4, @4], @[@2, @5, @3], @[@2, @6, @6],
-                @[@3, @7, @9],
-                @[@4, @6, @8],
-                @[@5, @6, @4], @[@5, @7, @5]
-            ];
-
+//    NSArray *MST_01 = @[
+//                @[@0, @2, @2], @[@0, @4, @7],
+//                @[@1, @2, @3], @[@1, @5, @1], @[@1, @6, @7],
+//                @[@2, @4, @4], @[@2, @5, @3], @[@2, @6, @6],
+//                @[@3, @7, @9],
+//                @[@4, @6, @8],
+//                @[@5, @6, @4], @[@5, @7, @5]
+//            ];
+//
+//    ListGraph *graph = [[ListGraph alloc] init];
+//    for (NSArray *arr in MST_01) { // 无向图
+//        [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
+//        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
+//    }
+//
+////    HashSet *set = [graph mstPrim]; // Prim算法
+//    HashSet *set = [graph mstKruskal]; // Kruskal算法
+//    [set traversalWithBlock:^(id  _Nonnull element) {
+//        NSLog(@"%@", element);
+//    }];
+    
+    
+    /// 测试最短路径问题
+    NSArray *SP = @[
+            @[@"A", @"B", @10], @[@"A", @"D", @30], @[@"A", @"E", @100],
+            @[@"B", @"C", @50],
+            @[@"C", @"E", @10],
+            @[@"D", @"C", @20], @[@"D", @"E", @60]
+    ];
+    
     ListGraph *graph = [[ListGraph alloc] init];
-    for (NSArray *arr in MST_01) { // 无向图
+    for (NSArray *arr in SP) { // 无向图
         [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
         [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
     }
-
-//    HashSet *set = [graph mstPrim]; // Prim算法
-    HashSet *set = [graph mstKruskal]; // Kruskal算法
-    [set traversalWithBlock:^(id  _Nonnull element) {
-        NSLog(@"%@", element);
-    }];
     
-    /// 测试Kruskal算法
-    ///
+    HashMap *map = [graph shortestPath:@"A"]; // Kruskal算法
+    [map traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
+        NSLog(@"%@--%@",key,value);
+    }];
+        
 }
 
 

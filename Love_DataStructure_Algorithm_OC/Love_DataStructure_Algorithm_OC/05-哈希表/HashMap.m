@@ -167,7 +167,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     }
     
     // 扩容检测
-//    [self ensureCapacity];
+    [self ensureCapacity];
     
     int index = [self getHashIndexFromKey:key];
     HashNode *root = self.table[index];

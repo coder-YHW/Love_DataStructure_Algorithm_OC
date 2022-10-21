@@ -18,10 +18,15 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - AOV网问题 - 拓扑排序（卡恩算法）
 - (NSMutableArray *)topologicalSort;
 
+
 #pragma mark - 最小生成树问题（光缆铺设）- Prim算法
 - (HashSet *)mstPrim;
 #pragma mark   最小生成树问题（光缆铺设）- Kruskal算法
 - (HashSet *)mstKruskal;
+
+
+#pragma mark - 最短路径问题 - 简单版 (拽石头-松弛操作）
+- (HashMap *)shortestPath:(id)begin;
 
 @end
 
