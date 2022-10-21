@@ -106,7 +106,7 @@ static int DEFAULT_CAPACITY = 10;
     [self siftUp:(self.size - 1)];
 }
 
-/** 删除堆顶元素 */
+/** 出堆 - 删除堆顶元素  */
 - (id)remove {
     
     // 0、空堆

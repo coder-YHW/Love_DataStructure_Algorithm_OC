@@ -532,43 +532,50 @@ void testGraph(void) {
 //        NSLog(@"%@", val);
 //    }];
     
-    NSArray *TOPO = @[
-            @[@0, @2],
-            @[@1, @0],
-            @[@2, @5], @[@2, @6],
-            @[@3, @1], @[@3, @5], @[@3, @7],
-            @[@5, @7],
-            @[@6, @4],
-            @[@7, @6]
-    ];
     
-    ListGraph *graph = [[ListGraph alloc] init];
-    for (NSArray *arr in TOPO) { // 有向图
-        [graph addEdgeFrom:arr[0] to:arr[1]];
-    }
-    NSMutableArray *array = [graph topologicalSort];
-    NSLog(@"%@", array);
-    
-    /// 测试Prim算法
-//    NSArray *MST_01 = @[
-//                @[@0, @2, @2], @[@0, @4, @7],
-//                @[@1, @2, @3], @[@1, @5, @1], @[@1, @6, @7],
-//                @[@2, @4, @4], @[@2, @5, @3], @[@2, @6, @6],
-//                @[@3, @7, @9],
-//                @[@4, @6, @8],
-//                @[@5, @6, @4], @[@5, @7, @5]
-//            ];
+    // 测试拓扑排序
+//    NSArray *TOPO = @[
+//            @[@0, @2],
+//            @[@1, @0],
+//            @[@2, @5], @[@2, @6],
+//            @[@3, @1], @[@3, @5], @[@3, @7],
+//            @[@5, @7],
+//            @[@6, @4],
+//            @[@7, @6]
+//    ];
 //
 //    ListGraph *graph = [[ListGraph alloc] init];
-//    for (NSArray *arr in MST_01) { // 无向图
-//        [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
-//        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
+//    for (NSArray *arr in TOPO) { // 有向图
+//        [graph addEdgeFrom:arr[0] to:arr[1]];
 //    }
-//
-//    HashSet *set = [graph mstPrim];
-//    [set traversalWithBlock:^(id  _Nonnull element) {
-//        NSLog(@"%@", element);
-//    }];
+//    NSMutableArray *array = [graph topologicalSort];
+//    NSLog(@"%@", array);
+    
+    
+    /// 测试Prim算法、测试Kruskal算法
+    NSArray *MST_01 = @[
+                @[@0, @2, @2], @[@0, @4, @7],
+                @[@1, @2, @3], @[@1, @5, @1], @[@1, @6, @7],
+                @[@2, @4, @4], @[@2, @5, @3], @[@2, @6, @6],
+                @[@3, @7, @9],
+                @[@4, @6, @8],
+                @[@5, @6, @4], @[@5, @7, @5]
+            ];
+
+    ListGraph *graph = [[ListGraph alloc] init];
+    for (NSArray *arr in MST_01) { // 无向图
+        [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
+        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
+    }
+
+//    HashSet *set = [graph mstPrim]; // Prim算法
+    HashSet *set = [graph mstKruskal]; // Kruskal算法
+    [set traversalWithBlock:^(id  _Nonnull element) {
+        NSLog(@"%@", element);
+    }];
+    
+    /// 测试Kruskal算法
+    ///
 }
 
 

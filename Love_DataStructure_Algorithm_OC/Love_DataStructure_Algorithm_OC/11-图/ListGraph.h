@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ListGraph : Graph
 
+/// 打印图
 - (void)printListGraph;
 
 
@@ -19,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 最小生成树问题（光缆铺设）- Prim算法
 - (HashSet *)mstPrim;
+#pragma mark   最小生成树问题（光缆铺设）- Kruskal算法
+- (HashSet *)mstKruskal;
 
 @end
 

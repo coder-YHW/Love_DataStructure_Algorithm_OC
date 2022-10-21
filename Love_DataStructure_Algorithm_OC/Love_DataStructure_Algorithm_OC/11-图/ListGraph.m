@@ -255,6 +255,7 @@
 
 
 #pragma mark - AOV网问题 - 拓扑排序（卡恩算法）
+/// 拓扑排序（卡恩算法）
 - (NSMutableArray *)topologicalSort {
     
     // 0、初始化容器
@@ -284,7 +285,7 @@
             
             Vertex *toVertex = edge.to;
             int degree = [[degreeMap get:toVertex] intValue]; // 从我们自己维护的degreeMap里取度
-//            int degree = toVertex.inEdges.size; // 错误的：这个度是原来的图的入度 
+//            int degree = toVertex.inEdges.size; // 错误的：这个度是原来的图的入度
             
             if (degree == 1) { // 3.1、将入度为1的顶点入队
                 [queue enQueue:toVertex];
@@ -300,13 +301,14 @@
 
 #pragma mark   AOE网问题
 
-#pragma mark - 最小生成树问题（光缆铺设）- Prim算法
+#pragma mark - 最小生成树问题（光缆铺设）- Prim算法（切分定理）
+/// Prim算法 （切分定理）
 - (HashSet *)mstPrim {
     
     // 1、从图所有顶点中 随机取一个顶点
     NSMutableArray *verArr = self.vertexs.allValues;
     if (verArr.count == 0) {
-        return [[HashSet alloc] init];
+        return nil;
     }
     Vertex *vertex = verArr.firstObject;
     
@@ -346,13 +348,59 @@
             }
             [minHeap add:edge];
         }
-    
     }
     
     return edgeInfos;
 }
 
-#pragma mark - 最小生成树问题（光缆铺设）- Kruskal算法
+#pragma mark   最小生成树问题（光缆铺设）- Kruskal算法 (顶点:n -> 边：n-1)
+/// Kruskal算法 (顶点:n -> 边：n-1)
+- (HashSet *)mstKruskal {
+    // 1、 (顶点:n -> 边：n-1)
+    int edgeSize = self.vertexs.size - 1;
+    if (edgeSize < 0) { return  nil; }
+    
+    // 2、返回给外界的边Set
+    HashSet *edgeInfos = [[HashSet alloc] init];
+    
+    // 3、创建一个最小堆
+    BinaryHeap *minHeap = [[BinaryHeap alloc] init];
+    minHeap.heapType = HeapTypeSmall;
+    // 3.1、选出edges里权重最小的边
+    for (Edge *edge in self.edges.allElement) {
+        [minHeap add:edge];
+    }
+    
+    // 4、创建一个并查集
+    GenericUnionFind *uf = [[GenericUnionFind alloc] init];
+    // 4.1、为所有顶点创建集合
+    for (Vertex *vertex in self.vertexs.allValues) {
+        [uf makeSet:vertex];
+    }
+    
+    // 5、循环寻找权重最小 且 不会够成循环的边
+    while (!minHeap.isEmpty && edgeInfos.size < edgeSize) {
+        // 5.1、出堆 - 拿出堆顶元素（权重最小的边）
+        Edge *edge = [minHeap remove];
+        // 5.2、查看边2顶点是否在同一集合内
+        if ([uf isSame:edge.from val:edge.to]) {
+            // 5.3 在同一集合内 再添加 会构成环
+            continue;
+        }else {
+            // 5.4 不在同一集合内 选出这条边
+            [edgeInfos add:edge];
+            // 5.5 合并这两个顶点
+            [uf unionVal:edge.from val:edge.to];
+        }
+    }
+    
+    return edgeInfos;
+}
+
+#pragma mark - 有向图
+
+
+
 
 #pragma mark - 打印
 - (void)printListGraph {

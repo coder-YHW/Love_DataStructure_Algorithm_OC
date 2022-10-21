@@ -55,6 +55,8 @@
 #import "RadixSort.h"
 #import "BucketSort.h"
 
+#import "GenericUnionFind.h"
+#import "UnionFindNode.h"
 
 #import "ListGraph.h"
 #import "GraphTest.h"
