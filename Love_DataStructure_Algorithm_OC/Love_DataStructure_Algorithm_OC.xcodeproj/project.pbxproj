@@ -36,6 +36,8 @@
 		0D1BDC4328FFE46F004F1D93 /* EdgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC4228FFE46F004F1D93 /* EdgeInfo.m */; };
 		0D1BDC4628FFE47A004F1D93 /* PathInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC4528FFE47A004F1D93 /* PathInfo.m */; };
 		0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D66C5A628F8213000D280E2 /* QueueStack.m */; };
+		0D82B82C29019ED700759054 /* GraphData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B82B29019ED700759054 /* GraphData.m */; };
+		0D82B82F29019F0100759054 /* GraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B82E29019F0100759054 /* GraphTest.m */; };
 		0DC90B4E28EF4F8400AA8754 /* AVLTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD528EF4F8300AA8754 /* AVLTree.m */; };
 		0DC90B4F28EF4F8400AA8754 /* AVLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD628EF4F8300AA8754 /* AVLNode.m */; };
 		0DC90B5028EF4F8400AA8754 /* BinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90ADC28EF4F8400AA8754 /* BinaryTree.m */; };
@@ -176,6 +178,10 @@
 		0D1BDC4528FFE47A004F1D93 /* PathInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathInfo.m; sourceTree = "<group>"; };
 		0D66C5A528F8213000D280E2 /* QueueStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueStack.h; sourceTree = "<group>"; };
 		0D66C5A628F8213000D280E2 /* QueueStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueStack.m; sourceTree = "<group>"; };
+		0D82B82A29019ED700759054 /* GraphData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphData.h; sourceTree = "<group>"; };
+		0D82B82B29019ED700759054 /* GraphData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphData.m; sourceTree = "<group>"; };
+		0D82B82D29019F0100759054 /* GraphTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphTest.h; sourceTree = "<group>"; };
+		0D82B82E29019F0100759054 /* GraphTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphTest.m; sourceTree = "<group>"; };
 		0DC90AC728EF4F4100AA8754 /* Love_DataStructure_Algorithm_OC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Love_DataStructure_Algorithm_OC; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC90AD228EF4F8300AA8754 /* 恋上数据结构与算法-第一季.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "恋上数据结构与算法-第一季.pdf"; sourceTree = "<group>"; };
 		0DC90AD528EF4F8300AA8754 /* AVLTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVLTree.m; sourceTree = "<group>"; };
@@ -464,6 +470,10 @@
 				0D1BDC4228FFE46F004F1D93 /* EdgeInfo.m */,
 				0D1BDC4428FFE47A004F1D93 /* PathInfo.h */,
 				0D1BDC4528FFE47A004F1D93 /* PathInfo.m */,
+				0D82B82A29019ED700759054 /* GraphData.h */,
+				0D82B82B29019ED700759054 /* GraphData.m */,
+				0D82B82D29019F0100759054 /* GraphTest.h */,
+				0D82B82E29019F0100759054 /* GraphTest.m */,
 			);
 			path = "11-图";
 			sourceTree = "<group>";
@@ -1083,10 +1093,12 @@
 				0DC90B7D28EF667C00AA8754 /* Set.m in Sources */,
 				0DC90B5628EF4F8400AA8754 /* NSString+Trees.m in Sources */,
 				0DC90B7C28EF667C00AA8754 /* ListSet.m in Sources */,
+				0D82B82C29019ED700759054 /* GraphData.m in Sources */,
 				0D1BDC0D28FD9994004F1D93 /* BucketSort.m in Sources */,
 				0D1BDBC328FC5B0C004F1D93 /* Sort.m in Sources */,
 				0DC90C5A28F025F100AA8754 /* Trie.m in Sources */,
 				0D1BDBCD28FC61C4004F1D93 /* HeapSort.m in Sources */,
+				0D82B82F29019F0100759054 /* GraphTest.m in Sources */,
 				0DE82A8528F3E02000711210 /* LinkHashNode.m in Sources */,
 				0DC90B5128EF4F8400AA8754 /* TreeNode.m in Sources */,
 				0DC90B6528EF4F8400AA8754 /* AbstractList.m in Sources */,

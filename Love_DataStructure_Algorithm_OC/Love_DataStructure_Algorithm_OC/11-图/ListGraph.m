@@ -253,6 +253,107 @@
     }];
 }
 
+
+#pragma mark - AOV网问题 - 拓扑排序（卡恩算法）
+- (NSMutableArray *)topologicalSort {
+    
+    // 0、初始化容器
+    NSMutableArray *valueArray = [NSMutableArray array]; // 数组装排序好之后顶点的value
+    HashMap *degreeMap = [[HashMap alloc] init]; // 保存入度不为o的顶点 维护这张HashMap
+    Queue *queue = [[Queue alloc] init]; // 队列保存入度为0的顶点
+    
+    // 1、遍历所有顶点 找出入度为0的顶点 记录入度不为0的顶点
+    for (Vertex *vertex in self.vertexs.allValues) {
+        // 避免重复计算 用变量保存
+        int degree = vertex.inEdges.size;
+        if (degree == 0) { // 1.1、找出入度为0的顶点 入队queue
+            [queue enQueue:vertex];
+        }else { // 1.2、记录入度不为0的顶点 存入degreeMap
+            [degreeMap put:vertex value:[NSNumber numberWithInt:degree]];
+        }
+    }
+    
+    // 2、顶点一个个出队 把value加入数组 degreeMap中度--
+    while (!queue.isEmpty) {
+        
+        Vertex *vertex = [queue deQueue]; // 2.1、顶点一个个出队
+        [valueArray addObject:vertex.value]; // 2.2、把value加入数组 相当于删除这个顶点
+        
+        // 3、遍历vertex.outEdges所有to顶点 将入度为1的顶点入队 其他顶点度--
+        for (Edge *edge in vertex.outEdges.allElement) {
+            
+            Vertex *toVertex = edge.to;
+            int degree = [[degreeMap get:toVertex] intValue]; // 从我们自己维护的degreeMap里取度
+//            int degree = toVertex.inEdges.size; // 错误的：这个度是原来的图的入度 
+            
+            if (degree == 1) { // 3.1、将入度为1的顶点入队
+                [queue enQueue:toVertex];
+            }else { // 3.2、其他顶点的入度-- 更新degreeMap
+                [degreeMap put:toVertex value:[NSNumber numberWithInt:degree-1]];
+            }
+        }
+    }
+    
+    
+    return valueArray;
+}
+
+#pragma mark   AOE网问题
+
+#pragma mark - 最小生成树问题（光缆铺设）- Prim算法
+- (HashSet *)mstPrim {
+    
+    // 1、从图所有顶点中 随机取一个顶点
+    NSMutableArray *verArr = self.vertexs.allValues;
+    if (verArr.count == 0) {
+        return [[HashSet alloc] init];
+    }
+    Vertex *vertex = verArr.firstObject;
+    
+    // 返回给外界的边Set
+    HashSet *edgeInfos = [[HashSet alloc] init];
+    // 已经切分好或者将要切分的顶点Set
+    HashSet *addedVertexs = [[HashSet alloc] init];
+    // 2.1、切分操作 -  往addedVertexs里添加顶点（）
+    [addedVertexs add:vertex];
+    // 2.2、创建一个最小堆 选出outEdges里权重最小的边 （切分操作2）
+    BinaryHeap *minHeap = [[BinaryHeap alloc] init];
+    minHeap.heapType = HeapTypeSmall;
+    for (Edge *edge in vertex.outEdges.allElement) {
+        [minHeap add:edge];
+    }
+    
+    // 堆不为空 && 还有顶点未切分
+    int count = self.vertexs.size; // 计算数量耗时 放在条件前计算 只要计算一次就好
+    while (!minHeap.isEmpty && addedVertexs.size < count) {
+        
+        // 3、选出权重最小的那条边edge
+        Edge *topEdge = [minHeap remove]; // 出栈的有可能是之前已经切分过得边
+        
+        // 4.1 重复切分操作 - edge.to中未切分过的顶点加入addedVertexs
+        Vertex *toVertex = topEdge.to;
+        if ([addedVertexs contains:toVertex]) { // 排除已经切分过的顶点
+            continue; // 已经切分过的顶点
+        }
+        [addedVertexs add:toVertex];
+        
+        [edgeInfos add:topEdge];
+        
+        // 4.2、重复切分操作 - 最小堆 选出outEdges里权重最小的边
+        for (Edge *edge in toVertex.outEdges.allElement) {
+            if ([addedVertexs contains:edge.to]) { // 排除已经切分过的顶点
+                continue; // 已经切分过的顶点
+            }
+            [minHeap add:edge];
+        }
+    
+    }
+    
+    return edgeInfos;
+}
+
+#pragma mark - 最小生成树问题（光缆铺设）- Kruskal算法
+
 #pragma mark - 打印
 - (void)printListGraph {
     

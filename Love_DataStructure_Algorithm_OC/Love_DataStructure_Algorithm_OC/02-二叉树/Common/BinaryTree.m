@@ -197,6 +197,7 @@
     while (!stack.isEmpty) {
         // 2、查看栈顶是否是叶子结点
         TreeNode *topNode = [stack top];
+        
         if ([topNode isLeaf] || // 2.1、栈顶节点是否是椰子节点 或 上一次访问节点是否是栈顶节点的子节点 出栈 （子节点已出栈 轮到父节点）
             (currNode != nil && currNode.parent == topNode)) {
             // 3、出栈

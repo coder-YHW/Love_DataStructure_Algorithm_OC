@@ -13,6 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)printListGraph;
 
+
+#pragma mark - AOV网问题 - 拓扑排序（卡恩算法）
+- (NSMutableArray *)topologicalSort;
+
+#pragma mark - 最小生成树问题（光缆铺设）- Prim算法
+- (HashSet *)mstPrim;
+
 @end
 
 NS_ASSUME_NONNULL_END

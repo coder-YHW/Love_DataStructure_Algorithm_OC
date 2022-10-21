@@ -30,6 +30,10 @@
 #import "AVLTree.h"
 #import "RBTree.h"
 
+#import "ListSet.h"
+#import "TreeSet.h"
+#import "HashSet.h"
+
 #import "TreeMap.h"
 #import "HashMap.h"
 #import "LinkHashMap.h"
@@ -53,5 +57,7 @@
 
 
 #import "ListGraph.h"
+#import "GraphTest.h"
+#import "GraphData.h"
 
 #endif

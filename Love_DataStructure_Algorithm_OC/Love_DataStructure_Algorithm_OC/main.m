@@ -499,17 +499,17 @@ void testSort(void) {
 #pragma mark - 图测试试用例
 void testGraph(void) {
     
-    ListGraph *graph = [[ListGraph alloc] init];
-    
-    [graph addEdgeFrom:@"V1" to:@"V0" weight:9];
-//    [graph addEdgeFrom:@"V1" to:@"V0" weight:8];
-    [graph addEdgeFrom:@"V1" to:@"V2" weight:3];
-    [graph addEdgeFrom:@"V2" to:@"V0" weight:2];
-    [graph addEdgeFrom:@"V2" to:@"V3" weight:5];
-    [graph addEdgeFrom:@"V0" to:@"V4" weight:6];
-    [graph addEdgeFrom:@"V3" to:@"V4" weight:1];
-    
-    [graph printListGraph];
+//    ListGraph *graph = [[ListGraph alloc] init];
+//
+//    [graph addEdgeFrom:@"V1" to:@"V0" weight:9];
+////    [graph addEdgeFrom:@"V1" to:@"V0" weight:8];
+//    [graph addEdgeFrom:@"V1" to:@"V2" weight:3];
+//    [graph addEdgeFrom:@"V2" to:@"V0" weight:2];
+//    [graph addEdgeFrom:@"V2" to:@"V3" weight:5];
+//    [graph addEdgeFrom:@"V0" to:@"V4" weight:6];
+//    [graph addEdgeFrom:@"V3" to:@"V4" weight:1];
+//
+//    [graph printListGraph];
     
 //    [graph removeEdgeFrom:@"V1" to:@"V0"];
 //    [graph printListGraph];
@@ -517,16 +517,57 @@ void testGraph(void) {
 //    [graph removeVertexVal:@"V0"];
 //    [graph printListGraph];
     
+    // BFS
 //    [graph breadthFirstSearch:@"V1" block:^(id  _Nullable val) {
 //        NSLog(@"%@", val);
 //    }];
     
-    [graph depthFirstSearch:@"V1" block:^(id  _Nullable val) {
-        NSLog(@"%@", val);
-    }];
+    // DFS1
+//    [graph depthFirstSearch:@"V1" block:^(id  _Nullable val) {
+//        NSLog(@"%@", val);
+//    }];
     
+    // DFS2
 //    [graph depthFirstSearchCircle:@"V1" block:^(id  _Nullable val) {
 //        NSLog(@"%@", val);
+//    }];
+    
+    NSArray *TOPO = @[
+            @[@0, @2],
+            @[@1, @0],
+            @[@2, @5], @[@2, @6],
+            @[@3, @1], @[@3, @5], @[@3, @7],
+            @[@5, @7],
+            @[@6, @4],
+            @[@7, @6]
+    ];
+    
+    ListGraph *graph = [[ListGraph alloc] init];
+    for (NSArray *arr in TOPO) { // 有向图
+        [graph addEdgeFrom:arr[0] to:arr[1]];
+    }
+    NSMutableArray *array = [graph topologicalSort];
+    NSLog(@"%@", array);
+    
+    /// 测试Prim算法
+//    NSArray *MST_01 = @[
+//                @[@0, @2, @2], @[@0, @4, @7],
+//                @[@1, @2, @3], @[@1, @5, @1], @[@1, @6, @7],
+//                @[@2, @4, @4], @[@2, @5, @3], @[@2, @6, @6],
+//                @[@3, @7, @9],
+//                @[@4, @6, @8],
+//                @[@5, @6, @4], @[@5, @7, @5]
+//            ];
+//
+//    ListGraph *graph = [[ListGraph alloc] init];
+//    for (NSArray *arr in MST_01) { // 无向图
+//        [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
+//        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
+//    }
+//
+//    HashSet *set = [graph mstPrim];
+//    [set traversalWithBlock:^(id  _Nonnull element) {
+//        NSLog(@"%@", element);
 //    }];
 }
 

@@ -24,6 +24,18 @@ static int DEFAULT_CAPACITY = 10;
 
 
 #pragma mark - Treeheap - 构造函数
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        elements = [NSMutableArray arrayWithCapacity:DEFAULT_CAPACITY];
+        for (int i = 0 ; i < DEFAULT_CAPACITY; i++) {
+            // 默认用NSNull占位
+            [elements addObject:[NSNull null]];
+        }
+    }
+    return self;
+}
+
 + (instancetype)heap {
     return [self heapWithComparator:nil];
 }

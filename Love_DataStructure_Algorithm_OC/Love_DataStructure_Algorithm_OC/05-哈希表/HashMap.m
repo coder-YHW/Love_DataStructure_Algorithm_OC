@@ -167,7 +167,7 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
     }
     
     // 扩容检测
-    [self ensureCapacity];
+//    [self ensureCapacity];
     
     int index = [self getHashIndexFromKey:key];
     HashNode *root = self.table[index];
@@ -674,12 +674,6 @@ static float DEFAULT_LOAD_FACTOR = 0.75; // 装填因子 = 哈希表节点总数
 #pragma mark - 比较两个key的大小
 /** 比较两个key的大小 - 存在问题 */
 - (int)compareElement1:(id)element1 element2:(id)element2 hashCode1:(int)hashCode1 hashCode2:(int)hashCode2 {
-    
-    // 1、hashCode相同的2个key
-//    int cmp = hashCode1 - hashCode2; // 存在问题：1、hashCode有可能是负数 2、两个hashCode想加有可能内存溢出变负值
-//    if (cmp != 0) {
-//        return cmp;
-//    }
     
     // 1、协议：重写对象的：+ (NSUInteger)hash; 方法
     int cmp = 0;

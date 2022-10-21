@@ -39,10 +39,10 @@
 
 - (NSComparisonResult)compare:(Edge *)edge {
     
-    if ([self.from.value hash] > [self.to.value hash]) {
+    if (self.weight > edge.weight) {
+        return  NSOrderedDescending;
+    }else if (self.weight < edge.weight) {
         return NSOrderedAscending;
-    }else if ([self.from.value hash] < [self.to.value hash]) {
-        return NSOrderedDescending;
     }else {
         return NSOrderedSame;
     }
@@ -61,13 +61,15 @@
     
     NSMutableString *strM = [NSMutableString string];
     
-    [strM appendString:@"边：Edge ["];
+//    [strM appendString:@"边：Edge ["];
+//
+//    [strM appendString:[NSString stringWithFormat:@"fromVertex:%@, ", self.from.value]];
+//    [strM appendString:[NSString stringWithFormat:@"toVertex:%@, ", self.to.value]];
+//    [strM appendString:[NSString stringWithFormat:@"weight:%.2f ", self.weight]];
     
-    [strM appendString:[NSString stringWithFormat:@"fromVertex:%@, ", self.from.value]];
-    [strM appendString:[NSString stringWithFormat:@"toVertex:%@, ", self.to.value]];
-    [strM appendString:[NSString stringWithFormat:@"weight:%.2f ", self.weight]];
+    [strM appendString:[NSString stringWithFormat:@"%@->%@-:%.2f ", self.from.value, self.to.value, self.weight]];
     
-    [strM appendString:@"]"];
+//    [strM appendString:@"]"];
     return strM.copy;
 }
 

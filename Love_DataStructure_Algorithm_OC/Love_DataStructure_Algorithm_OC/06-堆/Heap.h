@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 删除堆顶元素的同时插入一个新元素 */
 - (id)replace:(id)element;
+
 @end
 
 NS_ASSUME_NONNULL_END
