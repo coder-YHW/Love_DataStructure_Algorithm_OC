@@ -551,6 +551,55 @@ void testGraph(void) {
 }
 
 
+#pragma mark - 算法思想测试试用例
+void testSuanFa(void) {
+    
+    Recursion *recursion = [[Recursion alloc] init];
+
+    // 求和问题1
+    assert([recursion sum1:1] == 1);
+    assert([recursion sum1:2] == 3);
+    assert([recursion sum1:3] == 6);
+    assert([recursion sum1:4] == 10);
+    
+    // 求和问题2
+    assert([recursion sum2:1] == 1);
+    assert([recursion sum2:2] == 3);
+    assert([recursion sum2:3] == 6);
+    assert([recursion sum2:4] == 10);
+    
+    // 斐波那契数列问题1
+    assert([recursion fib1: 1] == 1);
+    assert([recursion fib1: 2] == 1);
+    assert([recursion fib1: 3] == 2);
+    assert([recursion fib1: 4] == 3);
+    assert([recursion fib1: 5] == 5);
+    assert([recursion fib1: 6] == 8);
+    
+    // 斐波那契数列问题2
+    assert([recursion fib2: 1] == 1);
+    assert([recursion fib2: 2] == 1);
+    assert([recursion fib2: 3] == 2);
+    assert([recursion fib2: 4] == 3);
+    assert([recursion fib2: 5] == 5);
+    assert([recursion fib2: 6] == 8);
+    
+    // 跳台阶问题1
+    assert([recursion step1: 1] == 1);
+    assert([recursion step1: 2] == 2);
+    assert([recursion step1: 3] == 3);
+    assert([recursion step1: 4] == 5);
+    
+    // 跳台阶问题2
+    assert([recursion step2: 1] == 1);
+    assert([recursion step2: 2] == 2);
+    assert([recursion step2: 3] == 3);
+    assert([recursion step2: 4] == 5);
+    
+    // 汉诺塔问题
+    [recursion hanoi:3 a:@"1" b:@"2" c:@"3"];
+}
+
 #pragma mark - main函数
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -587,7 +636,10 @@ int main(int argc, const char * argv[]) {
 //        testSort();
         
         // 图
-        testGraph();
+//        testGraph();
+        
+        // 算法思想
+        testSuanFa();
     }
     return 0;
 }

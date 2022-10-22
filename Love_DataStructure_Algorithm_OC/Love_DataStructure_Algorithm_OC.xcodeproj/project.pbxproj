@@ -35,6 +35,7 @@
 		0D1BDC4028FFE41B004F1D93 /* ListGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC3F28FFE41B004F1D93 /* ListGraph.m */; };
 		0D1BDC4628FFE47A004F1D93 /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC4528FFE47A004F1D93 /* Path.m */; };
 		0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D66C5A628F8213000D280E2 /* QueueStack.m */; };
+		0D68035C2903DB7000D101B3 /* Recursion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D68035B2903DB7000D101B3 /* Recursion.m */; };
 		0D82B82F29019F0100759054 /* GraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B82E29019F0100759054 /* GraphTest.m */; };
 		0DC90B4E28EF4F8400AA8754 /* AVLTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD528EF4F8300AA8754 /* AVLTree.m */; };
 		0DC90B4F28EF4F8400AA8754 /* AVLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD628EF4F8300AA8754 /* AVLNode.m */; };
@@ -174,6 +175,14 @@
 		0D1BDC4528FFE47A004F1D93 /* Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Path.m; sourceTree = "<group>"; };
 		0D66C5A528F8213000D280E2 /* QueueStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueStack.h; sourceTree = "<group>"; };
 		0D66C5A628F8213000D280E2 /* QueueStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueStack.m; sourceTree = "<group>"; };
+		0D68035A2903DB7000D101B3 /* Recursion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Recursion.h; sourceTree = "<group>"; };
+		0D68035B2903DB7000D101B3 /* Recursion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Recursion.m; sourceTree = "<group>"; };
+		0D6803652903ECC000D101B3 /* 递归操作.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "递归操作.PNG"; sourceTree = "<group>"; };
+		0D6803662903ECC000D101B3 /* 汉诺塔02.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "汉诺塔02.PNG"; sourceTree = "<group>"; };
+		0D6803672903ECC000D101B3 /* 递归思想.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "递归思想.PNG"; sourceTree = "<group>"; };
+		0D6803682903ECC000D101B3 /* 汉诺塔01.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "汉诺塔01.PNG"; sourceTree = "<group>"; };
+		0D6803692903ECC000D101B3 /* 上楼梯(跳台阶).PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上楼梯(跳台阶).PNG"; sourceTree = "<group>"; };
+		0D68036A2903ECC000D101B3 /* 斐波那契数列.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "斐波那契数列.PNG"; sourceTree = "<group>"; };
 		0D82B82D29019F0100759054 /* GraphTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphTest.h; sourceTree = "<group>"; };
 		0D82B82E29019F0100759054 /* GraphTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphTest.m; sourceTree = "<group>"; };
 		0DC90AC728EF4F4100AA8754 /* Love_DataStructure_Algorithm_OC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Love_DataStructure_Algorithm_OC; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -471,6 +480,9 @@
 		0D1BDC2E28FF0FC7004F1D93 /* 12-递归 */ = {
 			isa = PBXGroup;
 			children = (
+				0D6803642903ECC000D101B3 /* 图片 */,
+				0D68035A2903DB7000D101B3 /* Recursion.h */,
+				0D68035B2903DB7000D101B3 /* Recursion.m */,
 			);
 			path = "12-递归";
 			sourceTree = "<group>";
@@ -516,6 +528,19 @@
 		0D66C5A928F8259800D280E2 /* 图片 */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = "图片";
+			sourceTree = "<group>";
+		};
+		0D6803642903ECC000D101B3 /* 图片 */ = {
+			isa = PBXGroup;
+			children = (
+				0D6803672903ECC000D101B3 /* 递归思想.PNG */,
+				0D6803652903ECC000D101B3 /* 递归操作.PNG */,
+				0D68036A2903ECC000D101B3 /* 斐波那契数列.PNG */,
+				0D6803692903ECC000D101B3 /* 上楼梯(跳台阶).PNG */,
+				0D6803682903ECC000D101B3 /* 汉诺塔01.PNG */,
+				0D6803662903ECC000D101B3 /* 汉诺塔02.PNG */,
 			);
 			path = "图片";
 			sourceTree = "<group>";
@@ -1045,6 +1070,7 @@
 				0D1BDBD028FD3812004F1D93 /* InsertionSort.m in Sources */,
 				0DC90B6628EF4F8400AA8754 /* LinkNode.m in Sources */,
 				0D1BDBD528FD4677004F1D93 /* BinarySearch.m in Sources */,
+				0D68035C2903DB7000D101B3 /* Recursion.m in Sources */,
 				0DC90B6028EF4F8400AA8754 /* StackQueue.m in Sources */,
 				0D1BDC2928FEEBE2004F1D93 /* UnionFindNode.m in Sources */,
 				0DC90B5F28EF4F8400AA8754 /* Deque.m in Sources */,
