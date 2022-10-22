@@ -33,8 +33,7 @@
 		0D1BDC3A28FFD248004F1D93 /* Vertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC3928FFD248004F1D93 /* Vertex.m */; };
 		0D1BDC3D28FFD258004F1D93 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC3C28FFD258004F1D93 /* Graph.m */; };
 		0D1BDC4028FFE41B004F1D93 /* ListGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC3F28FFE41B004F1D93 /* ListGraph.m */; };
-		0D1BDC4328FFE46F004F1D93 /* EdgeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC4228FFE46F004F1D93 /* EdgeInfo.m */; };
-		0D1BDC4628FFE47A004F1D93 /* PathInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC4528FFE47A004F1D93 /* PathInfo.m */; };
+		0D1BDC4628FFE47A004F1D93 /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC4528FFE47A004F1D93 /* Path.m */; };
 		0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D66C5A628F8213000D280E2 /* QueueStack.m */; };
 		0D82B82C29019ED700759054 /* GraphData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B82B29019ED700759054 /* GraphData.m */; };
 		0D82B82F29019F0100759054 /* GraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B82E29019F0100759054 /* GraphTest.m */; };
@@ -172,10 +171,8 @@
 		0D1BDC3C28FFD258004F1D93 /* Graph.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Graph.m; sourceTree = "<group>"; };
 		0D1BDC3E28FFE41B004F1D93 /* ListGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListGraph.h; sourceTree = "<group>"; };
 		0D1BDC3F28FFE41B004F1D93 /* ListGraph.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListGraph.m; sourceTree = "<group>"; };
-		0D1BDC4128FFE46F004F1D93 /* EdgeInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EdgeInfo.h; sourceTree = "<group>"; };
-		0D1BDC4228FFE46F004F1D93 /* EdgeInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EdgeInfo.m; sourceTree = "<group>"; };
-		0D1BDC4428FFE47A004F1D93 /* PathInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathInfo.h; sourceTree = "<group>"; };
-		0D1BDC4528FFE47A004F1D93 /* PathInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathInfo.m; sourceTree = "<group>"; };
+		0D1BDC4428FFE47A004F1D93 /* Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
+		0D1BDC4528FFE47A004F1D93 /* Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Path.m; sourceTree = "<group>"; };
 		0D66C5A528F8213000D280E2 /* QueueStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueStack.h; sourceTree = "<group>"; };
 		0D66C5A628F8213000D280E2 /* QueueStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueStack.m; sourceTree = "<group>"; };
 		0D82B82A29019ED700759054 /* GraphData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphData.h; sourceTree = "<group>"; };
@@ -462,14 +459,12 @@
 				0D1BDC3928FFD248004F1D93 /* Vertex.m */,
 				0D1BDC3528FFD237004F1D93 /* Edge.h */,
 				0D1BDC3628FFD237004F1D93 /* Edge.m */,
+				0D1BDC4428FFE47A004F1D93 /* Path.h */,
+				0D1BDC4528FFE47A004F1D93 /* Path.m */,
 				0D1BDC3B28FFD258004F1D93 /* Graph.h */,
 				0D1BDC3C28FFD258004F1D93 /* Graph.m */,
 				0D1BDC3E28FFE41B004F1D93 /* ListGraph.h */,
 				0D1BDC3F28FFE41B004F1D93 /* ListGraph.m */,
-				0D1BDC4128FFE46F004F1D93 /* EdgeInfo.h */,
-				0D1BDC4228FFE46F004F1D93 /* EdgeInfo.m */,
-				0D1BDC4428FFE47A004F1D93 /* PathInfo.h */,
-				0D1BDC4528FFE47A004F1D93 /* PathInfo.m */,
 				0D82B82A29019ED700759054 /* GraphData.h */,
 				0D82B82B29019ED700759054 /* GraphData.m */,
 				0D82B82D29019F0100759054 /* GraphTest.h */,
@@ -1045,7 +1040,6 @@
 				0DC90B5428EF4F8400AA8754 /* MJPrinter.m in Sources */,
 				0DC90C4E28F0252600AA8754 /* AbstractHeap.m in Sources */,
 				0D1BDC3A28FFD248004F1D93 /* Vertex.m in Sources */,
-				0D1BDC4328FFE46F004F1D93 /* EdgeInfo.m in Sources */,
 				0D1BDC0128FD93D6004F1D93 /* QuickSort.m in Sources */,
 				0D1BDC3728FFD237004F1D93 /* Edge.m in Sources */,
 				0D1BDC3D28FFD258004F1D93 /* Graph.m in Sources */,
@@ -1083,7 +1077,7 @@
 				0D1BDC2028FEEB91004F1D93 /* UnionFind_QU_Rank_PC.m in Sources */,
 				0DC90B5928EF4F8400AA8754 /* BBSTree.m in Sources */,
 				0D1BDC0728FD992E004F1D93 /* CountingSort.m in Sources */,
-				0D1BDC4628FFE47A004F1D93 /* PathInfo.m in Sources */,
+				0D1BDC4628FFE47A004F1D93 /* Path.m in Sources */,
 				0DC90B6328EF4F8400AA8754 /* CircleQueue.m in Sources */,
 				0DC90C5E28F02ACF00AA8754 /* HashNode.m in Sources */,
 				0D1BDC1D28FEEB70004F1D93 /* UnionFind_QU_Rank.m in Sources */,

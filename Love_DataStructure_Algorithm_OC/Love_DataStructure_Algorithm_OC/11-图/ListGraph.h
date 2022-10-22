@@ -27,6 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 最短路径问题 - 简单版 (拽石头-松弛操作）
 - (HashMap *)shortestPath:(id)begin;
+#pragma mark   单源最短路径算法1 - Dijkstra(迪杰斯特拉)
+- (HashMap *)dijkstraShortPath:(id)begin;
+#pragma mark   单源最短路径算法2 - BellmanFord(贝尔曼-福特)
+- (HashMap *)bellmanFordShortPath;
+#pragma mark   多源最短路径算法 floydShortPath（弗洛伊德）
+- (HashMap *)floydShortPath;
 
 @end
 

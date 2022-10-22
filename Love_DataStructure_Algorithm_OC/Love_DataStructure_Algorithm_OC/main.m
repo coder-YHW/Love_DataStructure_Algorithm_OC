@@ -560,7 +560,7 @@ void testGraph(void) {
 //                @[@3, @7, @9],
 //                @[@4, @6, @8],
 //                @[@5, @6, @4], @[@5, @7, @5]
-//            ];
+//   ];
 //
 //    ListGraph *graph = [[ListGraph alloc] init];
 //    for (NSArray *arr in MST_01) { // 无向图
@@ -576,24 +576,56 @@ void testGraph(void) {
     
     
     /// 测试最短路径问题
+//    NSArray *SP = @[
+//            @[@"A", @"B", @10], @[@"A", @"D", @30], @[@"A", @"E", @100],
+//            @[@"B", @"C", @50],
+//            @[@"C", @"E", @10],
+//            @[@"D", @"C", @20], @[@"D", @"E", @60]
+//    ];
+//
+//    ListGraph *graph = [[ListGraph alloc] init];
+//    for (NSArray *arr in SP) { // 无向图
+//        [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
+//        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
+//    }
+//
+//    HashMap *map = [graph shortestPath:@"A"]; // Kruskal算法
+//    [map traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
+//        NSLog(@"A->%@--%@",key,value);
+//    }];
+        
+    
+    /// 测试最短路径问题2 - floyd算法
     NSArray *SP = @[
             @[@"A", @"B", @10], @[@"A", @"D", @30], @[@"A", @"E", @100],
             @[@"B", @"C", @50],
             @[@"C", @"E", @10],
             @[@"D", @"C", @20], @[@"D", @"E", @60]
     ];
-    
+
     ListGraph *graph = [[ListGraph alloc] init];
-    for (NSArray *arr in SP) { // 无向图
+    for (NSArray *arr in SP) { // 有向图
         [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
-        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
+//        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
     }
-    
-    HashMap *map = [graph shortestPath:@"A"]; // Kruskal算法
-    [map traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
-        NSLog(@"%@--%@",key,value);
+
+    HashMap *map = [graph floydShortPath]; //
+    [map traversalWithBlock:^(id  _Nonnull key1, id  _Nonnull value1) {
+        NSLog(@"------------%@---------------",key1);
+        HashMap *map1 = (HashMap *)value1;
+        [map1 traversalWithBlock:^(id  _Nonnull key2, id  _Nonnull value2) {
+            NSLog(@"from:%@ -> to:%@ -- %@", key1, key2, value2);
+        }];
+
     }];
-        
+    
+//    HashMap *map1 = [map get:@"A"];
+//    [map1 traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
+//        NSLog(@"%@--%@",key,value);
+//    }];
+//    [map1 traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
+//        NSLog(@"%@--%@",key,value);
+//    }];
 }
 
 

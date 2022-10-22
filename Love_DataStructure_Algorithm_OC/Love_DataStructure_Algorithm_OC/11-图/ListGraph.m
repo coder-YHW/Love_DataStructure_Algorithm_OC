@@ -6,12 +6,15 @@
 //
 
 #import "ListGraph.h"
-#import "HashMap.h"
-#import "HashSet.h"
 #import "Vertex.h"
 #import "Edge.h"
+#import "Path.h"
+
 #import "Queue.h"
 #import "Stack.h"
+#import "HashMap.h"
+#import "HashSet.h"
+
 
 @interface ListGraph ()
 
@@ -400,9 +403,10 @@
 
 #pragma mark - 最短路径问题 - 简单版 (拽石头-松弛操作）
 /*
- * 有向图
+ * 有向图、无向图都支持
  * 从某一点出发的最短路径(权值最小)
  * 返回权值
+ * 未优化代码
  */
 - (HashMap *)shortestPath:(id)begin {
     // 0、取出开始值对应的顶点 空值校验
@@ -467,7 +471,6 @@
     
     for (Vertex *vertex in waitPaths.allkeys) {
         double weight = [[waitPaths get:vertex] doubleValue];
-        NSLog(@"%.2f", weight);
         if (minWeight == 0.0 || weight < minWeight) {
             minWeight = weight;
             minVertex = vertex;
@@ -483,10 +486,11 @@
 }
 
 
-#pragma mark  单源最短路径算法1 - Dijkstra(迪杰斯特拉)
+#pragma mark   单源最短路径算法1 - Dijkstra(迪杰斯特拉)
 /*
  * Dijkstra: 单源最短路径算法,用于计算一个顶点到其他所有顶点的最短路径
  * 不支持有负权边
+ * 拽石头-松弛操作
  */
 - (HashMap *)dijkstraShortPath:(id)begin {
     
@@ -501,9 +505,13 @@
 /*
  * BellmanFord: 单源最短路径算法,用于计算一个顶点到其他所有顶点的最短路径
  * 支持有负权边
- * 支持检测是否有负权环
+ * 支持检测是否有负权环 第V次还有权重更新 则有负权环
+ * 对所有边进行V-1次松弛操作（V是节点数量），得到所有可能的最短路径
  */
 - (HashMap *)bellmanFordShortPath {
+    
+    
+    
     return nil;
 }
 
@@ -511,9 +519,83 @@
 /*
  * Floyd: 多源最短路径算法,用于计算任意两个顶点的最短路径
  * 支持有负权边
+ * 时间复杂度: O(V^3)
  */
 - (HashMap *)floydShortPath {
-    return nil;
+    // 1、最小路径Map 返回给外界  (key:val  value:HashMap)
+    // 嵌套HashMap: HashMap<fromVal, HashMap<toValue, Path<V, E>>>()
+    HashMap *finishPaths = [[HashMap alloc] init];
+    
+    // 2、将所有边加入finishPaths
+    for (Edge *edge in self.edges.allElement) {
+        
+        id fromVal = edge.from.value;
+        HashMap *pathMap = [finishPaths get:fromVal];
+        // 2.1、pathMap不存在 创建pathMap
+        if (pathMap == nil) {
+            pathMap = [[HashMap alloc] init];
+            // 注意（key：fromVal  value:pathMap）
+            [finishPaths put:fromVal value:pathMap];
+        }
+        
+        // 2.2、pathMap存在 - 创建路径信息 存入pathMap
+        // 创建路径信息
+        Path *pathInfo = [[Path alloc] init];
+        [pathInfo.edgeInfos addObject:edge];
+        // 注意给Path个初始权值
+        pathInfo.weight = edge.weight;
+        // 注意（key：toValue  value:pathInfo）
+        id toValue = edge.to.value;
+        [pathMap put:toValue value:pathInfo];
+    }
+    
+    // 3、三层for循环 遍历allkeys 顺序不能乱
+    NSArray *values = self.vertexs.allkeys;
+    for (id v2 in values) { // v2
+        for (id v1 in values) { // v1
+            for (id v3 in values) { // v3
+                // 异常情况处理
+                if (v1 == v2 || v2 == v3 || v1 == v3) { continue; }
+                
+                // v1 -> v2
+                Path *path12 = [self getPathInfo:finishPaths from:v1 to:v2];
+                if (path12 == nil) { continue; }
+                // v2 -> v3
+                Path *path23 = [self getPathInfo:finishPaths from:v2 to:v3];
+                if (path23 == nil) { continue; }
+                // v1 -> v3
+                Path *path13 = [self getPathInfo:finishPaths from:v1 to:v3];
+                
+                // 新路径权重 - newWeight
+                double newWeight = path12.weight + path23.weight;
+                //  path13还不存在 创建path13
+                if (path13 == nil) {
+                    path13 = [[Path alloc] init];
+                    HashMap *pathMap = [finishPaths get:v1];
+                    [pathMap put:v3 value:path13];
+                }else if (newWeight >= path13.weight ) {
+                    // 权重：path12 + path23 >= path13 无需更新权重
+                    continue;
+                }
+                
+                // 权重：path12 + path23 < path13 更新权重weight
+                path13.weight = newWeight;
+                // 权重：path12 + path23 < path13 更新路径信息edgeInfos
+                [path13.edgeInfos removeAllObjects];
+                [path13.edgeInfos addObjectsFromArray:path12.edgeInfos];
+                [path13.edgeInfos addObjectsFromArray:path23.edgeInfos];
+            };
+        };
+    };
+    
+    return finishPaths;
+}
+
+/// 获取edge的路径信息
+- (Path *)getPathInfo:(HashMap *)finishPaths from:(id)from to:(id)to {
+    HashMap *pathMap = [finishPaths get:from];
+    Path *pathInfo = [pathMap get:to];
+    return pathInfo;
 }
 
 #pragma mark - 打印
