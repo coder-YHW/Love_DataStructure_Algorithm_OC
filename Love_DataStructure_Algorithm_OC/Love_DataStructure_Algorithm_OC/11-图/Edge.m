@@ -52,7 +52,7 @@
     // 对关键属性的hash值进行位或运算作为hash值
     NSUInteger hashCode1 = [self.from hash];
     NSUInteger hashCode2 = [self.to hash];
-    return hashCode1 ^ hashCode2;
+    return hashCode1 ^ (hashCode2 * 31); // *31 是为了区分from的to顺序
 }
 
 #pragma mark - 打印

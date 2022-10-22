@@ -141,7 +141,7 @@
     ListGraph *graph = [[ListGraph alloc] init];
     for (NSArray *arr in SP) { // 无向图
         [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
-//        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
+        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
     }
 
     HashMap *map = [graph bellmanFordShortPath:@"A"]; // Kruskal算法
