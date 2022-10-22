@@ -20,6 +20,14 @@
 }
 
 
+#pragma mark - 方法
+/// 添加边
+- (void)addEdge:(Edge *)edge {
+    self.weight += edge.weight;
+    [self.edgeInfos addObject:edge];
+}
+
+
 #pragma mark - isEqual➕compare ➕ hash
 - (NSComparisonResult)compare:(Edge *)edge {
     

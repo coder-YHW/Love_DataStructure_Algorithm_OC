@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 路径上所有的边, 存储的有顺序的边
 @property (nonatomic,strong) NSMutableArray<Edge *> *edgeInfos;
 
+
+#pragma mark - 方法
+/// 添加边
+- (void)addEdge:(Edge *)edge;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -427,7 +427,7 @@
     
     // 3、筛选出最短路径 - 循环操作
     while (!waitPaths.isEmpty) {
-        
+        /// 根据权值, 筛选权值最小的路径 返回minVertex
         Vertex *minVertex = [self minWeightPath:waitPaths];
 
         // 3.1、将最短路径存入finishPaths
@@ -464,7 +464,7 @@
     return finishPaths;
 }
 
-/// 根据权值, 筛选权值最小的路径
+/// 根据权值, 筛选权值最小的路径 返回minVertex
 - (Vertex *)minWeightPath:(HashMap *)waitPaths {
     Vertex *minVertex = nil;
     double minWeight = 0.0;
@@ -480,25 +480,101 @@
     return minVertex;
 }
 
-/// 根据边信息, 筛选权值最小的路径
-- (void)minPathInfo {
-    
-}
-
 
 #pragma mark   单源最短路径算法1 - Dijkstra(迪杰斯特拉)
 /*
  * Dijkstra: 单源最短路径算法,用于计算一个顶点到其他所有顶点的最短路径
  * 不支持有负权边
- * 拽石头-松弛操作
+ * 松弛操作：从起点开始 对新加入的顶点进行松弛操作
  */
 - (HashMap *)dijkstraShortPath:(id)begin {
     
+    // 0、取出开始值对应的顶点 空值校验
+    Vertex *vertex = [self.vertexs get:begin];
+    if (vertex == nil) { return nil; }
     
+    // 1、等待被选择的路径s (key:toVertex value:Path) 从起点到其他点的路径信息
+    // 从起点开始做松弛操作
+    HashMap *waitPaths   = [[HashMap alloc] init];
+    Path *pathInfo = [[Path alloc] init];
+    [waitPaths put:vertex value:pathInfo];
     
+    // 2、已经确定的最小路径s 返回给外界  (key:vertex.value  value:Path)
+    HashMap *finishPaths = [[HashMap alloc] init];
     
+    // 3、筛选出最短路径 - 循环操作
+    while (!waitPaths.isEmpty) {
+        
+        // 根据边信息, 筛选权值最小的路径 返回minVertex
+        Vertex *minVertex = [self minPathInfo:waitPaths];
+
+        // 3.1、将最短路径存入finishPaths
+        Path *minPath = [waitPaths get:minVertex];
+        [finishPaths put:minVertex.value value:minPath];
+        
+        // 3.2、将最短路径从waitPaths删除
+        [waitPaths remove:minVertex];
+        
+        // 4、对minVertex.outEdges进行松弛操作 更新waitPaths路径
+        for (Edge *edge in minVertex.outEdges.allElement) {
+            /// 松弛操作封装一
+            [self relax:edge minPath:minPath finishPaths:finishPaths waitPaths:waitPaths];
+        }
+    }
+
+    // 5.2、原点最后要删除
+    [finishPaths remove:vertex.value];
+    return finishPaths;
+}
+
+/// 根据边信息, 筛选权值最小的路径  返回minVertex
+- (Vertex *)minPathInfo:(HashMap *)waitPaths {
+ 
+    Vertex *minVertex = nil;
+    double minWeight = 0.0;
     
-    return nil;
+    for (Vertex *vertex in waitPaths.allkeys) {
+        Path *path = [waitPaths get:vertex];
+        if (minWeight == 0.0 || path.weight < minWeight) {
+            minWeight = path.weight;
+            minVertex = vertex;
+        }
+    }
+
+    return minVertex;
+}
+
+/// 松弛操作封装一
+- (BOOL)relax:(Edge *)edge minPath:(Path *)minPath finishPaths:(HashMap *)finishPaths waitPaths:(HashMap *)waitPaths {
+    
+    // 4.1、松弛新节点
+    Vertex *toVertex = edge.to;
+    
+    // 4.2、去除重复操作 - 无向路径可能会往回重复寻找
+    if ([finishPaths containsKey:toVertex.value]) {
+        return NO;;
+    }
+    
+    // 4.3、原点到toVertex的新权重:edge.weight + minWeight
+    double newWeight = edge.weight + minPath.weight;
+    Path *oldPath = [waitPaths get:toVertex];
+    
+    if (oldPath == nil) {
+        oldPath = [[Path alloc] init];
+        [waitPaths put:toVertex value:oldPath];
+    }else if (newWeight >= oldPath.weight) {
+        // 5.1、newWeight >= oldWeight 没有更新的必要
+        return NO;;
+    }
+    
+    // 5.2、oldWeight为nil 或则 newWeight < oldWeight 更新权重weight
+    oldPath.weight = newWeight;
+    // 5.3、oldWeight为nil 或则 newWeight < oldWeight 更新路径信息edgeInfos
+    [oldPath.edgeInfos removeAllObjects];
+    [oldPath.edgeInfos addObjectsFromArray:minPath.edgeInfos];
+    [oldPath.edgeInfos addObject:edge];
+    
+    return YES;
 }
 
 #pragma mark   单源最短路径算法2 - BellmanFord(贝尔曼-福特)
@@ -506,13 +582,82 @@
  * BellmanFord: 单源最短路径算法,用于计算一个顶点到其他所有顶点的最短路径
  * 支持有负权边
  * 支持检测是否有负权环 第V次还有权重更新 则有负权环
- * 对所有边进行V-1次松弛操作（V是节点数量），得到所有可能的最短路径
+ * 松弛操作：对所有边进行V-1次松弛操作（V是节点数量），得到所有可能的最短路径
  */
-- (HashMap *)bellmanFordShortPath {
+- (HashMap *)bellmanFordShortPath:(id)begin {
+    
+    // 0、存储所有顶点的路径信息
+    HashMap *paths = [[HashMap alloc] init];
+    Path *pathInfo = [[Path alloc] init];
+    [paths put:begin value:pathInfo]; // (key:value  value:Path)
+    
+    // 1、对所有边进行V-1次松弛操作（V是节点数量），得到所有可能的最短路径
+    int V = self.vertexs.size;
+    for (int i = 0 ; i < V - 1 ; i++) {
+        
+        NSMutableArray *edges = self.edges.allElement;
+        
+        for (Edge *edge in edges) {
+            
+            id fromVal = edge.from.value;
+            NSLog(@"%@",fromVal);
+            Path *fromPath = [paths get:fromVal];
+            
+            [self relax:edge fromPath:fromPath paths:paths];
+        }
+        
+    }
+    
+    // 2、对所有边进行第V次松弛操作（V是节点数量）如果还有权重更新 则有负权环
     
     
+    // 3、原点最后要删除
+    [paths remove:begin];
+    return paths;
+}
+
+
+/// 松弛操作封装二
+- (BOOL)relax:(Edge *)edge fromPath:(Path *)fromPath paths:(HashMap *)paths {
     
-    return nil;
+    // 1、松弛新节点
+    Vertex *toVertex = edge.to;
+    id toValue = toVertex.value;
+
+//    // 去除重复操作 - 无向路径可能会往回重复寻找
+//    // bellmanFord算法不需要去重
+//    if ([finishPaths containsKey:toVertex.value]) {
+//        return NO;;
+//    }
+    
+    // 2、fromPath为nil 意味着以前没有记录 松弛失败 不需要处理
+    if (fromPath == nil) {
+        return NO;
+    }
+
+    // 3、原点到toVertex的新权重:edge.weight + minWeight
+    // 3.1、newWeight
+    double newWeight = edge.weight + fromPath.weight;
+    // 3.2、oldWeight
+    Path *oldPath = [paths get:toValue];
+    
+    if (oldPath == nil) {
+        // 4.0、没有路径信息的 创建路径信息
+        oldPath = [[Path alloc] init];
+        [paths put:toValue value:oldPath];
+    } else if (newWeight >= oldPath.weight) {
+        // 4.1、newWeight >= oldWeight 没有更新的必要
+        return NO;;
+    }
+
+    // 4.2、oldWeight为nil 或则 newWeight < oldWeight 更新权重weight
+    oldPath.weight = newWeight;
+    // 4.3、oldWeight为nil 或则 newWeight < oldWeight 更新路径信息edgeInfos
+    [oldPath.edgeInfos removeAllObjects];
+    [oldPath.edgeInfos addObjectsFromArray:fromPath.edgeInfos];
+    [oldPath.edgeInfos addObject:edge];
+    
+    return YES;
 }
 
 #pragma mark   多源最短路径算法 floydShortPath（弗洛伊德）
@@ -541,9 +686,8 @@
         // 2.2、pathMap存在 - 创建路径信息 存入pathMap
         // 创建路径信息
         Path *pathInfo = [[Path alloc] init];
-        [pathInfo.edgeInfos addObject:edge];
-        // 注意给Path个初始权值
-        pathInfo.weight = edge.weight;
+        // 注意给Path个初始权值 就是edge.weight 不是0
+        [pathInfo addEdge:edge]; //
         // 注意（key：toValue  value:pathInfo）
         id toValue = edge.to.value;
         [pathMap put:toValue value:pathInfo];
@@ -578,9 +722,9 @@
                     continue;
                 }
                 
-                // 权重：path12 + path23 < path13 更新权重weight
+                // path13为nil 或者 权重：path12 + path23 < path13 更新权重weight
                 path13.weight = newWeight;
-                // 权重：path12 + path23 < path13 更新路径信息edgeInfos
+                // path13为nil 或者 权重：path12 + path23 < path13 更新路径信息edgeInfos
                 [path13.edgeInfos removeAllObjects];
                 [path13.edgeInfos addObjectsFromArray:path12.edgeInfos];
                 [path13.edgeInfos addObjectsFromArray:path23.edgeInfos];

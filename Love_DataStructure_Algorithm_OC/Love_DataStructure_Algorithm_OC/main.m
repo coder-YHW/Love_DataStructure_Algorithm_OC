@@ -471,7 +471,7 @@ void testSort(void) {
     
     NSArray *data = @[@51, @30, @39 ,@30, @39, @92, @74, @25, @16, @93, @91, @19, @54, @47, @73, @62, @76, @63, @35, @18, @90, @6, @65, @49, @3, @26, @61, @21, @48];
     
-    
+
 //    BubbleSort1 *sort = [[BubbleSort1 alloc] init];
 //    BubbleSort1 *sort = [[BubbleSort2 alloc] init];
 //    BubbleSort1 *sort = [[BubbleSort3 alloc] init];
@@ -488,7 +488,6 @@ void testSort(void) {
 //    CountingSort *sort = [[CountingSort alloc] init];
     RadixSort *sort = [[RadixSort alloc] init];
 //    BucketSort *sort = [[BucketSort alloc] init];
-    
     
     
     NSMutableArray *array =  [sort sortedWithArray:[NSMutableArray arrayWithArray:data]];
@@ -533,99 +532,22 @@ void testGraph(void) {
 //    }];
     
     
-    // 测试拓扑排序
-//    NSArray *TOPO = @[
-//            @[@0, @2],
-//            @[@1, @0],
-//            @[@2, @5], @[@2, @6],
-//            @[@3, @1], @[@3, @5], @[@3, @7],
-//            @[@5, @7],
-//            @[@6, @4],
-//            @[@7, @6]
-//    ];
-//
-//    ListGraph *graph = [[ListGraph alloc] init];
-//    for (NSArray *arr in TOPO) { // 有向图
-//        [graph addEdgeFrom:arr[0] to:arr[1]];
-//    }
-//    NSMutableArray *array = [graph topologicalSort];
-//    NSLog(@"%@", array);
+    /// 测试拓扑排序
+//    [GraphTest testTopologicalSort];
     
+    /// 最小生成树问题 - 测试Prim算法
+//    [GraphTest testMstPrim];
+    /// 最小生成树问题 - 测试Kruskal算法
+//    [GraphTest testMstKruskal];
     
-    /// 测试Prim算法、测试Kruskal算法
-//    NSArray *MST_01 = @[
-//                @[@0, @2, @2], @[@0, @4, @7],
-//                @[@1, @2, @3], @[@1, @5, @1], @[@1, @6, @7],
-//                @[@2, @4, @4], @[@2, @5, @3], @[@2, @6, @6],
-//                @[@3, @7, @9],
-//                @[@4, @6, @8],
-//                @[@5, @6, @4], @[@5, @7, @5]
-//   ];
-//
-//    ListGraph *graph = [[ListGraph alloc] init];
-//    for (NSArray *arr in MST_01) { // 无向图
-//        [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
-//        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
-//    }
-//
-////    HashSet *set = [graph mstPrim]; // Prim算法
-//    HashSet *set = [graph mstKruskal]; // Kruskal算法
-//    [set traversalWithBlock:^(id  _Nonnull element) {
-//        NSLog(@"%@", element);
-//    }];
-    
-    
-    /// 测试最短路径问题
-//    NSArray *SP = @[
-//            @[@"A", @"B", @10], @[@"A", @"D", @30], @[@"A", @"E", @100],
-//            @[@"B", @"C", @50],
-//            @[@"C", @"E", @10],
-//            @[@"D", @"C", @20], @[@"D", @"E", @60]
-//    ];
-//
-//    ListGraph *graph = [[ListGraph alloc] init];
-//    for (NSArray *arr in SP) { // 无向图
-//        [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
-//        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
-//    }
-//
-//    HashMap *map = [graph shortestPath:@"A"]; // Kruskal算法
-//    [map traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
-//        NSLog(@"A->%@--%@",key,value);
-//    }];
-        
-    
-    /// 测试最短路径问题2 - floyd算法
-    NSArray *SP = @[
-            @[@"A", @"B", @10], @[@"A", @"D", @30], @[@"A", @"E", @100],
-            @[@"B", @"C", @50],
-            @[@"C", @"E", @10],
-            @[@"D", @"C", @20], @[@"D", @"E", @60]
-    ];
-
-    ListGraph *graph = [[ListGraph alloc] init];
-    for (NSArray *arr in SP) { // 有向图
-        [graph addEdgeFrom:arr[0] to:arr[1] weight:[arr[2] doubleValue]];
-//        [graph addEdgeFrom:arr[1] to:arr[0] weight:[arr[2] doubleValue]];
-    }
-
-    HashMap *map = [graph floydShortPath]; //
-    [map traversalWithBlock:^(id  _Nonnull key1, id  _Nonnull value1) {
-        NSLog(@"------------%@---------------",key1);
-        HashMap *map1 = (HashMap *)value1;
-        [map1 traversalWithBlock:^(id  _Nonnull key2, id  _Nonnull value2) {
-            NSLog(@"from:%@ -> to:%@ -- %@", key1, key2, value2);
-        }];
-
-    }];
-    
-//    HashMap *map1 = [map get:@"A"];
-//    [map1 traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
-//        NSLog(@"%@--%@",key,value);
-//    }];
-//    [map1 traversalWithBlock:^(id  _Nonnull key, id  _Nonnull value) {
-//        NSLog(@"%@--%@",key,value);
-//    }];
+    /// 测试最短路径问题0 简单版 拽石头
+//    [GraphTest testShortestPath];
+    /// 测试最短路径问题1 -
+//    [GraphTest testDijkstraShortPath];
+    /// 测试最短路径问题2 - BellmanFords算法
+    [GraphTest testBellmanFordShortPath];
+    /// 测试最短路径问题3- floyd算法
+//    [GraphTest testFloydShortPath];
 }
 
 

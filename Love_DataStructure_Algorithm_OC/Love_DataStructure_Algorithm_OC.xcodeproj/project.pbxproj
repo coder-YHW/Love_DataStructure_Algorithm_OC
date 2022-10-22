@@ -35,7 +35,6 @@
 		0D1BDC4028FFE41B004F1D93 /* ListGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC3F28FFE41B004F1D93 /* ListGraph.m */; };
 		0D1BDC4628FFE47A004F1D93 /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC4528FFE47A004F1D93 /* Path.m */; };
 		0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D66C5A628F8213000D280E2 /* QueueStack.m */; };
-		0D82B82C29019ED700759054 /* GraphData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B82B29019ED700759054 /* GraphData.m */; };
 		0D82B82F29019F0100759054 /* GraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B82E29019F0100759054 /* GraphTest.m */; };
 		0DC90B4E28EF4F8400AA8754 /* AVLTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD528EF4F8300AA8754 /* AVLTree.m */; };
 		0DC90B4F28EF4F8400AA8754 /* AVLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD628EF4F8300AA8754 /* AVLNode.m */; };
@@ -175,8 +174,6 @@
 		0D1BDC4528FFE47A004F1D93 /* Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Path.m; sourceTree = "<group>"; };
 		0D66C5A528F8213000D280E2 /* QueueStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueStack.h; sourceTree = "<group>"; };
 		0D66C5A628F8213000D280E2 /* QueueStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueStack.m; sourceTree = "<group>"; };
-		0D82B82A29019ED700759054 /* GraphData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphData.h; sourceTree = "<group>"; };
-		0D82B82B29019ED700759054 /* GraphData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphData.m; sourceTree = "<group>"; };
 		0D82B82D29019F0100759054 /* GraphTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphTest.h; sourceTree = "<group>"; };
 		0D82B82E29019F0100759054 /* GraphTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphTest.m; sourceTree = "<group>"; };
 		0DC90AC728EF4F4100AA8754 /* Love_DataStructure_Algorithm_OC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Love_DataStructure_Algorithm_OC; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -465,8 +462,6 @@
 				0D1BDC3C28FFD258004F1D93 /* Graph.m */,
 				0D1BDC3E28FFE41B004F1D93 /* ListGraph.h */,
 				0D1BDC3F28FFE41B004F1D93 /* ListGraph.m */,
-				0D82B82A29019ED700759054 /* GraphData.h */,
-				0D82B82B29019ED700759054 /* GraphData.m */,
 				0D82B82D29019F0100759054 /* GraphTest.h */,
 				0D82B82E29019F0100759054 /* GraphTest.m */,
 			);
@@ -1087,7 +1082,6 @@
 				0DC90B7D28EF667C00AA8754 /* Set.m in Sources */,
 				0DC90B5628EF4F8400AA8754 /* NSString+Trees.m in Sources */,
 				0DC90B7C28EF667C00AA8754 /* ListSet.m in Sources */,
-				0D82B82C29019ED700759054 /* GraphData.m in Sources */,
 				0D1BDC0D28FD9994004F1D93 /* BucketSort.m in Sources */,
 				0D1BDBC328FC5B0C004F1D93 /* Sort.m in Sources */,
 				0DC90C5A28F025F100AA8754 /* Trie.m in Sources */,
