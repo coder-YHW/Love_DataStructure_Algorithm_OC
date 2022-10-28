@@ -21,7 +21,7 @@
         for(int begin = 1 ; begin <= end ; begin++) {
             
             int cmp = [self cmpIndex1:maxIndex index2:begin];  // 注意这一句
-            if (cmp <= 0) {
+            if (cmp < 0) {
                 maxIndex = begin; // 2、更新最大值索引 = begin
             }
         }

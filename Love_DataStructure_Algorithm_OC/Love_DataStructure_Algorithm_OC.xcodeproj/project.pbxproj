@@ -36,6 +36,13 @@
 		0D1BDC4628FFE47A004F1D93 /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC4528FFE47A004F1D93 /* Path.m */; };
 		0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D66C5A628F8213000D280E2 /* QueueStack.m */; };
 		0D68035C2903DB7000D101B3 /* Recursion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D68035B2903DB7000D101B3 /* Recursion.m */; };
+		0D68036F2905189800D101B3 /* Recall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D68036E2905189800D101B3 /* Recall.m */; };
+		0D680372290518A700D101B3 /* Greedy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D680371290518A700D101B3 /* Greedy.m */; };
+		0D6803752905190A00D101B3 /* DivideConquer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6803742905190A00D101B3 /* DivideConquer.m */; };
+		0D6803782905191600D101B3 /* DynamicProgramming.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6803772905191600D101B3 /* DynamicProgramming.m */; };
+		0D680381290593B200D101B3 /* SkipListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D680380290593B200D101B3 /* SkipListNode.m */; };
+		0D680384290593C700D101B3 /* SkipList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D680383290593C700D101B3 /* SkipList.m */; };
+		0D68038D2905A63E00D101B3 /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D68038C2905A63E00D101B3 /* Sequence.m */; };
 		0D82B82F29019F0100759054 /* GraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D82B82E29019F0100759054 /* GraphTest.m */; };
 		0DC90B4E28EF4F8400AA8754 /* AVLTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD528EF4F8300AA8754 /* AVLTree.m */; };
 		0DC90B4F28EF4F8400AA8754 /* AVLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC90AD628EF4F8300AA8754 /* AVLNode.m */; };
@@ -183,6 +190,20 @@
 		0D6803682903ECC000D101B3 /* 汉诺塔01.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "汉诺塔01.PNG"; sourceTree = "<group>"; };
 		0D6803692903ECC000D101B3 /* 上楼梯(跳台阶).PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上楼梯(跳台阶).PNG"; sourceTree = "<group>"; };
 		0D68036A2903ECC000D101B3 /* 斐波那契数列.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "斐波那契数列.PNG"; sourceTree = "<group>"; };
+		0D68036D2905189800D101B3 /* Recall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Recall.h; sourceTree = "<group>"; };
+		0D68036E2905189800D101B3 /* Recall.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Recall.m; sourceTree = "<group>"; };
+		0D680370290518A700D101B3 /* Greedy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Greedy.h; sourceTree = "<group>"; };
+		0D680371290518A700D101B3 /* Greedy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Greedy.m; sourceTree = "<group>"; };
+		0D6803732905190A00D101B3 /* DivideConquer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DivideConquer.h; sourceTree = "<group>"; };
+		0D6803742905190A00D101B3 /* DivideConquer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DivideConquer.m; sourceTree = "<group>"; };
+		0D6803762905191600D101B3 /* DynamicProgramming.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicProgramming.h; sourceTree = "<group>"; };
+		0D6803772905191600D101B3 /* DynamicProgramming.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicProgramming.m; sourceTree = "<group>"; };
+		0D68037F290593B200D101B3 /* SkipListNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkipListNode.h; sourceTree = "<group>"; };
+		0D680380290593B200D101B3 /* SkipListNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkipListNode.m; sourceTree = "<group>"; };
+		0D680382290593C700D101B3 /* SkipList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkipList.h; sourceTree = "<group>"; };
+		0D680383290593C700D101B3 /* SkipList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkipList.m; sourceTree = "<group>"; };
+		0D68038B2905A63E00D101B3 /* Sequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sequence.h; sourceTree = "<group>"; };
+		0D68038C2905A63E00D101B3 /* Sequence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sequence.m; sourceTree = "<group>"; };
 		0D82B82D29019F0100759054 /* GraphTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphTest.h; sourceTree = "<group>"; };
 		0D82B82E29019F0100759054 /* GraphTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphTest.m; sourceTree = "<group>"; };
 		0DC90AC728EF4F4100AA8754 /* Love_DataStructure_Algorithm_OC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Love_DataStructure_Algorithm_OC; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -373,7 +394,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D1BDBC028FC5A4D004F1D93 /* 09-排序 */ = {
+		0D1BDBC028FC5A4D004F1D93 /* 12-排序算法 */ = {
 			isa = PBXGroup;
 			children = (
 				0D1BDBD928FD6A58004F1D93 /* 图片 */,
@@ -402,7 +423,7 @@
 				0D1BDC0B28FD9994004F1D93 /* BucketSort.h */,
 				0D1BDC0C28FD9994004F1D93 /* BucketSort.m */,
 			);
-			path = "09-排序";
+			path = "12-排序算法";
 			sourceTree = "<group>";
 		};
 		0D1BDBD928FD6A58004F1D93 /* 图片 */ = {
@@ -477,42 +498,50 @@
 			path = "11-图";
 			sourceTree = "<group>";
 		};
-		0D1BDC2E28FF0FC7004F1D93 /* 12-递归 */ = {
+		0D1BDC2E28FF0FC7004F1D93 /* 01-递归 */ = {
 			isa = PBXGroup;
 			children = (
 				0D6803642903ECC000D101B3 /* 图片 */,
 				0D68035A2903DB7000D101B3 /* Recursion.h */,
 				0D68035B2903DB7000D101B3 /* Recursion.m */,
 			);
-			path = "12-递归";
+			path = "01-递归";
 			sourceTree = "<group>";
 		};
-		0D1BDC2F28FF0FE0004F1D93 /* 13-回溯 */ = {
+		0D1BDC2F28FF0FE0004F1D93 /* 02-回溯 */ = {
 			isa = PBXGroup;
 			children = (
+				0D68036D2905189800D101B3 /* Recall.h */,
+				0D68036E2905189800D101B3 /* Recall.m */,
 			);
-			path = "13-回溯";
+			path = "02-回溯";
 			sourceTree = "<group>";
 		};
-		0D1BDC3028FF100C004F1D93 /* 14-贪心 */ = {
+		0D1BDC3028FF100C004F1D93 /* 03-贪心 */ = {
 			isa = PBXGroup;
 			children = (
+				0D680370290518A700D101B3 /* Greedy.h */,
+				0D680371290518A700D101B3 /* Greedy.m */,
 			);
-			path = "14-贪心";
+			path = "03-贪心";
 			sourceTree = "<group>";
 		};
-		0D1BDC3128FF102F004F1D93 /* 15-分治 */ = {
+		0D1BDC3128FF102F004F1D93 /* 04-分治 */ = {
 			isa = PBXGroup;
 			children = (
+				0D6803732905190A00D101B3 /* DivideConquer.h */,
+				0D6803742905190A00D101B3 /* DivideConquer.m */,
 			);
-			path = "15-分治";
+			path = "04-分治";
 			sourceTree = "<group>";
 		};
-		0D1BDC3228FF1055004F1D93 /* 16-动态规划 */ = {
+		0D1BDC3228FF1055004F1D93 /* 05-动态规划 */ = {
 			isa = PBXGroup;
 			children = (
+				0D6803762905191600D101B3 /* DynamicProgramming.h */,
+				0D6803772905191600D101B3 /* DynamicProgramming.m */,
 			);
-			path = "16-动态规划";
+			path = "05-动态规划";
 			sourceTree = "<group>";
 		};
 		0D66C5A828F8256200D280E2 /* 07-优先级队列 */ = {
@@ -545,6 +574,45 @@
 			path = "图片";
 			sourceTree = "<group>";
 		};
+		0D68036C29044EA600D101B3 /* 14-LeetCode */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "14-LeetCode";
+			sourceTree = "<group>";
+		};
+		0D68037A2905933800D101B3 /* 跳表 */ = {
+			isa = PBXGroup;
+			children = (
+				0D68037F290593B200D101B3 /* SkipListNode.h */,
+				0D680380290593B200D101B3 /* SkipListNode.m */,
+				0D680382290593C700D101B3 /* SkipList.h */,
+				0D680383290593C700D101B3 /* SkipList.m */,
+			);
+			path = "跳表";
+			sourceTree = "<group>";
+		};
+		0D6803852905A43000D101B3 /* 09-字符串 */ = {
+			isa = PBXGroup;
+			children = (
+				0D68038B2905A63E00D101B3 /* Sequence.h */,
+				0D68038C2905A63E00D101B3 /* Sequence.m */,
+			);
+			path = "09-字符串";
+			sourceTree = "<group>";
+		};
+		0D6803872905A47C00D101B3 /* 13-算法策略 */ = {
+			isa = PBXGroup;
+			children = (
+				0D1BDC2E28FF0FC7004F1D93 /* 01-递归 */,
+				0D1BDC2F28FF0FE0004F1D93 /* 02-回溯 */,
+				0D1BDC3028FF100C004F1D93 /* 03-贪心 */,
+				0D1BDC3128FF102F004F1D93 /* 04-分治 */,
+				0D1BDC3228FF1055004F1D93 /* 05-动态规划 */,
+			);
+			path = "13-算法策略";
+			sourceTree = "<group>";
+		};
 		0DC90ABE28EF4F4100AA8754 = {
 			isa = PBXGroup;
 			children = (
@@ -575,15 +643,13 @@
 				0DC90C4528F023AE00AA8754 /* 05-哈希表 */,
 				0DC90C4628F0242600AA8754 /* 06-堆 */,
 				0D66C5A828F8256200D280E2 /* 07-优先级队列 */,
-				0DC90C5428F025F100AA8754 /* 08-Trie */,
-				0D1BDBC028FC5A4D004F1D93 /* 09-排序 */,
+				0DC90C5428F025F100AA8754 /* 08-Trie树 */,
+				0D6803852905A43000D101B3 /* 09-字符串 */,
 				0D1BDC0E28FEEA05004F1D93 /* 10-并查集 */,
 				0D1BDC2D28FF0FAA004F1D93 /* 11-图 */,
-				0D1BDC2E28FF0FC7004F1D93 /* 12-递归 */,
-				0D1BDC2F28FF0FE0004F1D93 /* 13-回溯 */,
-				0D1BDC3028FF100C004F1D93 /* 14-贪心 */,
-				0D1BDC3128FF102F004F1D93 /* 15-分治 */,
-				0D1BDC3228FF1055004F1D93 /* 16-动态规划 */,
+				0D1BDBC028FC5A4D004F1D93 /* 12-排序算法 */,
+				0D6803872905A47C00D101B3 /* 13-算法策略 */,
+				0D68036C29044EA600D101B3 /* 14-LeetCode */,
 			);
 			path = Love_DataStructure_Algorithm_OC;
 			sourceTree = "<group>";
@@ -748,6 +814,7 @@
 				0DC90B3E28EF4F8400AA8754 /* Common */,
 				0DC90B4928EF4F8400AA8754 /* 动态数组 */,
 				0DC90B2828EF4F8400AA8754 /* 链表 */,
+				0D68037A2905933800D101B3 /* 跳表 */,
 				0DC90B4528EF4F8400AA8754 /* 栈 */,
 				0DC90B3228EF4F8400AA8754 /* 队列 */,
 			);
@@ -929,7 +996,7 @@
 			path = "06-堆";
 			sourceTree = "<group>";
 		};
-		0DC90C5428F025F100AA8754 /* 08-Trie */ = {
+		0DC90C5428F025F100AA8754 /* 08-Trie树 */ = {
 			isa = PBXGroup;
 			children = (
 				0DE82A8B28F4098B00711210 /* 图片 */,
@@ -938,7 +1005,7 @@
 				0DC90C5828F025F100AA8754 /* Trie.h */,
 				0DC90C5628F025F100AA8754 /* Trie.m */,
 			);
-			path = "08-Trie";
+			path = "08-Trie树";
 			sourceTree = "<group>";
 		};
 		0DE82A8628F4095500711210 /* 图片 */ = {
@@ -1055,9 +1122,13 @@
 				0DC90B7B28EF667C00AA8754 /* TreeSet.m in Sources */,
 				0DC90C4F28F0252600AA8754 /* BinaryHeap.m in Sources */,
 				0DC90B6828EF4F8400AA8754 /* ArrayList.m in Sources */,
+				0D680372290518A700D101B3 /* Greedy.m in Sources */,
 				0DC90C6828F1207F00AA8754 /* ArrayListUpgrade.m in Sources */,
+				0D6803782905191600D101B3 /* DynamicProgramming.m in Sources */,
+				0D68038D2905A63E00D101B3 /* Sequence.m in Sources */,
 				0D1BDC2328FEEBA0004F1D93 /* UnionFind_QU_Rank_PS.m in Sources */,
 				0DC90B5428EF4F8400AA8754 /* MJPrinter.m in Sources */,
+				0D680381290593B200D101B3 /* SkipListNode.m in Sources */,
 				0DC90C4E28F0252600AA8754 /* AbstractHeap.m in Sources */,
 				0D1BDC3A28FFD248004F1D93 /* Vertex.m in Sources */,
 				0D1BDC0128FD93D6004F1D93 /* QuickSort.m in Sources */,
@@ -1067,6 +1138,7 @@
 				0DC90B8828EF6C6D00AA8754 /* TreeMap.m in Sources */,
 				0DC90B5D28EF4F8400AA8754 /* DoubleCircleLinkedList.m in Sources */,
 				0D1BDBC728FC61A8004F1D93 /* BubbleSort.m in Sources */,
+				0D68036F2905189800D101B3 /* Recall.m in Sources */,
 				0D1BDBD028FD3812004F1D93 /* InsertionSort.m in Sources */,
 				0DC90B6628EF4F8400AA8754 /* LinkNode.m in Sources */,
 				0D1BDBD528FD4677004F1D93 /* BinarySearch.m in Sources */,
@@ -1104,9 +1176,11 @@
 				0D1BDC1D28FEEB70004F1D93 /* UnionFind_QU_Rank.m in Sources */,
 				0DC90B8928EF6C6D00AA8754 /* HashMap.m in Sources */,
 				0DC90B4F28EF4F8400AA8754 /* AVLNode.m in Sources */,
+				0D6803752905190A00D101B3 /* DivideConquer.m in Sources */,
 				0DC90B5B28EF4F8400AA8754 /* SingleCircleLinkedList.m in Sources */,
 				0DC90B7D28EF667C00AA8754 /* Set.m in Sources */,
 				0DC90B5628EF4F8400AA8754 /* NSString+Trees.m in Sources */,
+				0D680384290593C700D101B3 /* SkipList.m in Sources */,
 				0DC90B7C28EF667C00AA8754 /* ListSet.m in Sources */,
 				0D1BDC0D28FD9994004F1D93 /* BucketSort.m in Sources */,
 				0D1BDBC328FC5B0C004F1D93 /* Sort.m in Sources */,
