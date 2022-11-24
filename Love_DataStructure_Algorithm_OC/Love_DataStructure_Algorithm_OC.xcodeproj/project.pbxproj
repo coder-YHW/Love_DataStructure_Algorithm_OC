@@ -12,7 +12,6 @@
 		0D1BDBCA28FC61B7004F1D93 /* SelectionSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDBC928FC61B7004F1D93 /* SelectionSort.m */; };
 		0D1BDBCD28FC61C4004F1D93 /* HeapSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDBCC28FC61C4004F1D93 /* HeapSort.m */; };
 		0D1BDBD028FD3812004F1D93 /* InsertionSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDBCF28FD3812004F1D93 /* InsertionSort.m */; };
-		0D1BDBD528FD4677004F1D93 /* BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDBD428FD4677004F1D93 /* BinarySearch.m */; };
 		0D1BDBD828FD60F7004F1D93 /* MergeSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDBD728FD60F7004F1D93 /* MergeSort.m */; };
 		0D1BDC0128FD93D6004F1D93 /* QuickSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC0028FD93D6004F1D93 /* QuickSort.m */; };
 		0D1BDC0428FD98FB004F1D93 /* ShellSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC0328FD98FB004F1D93 /* ShellSort.m */; };
@@ -121,8 +120,6 @@
 		0D1BDBCC28FC61C4004F1D93 /* HeapSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeapSort.m; sourceTree = "<group>"; };
 		0D1BDBCE28FD3812004F1D93 /* InsertionSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsertionSort.h; sourceTree = "<group>"; };
 		0D1BDBCF28FD3812004F1D93 /* InsertionSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsertionSort.m; sourceTree = "<group>"; };
-		0D1BDBD328FD4677004F1D93 /* BinarySearch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinarySearch.h; sourceTree = "<group>"; };
-		0D1BDBD428FD4677004F1D93 /* BinarySearch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinarySearch.m; sourceTree = "<group>"; };
 		0D1BDBD628FD60F7004F1D93 /* MergeSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MergeSort.h; sourceTree = "<group>"; };
 		0D1BDBD728FD60F7004F1D93 /* MergeSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MergeSort.m; sourceTree = "<group>"; };
 		0D1BDBDA28FD6A85004F1D93 /* 基数排序.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "基数排序.gif"; sourceTree = "<group>"; };
@@ -416,12 +413,10 @@
 				0D1BDBC628FC61A8004F1D93 /* BubbleSort.m */,
 				0D1BDBC828FC61B7004F1D93 /* SelectionSort.h */,
 				0D1BDBC928FC61B7004F1D93 /* SelectionSort.m */,
-				0D1BDBCB28FC61C4004F1D93 /* HeapSort.h */,
-				0D1BDBCC28FC61C4004F1D93 /* HeapSort.m */,
 				0D1BDBCE28FD3812004F1D93 /* InsertionSort.h */,
 				0D1BDBCF28FD3812004F1D93 /* InsertionSort.m */,
-				0D1BDBD328FD4677004F1D93 /* BinarySearch.h */,
-				0D1BDBD428FD4677004F1D93 /* BinarySearch.m */,
+				0D1BDBCB28FC61C4004F1D93 /* HeapSort.h */,
+				0D1BDBCC28FC61C4004F1D93 /* HeapSort.m */,
 				0D1BDBD628FD60F7004F1D93 /* MergeSort.h */,
 				0D1BDBD728FD60F7004F1D93 /* MergeSort.m */,
 				0D1BDBFF28FD93D6004F1D93 /* QuickSort.h */,
@@ -1169,7 +1164,6 @@
 				0D68036F2905189800D101B3 /* Recall.m in Sources */,
 				0D1BDBD028FD3812004F1D93 /* InsertionSort.m in Sources */,
 				0DC90B6628EF4F8400AA8754 /* LinkNode.m in Sources */,
-				0D1BDBD528FD4677004F1D93 /* BinarySearch.m in Sources */,
 				0D68035C2903DB7000D101B3 /* Recursion.m in Sources */,
 				0DC90B6028EF4F8400AA8754 /* StackQueue.m in Sources */,
 				0D1BDC2928FEEBE2004F1D93 /* UnionFindNode.m in Sources */,

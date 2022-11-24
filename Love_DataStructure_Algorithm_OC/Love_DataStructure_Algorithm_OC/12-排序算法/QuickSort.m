@@ -10,69 +10,84 @@
 @implementation QuickSort
 
 
+/// 快速排序 = 轴点分割 ➕ 轴点排序
 /// 快速排序 - 逐渐将每一个元素都转换成轴点元素
+/// 时间复杂度O(nlogn)  空间复杂度O(logn)
+/// 最坏时间复杂度O(n^2)  全是逆序对的时候性能最差
+//MARK: - 快速排序
 - (void)sortAction {
-    [self quickSort:0 end:(int)self.dataArray.count];
+    [self pivotDivide:0 end:(int)self.dataArray.count];
 }
 
 
+//MARK: 轴点分割
 /**
- * 对 [begin, end) 范围的元素进行快速排序
+ * 1、从序列[begin, end)范围内，随机选择一个轴点元素pivot
+ * 2、利用pivot将序列分割成2个子序列
+ * （将小于pivot的放在轴点左边，大于pivot的放在轴点右边，等于pivot的放轴左右都可以）
  */
-- (void)quickSort:(int)begin end:(int)end {
+- (void)pivotDivide:(int)begin end:(int)end {
     if (end - begin < 2) { return; }
     
-    // 1、构造出 [begin, end) 范围的轴点元素
-    int pivotIndex = [self pivotIndex:begin last:end];
+    // 1、从序列[begin, end)范围内，随机选择一个轴点元素pivot
+    // 2、利用pivot将序列分割成2个子序列
+    //（将小于pivot的放在轴点左边，大于pivot的放在轴点右边，等于pivot的放轴左右都可以）
+    int pivot = [self pivotSort:begin last:end];
     
-    // 2、对子序列再次快速排序
-    [self quickSort:begin end:pivotIndex];
-    [self quickSort:pivotIndex+1 end:end];
+    // 3、递归对左右子序列 重复1、2操作，直到只剩下一个元素或者没有元素时，不再排序。
+    [self pivotDivide:begin end:pivot];
+    [self pivotDivide:pivot+1 end:end];
 }
 
+//MARK: 轴点排序
 /**
- * 构造出 [begin, end) 范围的轴点元素
- * @return 轴点元素的最终位置
- * 为了避免分割出来的数列极度不均匀, 取一个随机的索引和第一个交换
+ * 1、为防止出现完全逆序的数组，在排序之前，随机交换一个数据到第一个位置。
+ * 2、随机交换完首元素之后，选择第一个元素作为轴点元素pivot
+ * 3、利用pivot将序列分割成2个子序列
+ *（将小于pivot的放在轴点左边，大于pivot的放在轴点右边，等于pivot的放轴左右都可以）
+ * 4、左右反复扫描 交换元素位置 保持3的性质
  */
-- (int)pivotIndex:(int)first last:(int)last {
+- (int)pivotSort:(int)first last:(int)last {
     
-    // 随机的索引和first交换 : arc4random_uniform(uint32_t)会随机返回一个0到上界之间（不含上界）的整数
+    // 1、为防止出现完全逆序的数组，导致快速排序的性能很差。主要是因为每次都是取第一个元素作为标志位。
+    // 在排序之前，随机交换一个数据到第一个位置。
     int radomIndex = (int)arc4random_uniform(last - first) + first; // [first last)之间随机整数
     [self swapIndex1:radomIndex index2:first];
     
-    // 0、索引处理
+    // 2、随机交换完首元素之后，选择第一个元素作为轴点元素pivot
     id pivotVal = self.dataArray[first];
     int begin = first;
-    int end = last - 1; // 注意：last - 1
+    int end = last - 1; // 注意：last - 1 [first, last) 左闭右开区间
     
-    // 1、左右扫描
+    // 3、利用pivot将序列分割成2个子序列
+    //（将小于pivot的放在轴点左边，大于pivot的放在轴点右边，等于pivot的放轴左右都可以）
+    // 4、左右反复扫描 交换元素位置 保持3的性质
     while (begin < end) { // begin < end
         
         while (begin < end) {
-            // 1.1、从右往左扫描 <-
+            // 4.1、从右往左扫描 <-
             if ([self cmpElement1:pivotVal element2:self.dataArray[end]] < 0) { // 轴点元素 < 右边元素 ： end--
-                end--;
-            }else { // 轴点元素 >= 右边元素 : 调换位置
+                end--;  // 扫描方向不变 收缩右边界
+            }else {     // 轴点元素 >= 右边元素 : 调换位置
                 self.dataArray[begin] = self.dataArray[end];
-                begin++;
+                begin++;// 扫描方向改变 收缩左边界
                 break;
             }
         }
 
         while (begin < end) {
-            // 1.2、从左往右扫描 ->
+            // 4.2、从左往右扫描 ->
             if ([self cmpElement1:pivotVal element2:self.dataArray[begin]] > 0) { // 轴点元素 > 左边元素 ： begin++
-                begin++;
-            }else { // 轴点元素 <= 左边元素 : 调换位置
+                begin++; // 扫描方向部变 收缩左边界
+            }else {      // 轴点元素 <= 左边元素 : 调换位置
                 self.dataArray[end] = self.dataArray[begin];
-                end--;
+                end--;   // 扫描方向改变 收缩右边界
                 break;
             }
         }
     }
     
-    // 2、将轴点元素放入最终位置
+    // 4.3、将轴点元素放入最终位置
     self.dataArray[begin] = pivotVal;
     // 返回轴点元素最终位置
     return begin; // begin = end

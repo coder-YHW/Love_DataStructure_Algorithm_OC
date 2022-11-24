@@ -37,7 +37,7 @@
 
 @end
 
-
+//MARK: - 插入排序-写法一
 /*
  * 插入排序会将数列分为两个部分, 头部是已经排序好的, 尾部是待排序的部分
  * 从头开始扫描每一个元素, 只要比头部的数据小, 就插入到头部一个合适的位置
@@ -63,6 +63,28 @@
 
 @end
 
+//MARK:  插入排序-写法二
+@implementation InsertionSort2
+
+- (void)sortAction {
+    
+    for (int begin = 1 ; begin < self.dataArray.count ; begin++ ) {
+        
+        int current = begin;
+        
+        while (current > 0) { // 有序部分已经有序了
+            
+            if ([self cmpIndex1:current index2:current-1] < 0) {
+                [self swapIndex1:current index2:current-1];
+            } else {
+                break;
+            }
+            current--;
+        }
+    }
+}
+
+@end
 
 /*
  * 将交换改为挪动
@@ -71,7 +93,8 @@
  * 将待插入元素放到合适的位置
  * 比较次数：225 移动次数：204
  */
-@implementation InsertionSort2
+//MARK:  插入排序-优化1（交换改挪动）
+@implementation InsertionSort3
 
 - (void)sortAction {
     
@@ -102,7 +125,8 @@
  * 将待插入元素放到合适的位置
  * 比较次数：97 交换次数：0
  */
-@implementation InsertionSort3
+//MARK:  插入排序-优化2（二分搜索）
+@implementation InsertionSort4
 
 - (void)sortAction {
     

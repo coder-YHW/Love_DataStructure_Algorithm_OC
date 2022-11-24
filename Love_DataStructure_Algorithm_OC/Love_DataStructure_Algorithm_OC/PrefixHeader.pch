@@ -46,7 +46,6 @@
 #import "SelectionSort.h"
 #import "HeapSort.h"
 #import "InsertionSort.h"
-#import "BinarySearch.h"
 #import "MergeSort.h"
 #import "QuickSort.h"
 #import "ShellSort.h"

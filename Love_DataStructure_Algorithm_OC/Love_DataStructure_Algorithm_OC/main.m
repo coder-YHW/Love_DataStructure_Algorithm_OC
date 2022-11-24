@@ -472,16 +472,15 @@ void testSort(void) {
     NSArray *data = @[@51, @30, @39 ,@30, @39, @92, @74, @25, @16, @93, @91, @19, @54, @47, @73, @62, @76, @63, @35, @18, @90, @6, @65, @49, @3, @26, @61, @21, @48];
     
 
-    BubbleSort1 *sort = [[BubbleSort alloc] init];
+//    BubbleSort1 *sort = [[BubbleSort alloc] init];
 //    BubbleSort1 *sort = [[BubbleSort1 alloc] init];
-//    BubbleSort1 *sort = [[BubbleSort2 alloc] init];
+    BubbleSort1 *sort = [[BubbleSort2 alloc] init];
 //    SelectionSort *sort = [[SelectionSort alloc] init];
 //    HeapSort *sort = [[HeapSort alloc] init];
 //    InsertionSort *sort = [[InsertionSort alloc] init];
 //    InsertionSort1 *sort = [[InsertionSort1 alloc] init];
 //    InsertionSort2 *sort = [[InsertionSort2 alloc] init];
 //    InsertionSort3 *sort = [[InsertionSort3 alloc] init];
-//    BinarySearch *sort = [[BinarySearch alloc] init];
     
 //    MergeSort *sort = [[MergeSort alloc] init];
 //    QuickSort *sort = [[QuickSort alloc] init];
