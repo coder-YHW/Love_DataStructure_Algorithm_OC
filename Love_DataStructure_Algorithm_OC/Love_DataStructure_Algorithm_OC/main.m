@@ -472,9 +472,9 @@ void testSort(void) {
     NSArray *data = @[@51, @30, @39 ,@30, @39, @92, @74, @25, @16, @93, @91, @19, @54, @47, @73, @62, @76, @63, @35, @18, @90, @6, @65, @49, @3, @26, @61, @21, @48];
     
 
+    BubbleSort1 *sort = [[BubbleSort alloc] init];
 //    BubbleSort1 *sort = [[BubbleSort1 alloc] init];
 //    BubbleSort1 *sort = [[BubbleSort2 alloc] init];
-//    BubbleSort1 *sort = [[BubbleSort3 alloc] init];
 //    SelectionSort *sort = [[SelectionSort alloc] init];
 //    HeapSort *sort = [[HeapSort alloc] init];
 //    InsertionSort *sort = [[InsertionSort alloc] init];
@@ -486,7 +486,7 @@ void testSort(void) {
 //    MergeSort *sort = [[MergeSort alloc] init];
 //    QuickSort *sort = [[QuickSort alloc] init];
 //    CountingSort *sort = [[CountingSort alloc] init];
-    RadixSort *sort = [[RadixSort alloc] init];
+//    RadixSort *sort = [[RadixSort alloc] init];
 //    BucketSort *sort = [[BucketSort alloc] init];
     
     
@@ -605,42 +605,67 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         // 动态数组验证
-//        testArrayList();
+        //        testArrayList();
         
         // 链表验证
-//        testLinkList();
+        //        testLinkList();
         
         // 队列验证
-//        testQueue();
+        //        testQueue();
         
         // BST树验证 - 二叉搜索树
-//        testBST1();
-//        testBST2();
+        //        testBST1();
+        //        testBST2();
         
         // AVL树验证 - AVL树
-//        testAVL();
+        //        testAVL();
         
         // RBT树验证 - 红黑树
-//        testRBT();
+        //        testRBT();
         
         // TreeMap验证 - 映射
-//        testTreeMap();
+        //        testTreeMap();
         
         // HashMap验证 - 哈希表
-//        testHashMap();
+        //        testHashMap();
         
         // BinaryHeap验证 - 二叉堆
-//        testBinaryHeap();
+        //        testBinaryHeap();
         
         // 排序算法验证
-//        testSort();
+                testSort();
         
         // 图
-//        testGraph();
+        //        testGraph();
         
         // 算法思想
-        testSuanFa();
+        //        testSuanFa();
+        
+        //        NSMutableArray *arr1 = [NSMutableArray arrayWithArray:@[@1]];
+        //        id obj1 = arr1.firstObject;
+        //        NSMutableArray *arr2 = [arr1 copy];
+        //        id obj2 = arr2.firstObject;
+        //        NSMutableArray *arr3 = [arr1 mutableCopy];
+        //        id obj3 = arr3.firstObject;
+        //
+        //        [arr2 addObject:@2];
+        //
+        //        NSLog(@"%@---%@---%@",arr1, arr2, arr3);
+        //        NSMutableString *str1 = [NSMutableString stringWithString:@"1"];
+        //        NSMutableString *str2 = [str1 copy];
+        //        NSMutableString *str3 = [str1 mutableCopy];
+        //
+        //        [str2 appendString:@"2"];
+        
+        
+//        Student *s = [[Student alloc] init];
+//        [s msg0];
+//        [s msg1];
+//        [s msg2];
+        
+
     }
+        
     return 0;
 }
 

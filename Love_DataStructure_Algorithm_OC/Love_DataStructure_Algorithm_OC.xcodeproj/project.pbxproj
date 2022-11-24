@@ -34,6 +34,10 @@
 		0D1BDC3D28FFD258004F1D93 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC3C28FFD258004F1D93 /* Graph.m */; };
 		0D1BDC4028FFE41B004F1D93 /* ListGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC3F28FFE41B004F1D93 /* ListGraph.m */; };
 		0D1BDC4628FFE47A004F1D93 /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1BDC4528FFE47A004F1D93 /* Path.m */; };
+		0D43702F29237BFA00070FCB /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D43702E29237BFA00070FCB /* Person.m */; };
+		0D43703A2923C25500070FCB /* Person+b.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4370392923C25500070FCB /* Person+b.m */; };
+		0D43703D2923C28D00070FCB /* Person+a.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D43703C2923C28D00070FCB /* Person+a.m */; };
+		0D437040292417BC00070FCB /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D43703F292417BC00070FCB /* Student.m */; };
 		0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D66C5A628F8213000D280E2 /* QueueStack.m */; };
 		0D68035C2903DB7000D101B3 /* Recursion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D68035B2903DB7000D101B3 /* Recursion.m */; };
 		0D68036F2905189800D101B3 /* Recall.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D68036E2905189800D101B3 /* Recall.m */; };
@@ -180,6 +184,14 @@
 		0D1BDC3F28FFE41B004F1D93 /* ListGraph.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListGraph.m; sourceTree = "<group>"; };
 		0D1BDC4428FFE47A004F1D93 /* Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
 		0D1BDC4528FFE47A004F1D93 /* Path.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Path.m; sourceTree = "<group>"; };
+		0D43702D29237BFA00070FCB /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		0D43702E29237BFA00070FCB /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		0D4370382923C25500070FCB /* Person+b.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Person+b.h"; sourceTree = "<group>"; };
+		0D4370392923C25500070FCB /* Person+b.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Person+b.m"; sourceTree = "<group>"; };
+		0D43703B2923C28D00070FCB /* Person+a.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Person+a.h"; sourceTree = "<group>"; };
+		0D43703C2923C28D00070FCB /* Person+a.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Person+a.m"; sourceTree = "<group>"; };
+		0D43703E292417BC00070FCB /* Student.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		0D43703F292417BC00070FCB /* Student.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 		0D66C5A528F8213000D280E2 /* QueueStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueStack.h; sourceTree = "<group>"; };
 		0D66C5A628F8213000D280E2 /* QueueStack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueStack.m; sourceTree = "<group>"; };
 		0D68035A2903DB7000D101B3 /* Recursion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Recursion.h; sourceTree = "<group>"; };
@@ -544,6 +556,21 @@
 			path = "05-动态规划";
 			sourceTree = "<group>";
 		};
+		0D4370302923AE7800070FCB /* 类 */ = {
+			isa = PBXGroup;
+			children = (
+				0D43702D29237BFA00070FCB /* Person.h */,
+				0D43702E29237BFA00070FCB /* Person.m */,
+				0D43703B2923C28D00070FCB /* Person+a.h */,
+				0D43703C2923C28D00070FCB /* Person+a.m */,
+				0D4370382923C25500070FCB /* Person+b.h */,
+				0D4370392923C25500070FCB /* Person+b.m */,
+				0D43703E292417BC00070FCB /* Student.h */,
+				0D43703F292417BC00070FCB /* Student.m */,
+			);
+			path = "类";
+			sourceTree = "<group>";
+		};
 		0D66C5A828F8256200D280E2 /* 07-优先级队列 */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,6 +677,7 @@
 				0D1BDBC028FC5A4D004F1D93 /* 12-排序算法 */,
 				0D6803872905A47C00D101B3 /* 13-算法策略 */,
 				0D68036C29044EA600D101B3 /* 14-LeetCode */,
+				0D4370302923AE7800070FCB /* 类 */,
 			);
 			path = Love_DataStructure_Algorithm_OC;
 			sourceTree = "<group>";
@@ -1147,6 +1175,7 @@
 				0D1BDC2928FEEBE2004F1D93 /* UnionFindNode.m in Sources */,
 				0DC90B5F28EF4F8400AA8754 /* Deque.m in Sources */,
 				0DC90B5728EF4F8400AA8754 /* RBNode.m in Sources */,
+				0D43702F29237BFA00070FCB /* Person.m in Sources */,
 				0DC90C5028F0252600AA8754 /* Heap.m in Sources */,
 				0DC90B6428EF4F8400AA8754 /* List.m in Sources */,
 				0DC90B6128EF4F8400AA8754 /* Queue.m in Sources */,
@@ -1163,6 +1192,7 @@
 				0DC90B5E28EF4F8400AA8754 /* LinkedList.m in Sources */,
 				0DC90B5A28EF4F8400AA8754 /* BSTree.m in Sources */,
 				0DC90B5828EF4F8400AA8754 /* RBTree.m in Sources */,
+				0D43703D2923C28D00070FCB /* Person+a.m in Sources */,
 				0DC90C6128F02B7200AA8754 /* HashSet.m in Sources */,
 				0DC90B4E28EF4F8400AA8754 /* AVLTree.m in Sources */,
 				0D1BDC2C28FEEBF7004F1D93 /* GenericUnionFind.m in Sources */,
@@ -1170,6 +1200,7 @@
 				0D1BDC2028FEEB91004F1D93 /* UnionFind_QU_Rank_PC.m in Sources */,
 				0DC90B5928EF4F8400AA8754 /* BBSTree.m in Sources */,
 				0D1BDC0728FD992E004F1D93 /* CountingSort.m in Sources */,
+				0D43703A2923C25500070FCB /* Person+b.m in Sources */,
 				0D1BDC4628FFE47A004F1D93 /* Path.m in Sources */,
 				0DC90B6328EF4F8400AA8754 /* CircleQueue.m in Sources */,
 				0DC90C5E28F02ACF00AA8754 /* HashNode.m in Sources */,
@@ -1197,6 +1228,7 @@
 				0D1BDC0A28FD9964004F1D93 /* RadixSort.m in Sources */,
 				0D1BDBCA28FC61B7004F1D93 /* SelectionSort.m in Sources */,
 				0DC90B8728EF6C6D00AA8754 /* Map.m in Sources */,
+				0D437040292417BC00070FCB /* Student.m in Sources */,
 				0DC90B5328EF4F8400AA8754 /* MJLevelOrderPrinter.m in Sources */,
 				0D1BDC0428FD98FB004F1D93 /* ShellSort.m in Sources */,
 				0D66C5A728F8213000D280E2 /* QueueStack.m in Sources */,
