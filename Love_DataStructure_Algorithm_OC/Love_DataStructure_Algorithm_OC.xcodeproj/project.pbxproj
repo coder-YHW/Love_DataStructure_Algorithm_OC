@@ -551,7 +551,7 @@
 			path = "05-动态规划";
 			sourceTree = "<group>";
 		};
-		0D4370302923AE7800070FCB /* 类 */ = {
+		0D4370302923AE7800070FCB /* 面试题 */ = {
 			isa = PBXGroup;
 			children = (
 				0D43702D29237BFA00070FCB /* Person.h */,
@@ -563,7 +563,7 @@
 				0D43703E292417BC00070FCB /* Student.h */,
 				0D43703F292417BC00070FCB /* Student.m */,
 			);
-			path = "类";
+			path = "面试题";
 			sourceTree = "<group>";
 		};
 		0D66C5A828F8256200D280E2 /* 07-优先级队列 */ = {
@@ -672,7 +672,7 @@
 				0D1BDBC028FC5A4D004F1D93 /* 12-排序算法 */,
 				0D6803872905A47C00D101B3 /* 13-算法策略 */,
 				0D68036C29044EA600D101B3 /* 14-LeetCode */,
-				0D4370302923AE7800070FCB /* 类 */,
+				0D4370302923AE7800070FCB /* 面试题 */,
 			);
 			path = Love_DataStructure_Algorithm_OC;
 			sourceTree = "<group>";

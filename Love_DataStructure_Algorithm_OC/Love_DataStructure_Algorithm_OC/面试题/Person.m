@@ -25,13 +25,38 @@ NSString const *cellName = @"cellName";
 - (void)msg1 {
     NSLog(@"runtime消息机制-消息重定向");
     
-    // isKindOfClass和isMemberOfClass
+    // 1、isKindOfClass 和 isMemberOfClass
     assert([Person isKindOfClass:[Person class]] == NO);
     assert([Person isKindOfClass:[NSObject class]] == YES);
     assert([NSObject isKindOfClass:[NSObject class]] == YES);
     
     assert([Person isMemberOfClass:[Person class]] == NO);
+    assert([Person isMemberOfClass:[NSObject class]] == NO);
     assert([NSObject isMemberOfClass:[NSObject class]] == NO);
+    
+    assert([[Person class] isKindOfClass:[Person class]] == NO);
+    assert([[Person class] isKindOfClass:[NSObject class]] == YES);
+    assert([[NSObject class] isKindOfClass:[NSObject class]] == YES);
+    
+    assert([[Person class] isMemberOfClass:[Person class]] == NO);
+    assert([[Person class] isMemberOfClass:[NSObject class]] == NO);
+    assert([[NSObject class] isMemberOfClass:[NSObject class]] == NO);
+    
+    assert([self isKindOfClass:[Person class]] == YES);
+    assert([self isKindOfClass:[NSObject class]] == YES);
+    assert([self isMemberOfClass:[Person class]] == YES);
+    assert([self isMemberOfClass:[NSObject class]] == NO);
+    
+    
+    // 2、class 和 superclass
+    Class a = [self class]; // Person
+    Class b = [self superclass]; // NSObject
+    
+    assert([self class] == [Person class]);
+    assert([self superclass] != [Person class]);
+    assert([self class] != [NSObject class]);
+    assert([self superclass] == [NSObject class]);
+    
 }
 
 - (void)msg2 {

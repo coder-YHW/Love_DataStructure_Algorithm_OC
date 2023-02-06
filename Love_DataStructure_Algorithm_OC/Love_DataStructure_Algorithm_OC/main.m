@@ -632,7 +632,7 @@ int main(int argc, const char * argv[]) {
         //        testBinaryHeap();
         
         // 排序算法验证
-                testSort();
+//                testSort();
         
         // 图
         //        testGraph();
@@ -657,12 +657,11 @@ int main(int argc, const char * argv[]) {
         //        [str2 appendString:@"2"];
         
         
-//        Student *s = [[Student alloc] init];
+        Student *s = [[Student alloc] init];
 //        [s msg0];
-//        [s msg1];
+        [s msg1];
 //        [s msg2];
         
-
     }
         
     return 0;
